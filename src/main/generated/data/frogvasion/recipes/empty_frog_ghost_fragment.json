@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "frogvasion:empty_frog_ghost"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "frogvasion:empty_frog_ghost_fragment"
+  }
+}

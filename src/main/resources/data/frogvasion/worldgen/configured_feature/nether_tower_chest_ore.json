@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 0.0,
+    "size": 3,
+    "targets": [
+      {
+        "state": {
+          "Name": "frogvasion:frog_tower_chest",
+          "Properties": {
+            "level": "3"
+          }
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:base_stone_nether"
+        }
+      },
+      {
+        "state": {
+          "Name": "frogvasion:frog_tower_chest",
+          "Properties": {
+            "level": "4"
+          }
+        },
+        "target": {
+          "block": "minecraft:blackstone",
+          "predicate_type": "minecraft:block_match"
+        }
+      }
+    ]
+  }
+}

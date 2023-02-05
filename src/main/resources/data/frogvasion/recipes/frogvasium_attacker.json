@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "!": {
+      "item": "minecraft:redstone"
+    },
+    "#": {
+      "item": "frogvasion:frogvasium_embedded_polished_blackstone"
+    },
+    "?": {
+      "item": "frogvasion:soldier_frog_ghost"
+    }
+  },
+  "pattern": [
+    "###",
+    "#?#",
+    "!!!"
+  ],
+  "result": {
+    "item": "frogvasion:frogvasium_attacker"
+  }
+}

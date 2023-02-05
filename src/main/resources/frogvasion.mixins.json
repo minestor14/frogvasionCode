@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.Minestor.frogvasion.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "Mixins.BrewingRecipeRegistryMixin",
+    "Mixins.EnderPearlItemMixin",
+    "Mixins.LivingEntityMixin"
+  ],
+  "client": [
+    "FrogvasionMixin",
+    "Mixins.ModLevelstorageSessionMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

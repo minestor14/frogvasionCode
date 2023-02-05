@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "!": {
+      "item": "frogvasion:spine"
+    },
+    "#": {
+      "item": "frogvasion:frog_hide"
+    },
+    "?": {
+      "item": "minecraft:soul_sand"
+    }
+  },
+  "pattern": [
+    "#!#",
+    "! !",
+    "#?#"
+  ],
+  "result": {
+    "item": "frogvasion:empty_frog_ghost_fragment"
+  }
+}

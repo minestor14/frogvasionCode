@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "misc",
+  "key": {
+    "#": {
+      "item": "frogvasion:frogvasium_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "frogvasion:frogvasium_block"
+  }
+}

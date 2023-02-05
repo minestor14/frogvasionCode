@@ -1,0 +1,16 @@
+{
+  "croak": {
+    "category": "entities",
+    "subtitle": "subtitles.frogvasion.croak",
+    "sounds": [
+      "frogvasion:croak"
+    ]
+  },
+  "charge": {
+    "category": "entities",
+    "subtitle": "subtitles.frogvasion.charge",
+    "sounds": [
+      "frogvasion:explosive_frog_charge"
+    ]
+  }
+}

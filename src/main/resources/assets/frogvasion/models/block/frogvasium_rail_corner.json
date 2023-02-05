@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/rail_curved",
+  "textures": {
+    "rail": "frogvasion:block/frogvasium_rail_corner"
+  }
+}

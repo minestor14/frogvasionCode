@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "frogvasion:empty_frog_ghost_fragment"
+    },
+    "/": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "?": {
+      "item": "minecraft:brewing_stand"
+    }
+  },
+  "pattern": [
+    "###",
+    "#?#",
+    "///"
+  ],
+  "result": {
+    "item": "frogvasion:conversion_pedestal"
+  }
+}

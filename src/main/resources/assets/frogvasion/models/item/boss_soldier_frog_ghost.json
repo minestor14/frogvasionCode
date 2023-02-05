@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "frogvasion:item/boss_soldier_frog_ghost"
+  }
+}

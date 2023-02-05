@@ -1,0 +1,14 @@
+{
+  "type": "frogvasion:conversion_recipe",
+  "ingredients": [
+    {
+      "item": "frogvasion:empty_frog_ghost"
+    },
+    {
+      "item": "frogvasion:grappling_tongue"
+    }
+  ],
+  "output": {
+    "item": "frogvasion:grappling_frog_ghost"
+  }
+}

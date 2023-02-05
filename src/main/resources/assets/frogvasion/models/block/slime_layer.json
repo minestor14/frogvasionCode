@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/rail_flat",
+  "textures": {
+    "rail": "frogvasion:block/slime_layer",
+    "particle": "item/slime_ball"
+  }
+}

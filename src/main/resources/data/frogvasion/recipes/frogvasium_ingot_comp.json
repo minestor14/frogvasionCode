@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "misc",
+  "ingredients": [
+    {
+      "item": "frogvasion:frogvasium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "frogvasion:frogvasium_ingot"
+  }
+}

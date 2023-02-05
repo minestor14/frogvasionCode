@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "frogvasion:grappling_tongue",
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.1
+            },
+            {
+              "condition": "minecraft:killed_by_player"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "frogvasion:spine",
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.2
+            },
+            {
+              "condition": "minecraft:killed_by_player"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

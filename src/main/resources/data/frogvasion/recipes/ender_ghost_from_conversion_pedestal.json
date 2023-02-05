@@ -1,0 +1,14 @@
+{
+  "type": "frogvasion:conversion_recipe",
+  "ingredients": [
+    {
+      "item": "frogvasion:empty_frog_ghost"
+    },
+    {
+      "item": "minecraft:ender_pearl"
+    }
+  ],
+  "output": {
+    "item": "frogvasion:ender_frog_ghost"
+  }
+}

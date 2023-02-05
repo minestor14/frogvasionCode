@@ -1,0 +1,14 @@
+{
+  "type": "frogvasion:conversion_recipe",
+  "ingredients": [
+    {
+      "item": "frogvasion:empty_frog_ghost"
+    },
+    {
+      "item": "frogvasion:enhanced_mutagen"
+    }
+  ],
+  "output": {
+    "item": "frogvasion:growing_frog_ghost"
+  }
+}

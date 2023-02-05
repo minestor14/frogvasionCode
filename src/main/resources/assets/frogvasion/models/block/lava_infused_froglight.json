@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "frogvasion:block/lava_infused_froglight_top",
+    "side": "frogvasion:block/lava_infused_froglight_side"
+  }
+}

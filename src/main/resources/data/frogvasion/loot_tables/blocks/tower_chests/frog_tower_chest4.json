@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 4
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "frogvasion:empty_frog_ghost_fragment"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 4
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "frogvasion:enhanced_mutagen"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 0,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "frogvasion:empty_frog_ghost"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 40,
+  "experience": 1.0,
+  "group": "misc",
+  "ingredient": {
+    "item": "frogvasion:raw_frogvasium"
+  },
+  "result": "frogvasion:frogvasium_ingot"
+}

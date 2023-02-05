@@ -1,0 +1,37 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.frog_helmet.blink": {
+			"animation_length": 0.16667,
+			"bones": {
+				"eyeR": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.0833": {
+							"vector": [1, 0, 1]
+						},
+						"0.1667": {
+							"vector": [1, 1, 1]
+						}
+					}
+				},
+				"eyeL": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.0833": {
+							"vector": [1, 0, 1]
+						},
+						"0.1667": {
+							"vector": [1, 1, 1]
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

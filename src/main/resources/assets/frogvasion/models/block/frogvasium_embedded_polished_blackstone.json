@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "frogvasion:block/frogvasium_embedded_polished_blackstone"
+  }
+}

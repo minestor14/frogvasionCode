@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "level=0": {"model": "frogvasion:block/frog_tower_chest0"},
+    "level=1": {"model": "frogvasion:block/frog_tower_chest1"},
+    "level=2": {"model": "frogvasion:block/frog_tower_chest2"},
+    "level=3": {"model": "frogvasion:block/frog_tower_chest3"},
+    "level=4": {"model": "frogvasion:block/frog_tower_chest4"},
+    "level=5": {"model": "frogvasion:block/frog_tower_chest5"},
+    "level=6": {"model": "frogvasion:block/frog_tower_chest6"},
+    "level=7": {"model": "frogvasion:block/frog_tower_chest7"},
+    "level=8": {"model": "frogvasion:block/frog_tower_chest8"},
+    "level=9": {"model": "frogvasion:block/frog_tower_chest9"},
+    "level=10": {"model": "frogvasion:block/frog_tower_chest10"}
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "frogvasion",
+  "version": "${version}",
+
+  "name": "Frogvasion",
+  "description": "This is a fabric mod intended for Minecraft 1.19.3. \n This mod adds a variety of hostile frogs to the game.",
+  "authors": [
+    "Minestor"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/frogvasion",
+    "sources": "https://github.com/minestor14/Frogvasion"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/frogvasion/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.Minestor.frogvasion.Frogvasion"
+    ],
+    "client": [
+      "me.Minestor.frogvasion.FrogvasionClient"
+    ],
+    "fabric-datagen": [
+      "me.Minestor.frogvasion.datagen.ModDatageneration"
+    ]
+  },
+  "mixins": [
+    "frogvasion.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "GeckoLib4.0.3"
+  }
+}

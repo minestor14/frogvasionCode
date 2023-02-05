@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "frogvasion:conversion_pedestal",
+    "frogvasion:frogvasium_ore",
+    "frogvasion:deepslate_frogvasium_ore",
+    "frogvasion:frogvasium_block",
+    "frogvasion:raw_frogvasium_block",
+    "frogvasion:frogvasium_rail",
+    "frogvasion:frogvasium_embedded_polished_blackstone",
+    "frogvasion:frogvasium_attacker",
+    "frogvasion:frogvasium_demolisher"
+  ]
+}
