@@ -28,8 +28,9 @@ public class ModBlocks {
     public static final Block FROGVASIUM_RAIL = registerBlock("frogvasium_rail", new FrogvasiumRailBlock(FabricBlockSettings.copyOf(Blocks.RAIL).requiresTool()), ItemGroups.FUNCTIONAL);
     //(#A18594) 2x124
     public static final Block FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE = registerBlock("frogvasium_embedded_polished_blackstone", new Block(FabricBlockSettings.copyOf(Blocks.POLISHED_BLACKSTONE).requiresTool()),ItemGroups.BUILDING_BLOCKS);
-    public static final Block FROGVASIUM_ATTACKER = registerBlock("frogvasium_attacker", new FrogvasiumAttackerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()) ,ItemGroups.FUNCTIONAL);
-    public static final Block FROGVASIUM_DEMOLISHER = registerBlock("frogvasium_demolisher", new FrogvasiumDemolisherBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()), ItemGroups.FUNCTIONAL);
+    public static final Block FROGVASIUM_ATTACKER = registerBlock("frogvasium_attacker", new FrogvasiumAttackerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()) ,ItemGroups.REDSTONE);
+    public static final Block FROGVASIUM_DEMOLISHER = registerBlock("frogvasium_demolisher", new FrogvasiumDemolisherBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()), ItemGroups.REDSTONE);
+    public static final Block FROGVASIUM_GRAPPLER = registerBlock("frogvasium_grappler", new FrogvasiumGrapplerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()), ItemGroups.REDSTONE);
 
     private static Block registerBlockNoItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, new Identifier(Frogvasion.MOD_ID, name), block);

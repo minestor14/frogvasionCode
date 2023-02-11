@@ -59,7 +59,6 @@ public class FrogvasiumAttackerBlock extends BlockWithEntity implements BlockEnt
         super.neighborUpdate(state, world, pos, sourceBlock, sourcePos, notify);
     }
 
-
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {

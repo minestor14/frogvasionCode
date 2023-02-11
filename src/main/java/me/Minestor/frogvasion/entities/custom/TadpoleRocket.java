@@ -91,7 +91,7 @@ public class TadpoleRocket extends ModFrog implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
-        if(this.age >= 6000) {
+        if(this.age >= 6000 && !this.hasCustomName()) {
             this.dead =true;
             this.discard();
         }

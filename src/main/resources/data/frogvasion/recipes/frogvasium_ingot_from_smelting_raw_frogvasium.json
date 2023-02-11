@@ -1,5 +1,6 @@
 {
   "type": "minecraft:smelting",
+  "category": "misc",
   "cookingtime": 40,
   "experience": 1.0,
   "group": "misc",

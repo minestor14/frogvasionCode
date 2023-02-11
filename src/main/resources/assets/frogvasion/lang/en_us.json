@@ -46,6 +46,7 @@
   "block.frogvasion.frogvasium_embedded_polished_blackstone" : "Frogvasium Embedded Polished Blackstone",
   "block.frogvasion.frogvasium_attacker" : "Frogvasium Attacker",
   "block.frogvasion.frogvasium_demolisher" : "Frogvasium Demolisher",
+  "block.frogvasion.frogvasium_grappler" : "Frogvasium Grappler",
 
 
   "entity.frogvasion.soldier_frog": "Soldier Frog",
@@ -65,5 +66,6 @@
   "text.block.conversion_pedestal_block": "Conversion Pedestal",
   "text.frogvasion.tooltip.press_shift": "Press shift for more information",
 
-  "death.attack.frogvasium_attack": "%1$s was eaten alive by a block"
+  "death.attack.frogvasium_attack": "%1$s was eaten alive by a block",
+  "death.attack.magic_repay": "%1$s died from the cost of a powerful spell"
 }

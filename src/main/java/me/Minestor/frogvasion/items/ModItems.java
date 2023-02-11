@@ -2,10 +2,7 @@ package me.Minestor.frogvasion.items;
 
 import me.Minestor.frogvasion.Frogvasion;
 import me.Minestor.frogvasion.entities.ModEntities;
-import me.Minestor.frogvasion.items.Custom.AddressCardItem;
-import me.Minestor.frogvasion.items.Custom.FrogHelmetItem;
-import me.Minestor.frogvasion.items.Custom.FrogvasiumIngotItem;
-import me.Minestor.frogvasion.items.Custom.SlimeLikeGooItem;
+import me.Minestor.frogvasion.items.Custom.*;
 import me.Minestor.frogvasion.items.Custom.frog_ghosts.EmptyFrogGhostItem;
 import me.Minestor.frogvasion.items.Custom.frog_ghosts.ModFrogGhostItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -44,6 +41,8 @@ public class ModItems {
     public static final Item RAW_FROGVASIUM = registerItem("raw_frogvasium", new Item(new FabricItemSettings()), ItemGroups.INGREDIENTS);
     public static final Item FROGVASIUM_INGOT = registerItem("frogvasium_ingot", new FrogvasiumIngotItem(new FabricItemSettings()), ItemGroups.INGREDIENTS);
     public static final Item FROGVASIUM_NUGGET = registerItem("frogvasium_nugget", new Item(new FabricItemSettings()), ItemGroups.INGREDIENTS);
+    public static final Item FROG_STAFF = registerItem("frog_staff", new FrogStaffItem(new FabricItemSettings().maxCount(1).maxDamage(50)), ItemGroups.TOOLS);
+    //TODO recipes
     private static Item registerItem(String name, Item item, ItemGroup group) {
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
         return Registry.register(Registries.ITEM, new Identifier(Frogvasion.MOD_ID, name), item);

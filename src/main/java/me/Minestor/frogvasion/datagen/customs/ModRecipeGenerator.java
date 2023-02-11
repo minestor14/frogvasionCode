@@ -89,7 +89,41 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         RecipeProvider.conditionsFromItem(Items.STICK))
                 .criterion(RecipeProvider.hasItem(ModItems.FROGVASIUM_INGOT),
                         RecipeProvider.conditionsFromItem(ModItems.FROGVASIUM_INGOT))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROGVASIUM_RAIL))); //count 16
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROGVASIUM_RAIL)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.FROGVASIUM_ATTACKER)
+                .pattern("###")
+                .pattern("#?#")
+                .pattern("!!!")
+                .input('?', ModItems.SOLDIER_FROG_GHOST)
+                .input('#', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE)
+                .input('!', Items.REDSTONE)
+                .criterion(RecipeProvider.hasItem(Items.REDSTONE),
+                        RecipeProvider.conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROGVASIUM_ATTACKER)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.FROGVASIUM_DEMOLISHER)
+                .pattern("-#-")
+                .pattern("-?-")
+                .pattern("!!!")
+                .input('!', ModItems.SOLDIER_FROG_GHOST)
+                .input('#', ModBlocks.FROGVASIUM_ATTACKER)
+                .input('?', Items.NETHER_STAR)
+                .input('-', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE)
+                .criterion(RecipeProvider.hasItem(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE),
+                        RecipeProvider.conditionsFromItem(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROGVASIUM_DEMOLISHER)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.FROGVASIUM_GRAPPLER)
+                .pattern("###")
+                .pattern("#?#")
+                .pattern("!!!")
+                .input('?', ModItems.GRAPPLING_FROG_GHOST)
+                .input('#', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE)
+                .input('!', Items.REDSTONE)
+                .criterion(RecipeProvider.hasItem(Items.REDSTONE),
+                        RecipeProvider.conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROGVASIUM_GRAPPLER)));
 
     }
 }

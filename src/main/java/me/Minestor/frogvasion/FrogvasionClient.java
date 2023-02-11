@@ -4,6 +4,7 @@ import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import me.Minestor.frogvasion.blocks.entity.renderers.FrogvasiumAttackerRenderer;
 import me.Minestor.frogvasion.blocks.entity.renderers.FrogvasiumDemolisherRenderer;
+import me.Minestor.frogvasion.blocks.entity.renderers.FrogvasiumGrapplerRenderer;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.Renderers.*;
 import me.Minestor.frogvasion.events.JoinEvent;
@@ -39,6 +40,7 @@ public class FrogvasionClient implements ClientModInitializer {
 
         BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_ATTACKER_TYPE, context -> new FrogvasiumAttackerRenderer());
         BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE, context -> new FrogvasiumDemolisherRenderer());
+        BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_GRAPPLER_TYPE, context -> new FrogvasiumGrapplerRenderer());
 
         HandledScreens.register(ModScreenHandlers.CONVERSION_PEDESTAL_SCREEN_HANDLER, ConversionPedestalScreen::new);
 
