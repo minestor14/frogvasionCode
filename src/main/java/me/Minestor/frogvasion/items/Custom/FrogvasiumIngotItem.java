@@ -22,7 +22,6 @@ public class FrogvasiumIngotItem extends Item {
         BlockPos pos = context.getBlockPos();
         BlockState state = world.getBlockState(pos);
 
-
         if(state.isOf(Blocks.POLISHED_BLACKSTONE)) {
             world.setBlockState(pos, ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE.getDefaultState());
             world.playSoundAtBlockCenter(pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 1f,1f,true);
