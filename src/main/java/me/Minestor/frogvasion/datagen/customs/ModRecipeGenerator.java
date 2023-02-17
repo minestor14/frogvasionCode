@@ -124,6 +124,44 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(RecipeProvider.hasItem(Items.REDSTONE),
                         RecipeProvider.conditionsFromItem(Items.REDSTONE))
                 .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROGVASIUM_GRAPPLER)));
-
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.FROG_STAFF)
+                .pattern(" # ")
+                .pattern(" ? ")
+                .pattern(" ? ")
+                .input('?', Items.STICK)
+                .input('#', ModItems.FROG_HELMET_ITEM)
+                .criterion(RecipeProvider.hasItem(ModItems.FROG_HELMET_ITEM),
+                        RecipeProvider.conditionsFromItem(ModItems.FROG_HELMET_ITEM))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.FROG_STAFF)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.GHOST_FRAGMENT_HELMET)
+                .pattern("###")
+                .pattern("# #")
+                .input('#', ModItems.EMPTY_FROG_GHOST_FRAGMENT)
+                .criterion(RecipeProvider.hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT),
+                        RecipeProvider.conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.GHOST_FRAGMENT_HELMET)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.GHOST_FRAGMENT_CHESTPLATE)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .input('#', ModItems.EMPTY_FROG_GHOST_FRAGMENT)
+                .criterion(RecipeProvider.hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT),
+                        RecipeProvider.conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.GHOST_FRAGMENT_CHESTPLATE)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.GHOST_FRAGMENT_LEGGINGS)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .input('#', ModItems.EMPTY_FROG_GHOST_FRAGMENT)
+                .criterion(RecipeProvider.hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT),
+                        RecipeProvider.conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.GHOST_FRAGMENT_LEGGINGS)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.GHOST_FRAGMENT_BOOTS)
+                .pattern("# #")
+                .pattern("# #")
+                .input('#', ModItems.EMPTY_FROG_GHOST_FRAGMENT)
+                .criterion(RecipeProvider.hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT),
+                        RecipeProvider.conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.GHOST_FRAGMENT_BOOTS)));
     }
 }

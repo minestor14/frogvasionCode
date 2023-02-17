@@ -11,6 +11,7 @@ import me.Minestor.frogvasion.entities.custom.*;
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.screen.ModScreenHandlers;
 import me.Minestor.frogvasion.sounds.ModSounds;
+import me.Minestor.frogvasion.util.ModArmorMaterials;
 import me.Minestor.frogvasion.util.ModDamageSources;
 import me.Minestor.frogvasion.util.ModLootTableModifiers;
 import me.Minestor.frogvasion.worldgen.features.ModFeaturesPlacing;
@@ -30,6 +31,7 @@ public class Frogvasion implements ModInitializer {
 	public void onInitialize() {
 		ModFeaturesPlacing.registerPlacedFeatures();
 
+		ModArmorMaterials.registerArmorMaterials();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 
@@ -46,6 +48,7 @@ public class Frogvasion implements ModInitializer {
 		ModLootTableModifiers.modifyLootTables();
 
 		ModDamageSources.registerDamageSources();
+
 
 		LOGGER.info("Frogvasion initialized");
 	}

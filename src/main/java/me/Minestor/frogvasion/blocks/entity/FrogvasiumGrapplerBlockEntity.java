@@ -83,7 +83,7 @@ public class FrogvasiumGrapplerBlockEntity extends BlockEntity implements GeoBlo
         for(Entity en : list) {
             if(en instanceof LivingEntity) {
                 en.damage(ModDamageSources.FROGVASIUM_ATTACK,2f);
-                en.setVelocity(new Vec3d(this.getPos().getX(),this.getPos().getY(),this.getPos().getZ()).subtract(new Vec3d(en.getX(),en.getY(),en.getZ())).normalize());
+                en.setVelocity(new Vec3d(this.getPos().getX() + 0.5,this.getPos().getY(),this.getPos().getZ() + 0.5).subtract(new Vec3d(en.getX(),en.getY(),en.getZ())).normalize());
             }
         }
     }

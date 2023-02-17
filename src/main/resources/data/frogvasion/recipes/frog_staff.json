@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "frogvasion:frog_helmet"
+    },
+    "?": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " # ",
+    " ? ",
+    " ? "
+  ],
+  "result": {
+    "item": "frogvasion:frog_staff"
+  }
+}

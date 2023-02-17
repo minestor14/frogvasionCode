@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "!": {
+      "item": "frogvasion:soldier_frog_ghost"
+    },
+    "#": {
+      "item": "frogvasion:frogvasium_attacker"
+    },
+    "-": {
+      "item": "frogvasion:frogvasium_embedded_polished_blackstone"
+    },
+    "?": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "pattern": [
+    "-#-",
+    "-?-",
+    "!!!"
+  ],
+  "result": {
+    "item": "frogvasion:frogvasium_demolisher"
+  }
+}

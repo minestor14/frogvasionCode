@@ -27,6 +27,13 @@
   "item.frogvasion.raw_frogvasium": "Raw Frogvasium",
   "item.frogvasion.frogvasium_ingot": "Frogvasium Ingot",
   "item.frogvasion.frogvasium_nugget": "Frogvasium Nugget",
+  "item.frogvasion.jump_frog_staff": "Jump Frog Staff",
+  "item.frogvasion.combat_frog_staff": "Combat Frog Staff",
+  "item.frogvasion.frog_staff": "Frog Staff",
+  "item.frogvasion.ghost_fragment_helmet": "Ghost Fragment Helmet",
+  "item.frogvasion.ghost_fragment_chestplate": "Ghost Fragment Chestplate",
+  "item.frogvasion.ghost_fragment_leggings": "Ghost Fragment Leggings",
+  "item.frogvasion.ghost_fragment_boots": "Ghost Fragment Boots",
 
   "item.minecraft.potion.effect.improver_potion": "Potion of Improving",
   "item.minecraft.splash_potion.effect.improver_potion": "Splash Potion of Improving",

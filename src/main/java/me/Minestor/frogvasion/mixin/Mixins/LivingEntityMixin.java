@@ -1,6 +1,7 @@
 package me.Minestor.frogvasion.mixin.Mixins;
 
 import me.Minestor.frogvasion.items.Custom.FrogHelmetItem;
+import me.Minestor.frogvasion.items.ModItems;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -20,6 +21,10 @@ public abstract class LivingEntityMixin {
     public void tick(CallbackInfo ci) {
         if(this.getEquippedStack(EquipmentSlot.HEAD).getItem() instanceof FrogHelmetItem) {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, 21 ,0,true,true));
+        }
+        if(this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.GHOST_FRAGMENT_BOOTS && this.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.GHOST_FRAGMENT_HELMET &&
+                this.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.GHOST_FRAGMENT_LEGGINGS && this.getEquippedStack(EquipmentSlot.CHEST).getItem() == ModItems.GHOST_FRAGMENT_CHESTPLATE) {
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, 21 ,0,true,false));
         }
     }
 }

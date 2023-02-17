@@ -8,6 +8,7 @@ import me.Minestor.frogvasion.blocks.entity.renderers.FrogvasiumGrapplerRenderer
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.Renderers.*;
 import me.Minestor.frogvasion.events.JoinEvent;
+import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.screen.ConversionPedestalScreen;
 import me.Minestor.frogvasion.screen.ModScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
@@ -19,16 +20,14 @@ import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.util.Identifier;
 
 
 @Environment(EnvType.CLIENT)
 public class FrogvasionClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CONCENTRATED_SLIME, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLIME_LAYER, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROGVASIUM_RAIL, RenderLayer.getCutout());
-
+        initBIRenderers();
         EntityRendererRegistry.register(ModEntities.SOLDIER_FROG_ENTITY, SoldierFrogRenderer::new);
         EntityRendererRegistry.register(ModEntities.BOSS_SOLDIER_FROG_ENTITY, BossSoldierFrogRenderer::new);
         EntityRendererRegistry.register(ModEntities.EXPLOSIVE_FROG_ENTITY, ExplosiveFrogRenderer::new);
@@ -49,5 +48,10 @@ public class FrogvasionClient implements ClientModInitializer {
     }
     private void initClientEvents() {
         ClientPlayConnectionEvents.JOIN.register(new JoinEvent());
+    }
+    private void initBIRenderers() {
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CONCENTRATED_SLIME, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLIME_LAYER, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROGVASIUM_RAIL, RenderLayer.getCutout());
     }
 }
