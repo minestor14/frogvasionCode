@@ -183,4 +183,22 @@ public abstract class ModFrogGhostItem extends Item {
             return super.useOnEntity(stack, user, entity, hand);
         }
     }
+    public static class IceFrogGhostItem extends ModFrogGhostItem {
+        public IceFrogGhostItem(Settings settings) {
+            super(settings);
+        }
+        @Override
+        public void onItemEntityDestroyed(ItemEntity entity) {
+            super.onItemEntityDestroyed(entity);
+            if(!entity.getWorld().isClient()) {
+                ServerWorld sworld = (ServerWorld) entity.world;
+                onDestroyed(entity, sworld, new IceFrog(ModEntities.ICE_FROG_ENTITY, sworld));
+            }
+        }
+        @Override
+        public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+            onRightClickEntity(stack,user,entity, new IceFrog(ModEntities.ICE_FROG_ENTITY, entity.getWorld()));
+            return super.useOnEntity(stack, user, entity, hand);
+        }
+    }
 }

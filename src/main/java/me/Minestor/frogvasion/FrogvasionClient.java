@@ -8,9 +8,12 @@ import me.Minestor.frogvasion.blocks.entity.renderers.FrogvasiumGrapplerRenderer
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.Renderers.*;
 import me.Minestor.frogvasion.events.JoinEvent;
+import me.Minestor.frogvasion.items.Custom.IceSpikeItemEntity;
+import me.Minestor.frogvasion.items.Custom.renderers.IceSpikeEntityRenderer;
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.screen.ConversionPedestalScreen;
 import me.Minestor.frogvasion.screen.ModScreenHandlers;
+import me.Minestor.frogvasion.util.ModThrowables;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -20,6 +23,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.ArrowEntityRenderer;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.client.render.entity.ProjectileEntityRenderer;
 import net.minecraft.util.Identifier;
 
 
@@ -36,6 +42,9 @@ public class FrogvasionClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.TADPOLE_ROCKET_ENTITY, TadpoleRocketRenderer::new);
         EntityRendererRegistry.register(ModEntities.GRAPPLING_FROG_ENTITY, GrapplingFrogRenderer::new);
         EntityRendererRegistry.register(ModEntities.ENDER_FROG_ENTITY, EnderFrogRenderer::new);
+        EntityRendererRegistry.register(ModEntities.ICE_FROG_ENTITY, IceFrogRenderer::new);
+
+        EntityRendererRegistry.register(ModThrowables.ICE_SPIKE_ITEM_ENTITY_TYPE, IceSpikeEntityRenderer::new);
 
         BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_ATTACKER_TYPE, context -> new FrogvasiumAttackerRenderer());
         BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE, context -> new FrogvasiumDemolisherRenderer());

@@ -25,8 +25,7 @@ public class EmptyFrogGhostItem extends Item {
 
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-        if(entity instanceof ModFrog && !(entity instanceof TadpoleRocket)) {
-            ModFrog frog = (ModFrog) entity;
+        if(entity instanceof ModFrog frog && !(entity instanceof TadpoleRocket)) {
             stack.decrement(1);
             switch (frog.getFrogType()) {
                 case ARMED -> user.giveItemStack(new ItemStack(ModItems.ARMED_FROG_GHOST));
@@ -36,6 +35,7 @@ public class EmptyFrogGhostItem extends Item {
                 case EXPLOSIVE -> user.giveItemStack(new ItemStack(ModItems.EXPLOSIVE_FROG_GHOST));
                 case GRAPPLING -> user.giveItemStack(new ItemStack(ModItems.GRAPPLING_FROG_GHOST));
                 case SOLDIER -> user.giveItemStack(new ItemStack(ModItems.SOLDIER_FROG_GHOST));
+                case ICE -> user.giveItemStack(new ItemStack(ModItems.ICE_FROG_GHOST));
                 default -> user.giveItemStack(new ItemStack(ModItems.EMPTY_FROG_GHOST));
             }
         }

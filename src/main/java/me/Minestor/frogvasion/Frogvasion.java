@@ -14,6 +14,7 @@ import me.Minestor.frogvasion.sounds.ModSounds;
 import me.Minestor.frogvasion.util.ModArmorMaterials;
 import me.Minestor.frogvasion.util.ModDamageSources;
 import me.Minestor.frogvasion.util.ModLootTableModifiers;
+import me.Minestor.frogvasion.util.ModThrowables;
 import me.Minestor.frogvasion.worldgen.features.ModFeaturesPlacing;
 import me.Minestor.frogvasion.worldgen.spawing.ModEntitySpawning;
 import net.fabricmc.api.ModInitializer;
@@ -33,6 +34,7 @@ public class Frogvasion implements ModInitializer {
 
 		ModArmorMaterials.registerArmorMaterials();
 		ModItems.registerModItems();
+		ModThrowables.registerThrowables();
 		ModBlocks.registerModBlocks();
 
 		initAttributes();
@@ -67,6 +69,7 @@ public class Frogvasion implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.TADPOLE_ROCKET_ENTITY, TadpoleRocket.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.GRAPPLING_FROG_ENTITY, GrapplingFrog.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.ENDER_FROG_ENTITY, EnderFrog.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.ICE_FROG_ENTITY, IceFrog.setAttributes());
 	}
 
 	private static void registerCommands() {

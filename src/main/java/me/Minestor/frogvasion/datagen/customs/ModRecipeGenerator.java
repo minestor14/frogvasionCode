@@ -32,7 +32,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.RAW_FROGVASIUM, RecipeCategory.MISC, ModBlocks.RAW_FROGVASIUM_BLOCK);
         offerSmelting(exporter, List.of(ModItems.RAW_FROGVASIUM), RecipeCategory.MISC, ModItems.FROGVASIUM_INGOT, 1, 40, RecipeCategory.MISC.getName());
         offerShapelessRecipe(exporter, Items.BONE_MEAL, ModItems.SPINE, RecipeCategory.MISC.getName(), 1);
-
+        offerSmelting(exporter, List.of(ModItems.FROG_LEGS), RecipeCategory.FOOD, ModItems.COOKED_FROG_LEGS, 1, 60, RecipeCategory.FOOD.getName());
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CONVERSION_PEDESTAL)
                 .pattern("###")

@@ -27,4 +27,6 @@ public class ModEntities {
             .create(SpawnGroup.MONSTER, GrapplingFrog::new).dimensions(EntityDimensions.fixed(0.5f,0.5f)).build());
     public static final EntityType<EnderFrog> ENDER_FROG_ENTITY = Registry.register(Registries.ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "ender_frog"), FabricEntityTypeBuilder
             .create(SpawnGroup.MONSTER, EnderFrog::new).dimensions(EntityDimensions.fixed(0.5f,0.5f)).build());
+    public static final EntityType<IceFrog> ICE_FROG_ENTITY = Registry.register(Registries.ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "ice_frog"), FabricEntityTypeBuilder
+            .create(SpawnGroup.MONSTER, IceFrog::new).dimensions(EntityDimensions.fixed(0.5f,0.5f)).build());
 }

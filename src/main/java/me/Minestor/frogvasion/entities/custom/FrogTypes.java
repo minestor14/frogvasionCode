@@ -8,5 +8,6 @@ public enum FrogTypes {
     EXPLOSIVE,
     GRAPPLING,
     GROWING,
-    TADPOLE_ROCKET
+    TADPOLE_ROCKET,
+    ICE
 }
