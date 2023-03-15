@@ -4,6 +4,7 @@ import me.Minestor.frogvasion.datagen.customs.ModBlockLootTableGenerator;
 import me.Minestor.frogvasion.datagen.customs.ModModelsProvider;
 import me.Minestor.frogvasion.datagen.customs.ModRecipeGenerator;
 import me.Minestor.frogvasion.datagen.customs.ModWorldGenGenerator;
+import me.Minestor.frogvasion.worldgen.biomes.ModBiomes;
 import me.Minestor.frogvasion.worldgen.features.ModConfiguredFeatures;
 import me.Minestor.frogvasion.worldgen.features.ModFeaturesPlacing;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -26,5 +27,6 @@ public class ModDatageneration implements DataGeneratorEntrypoint {
     public void buildRegistry(RegistryBuilder registryBuilder) {
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModFeaturesPlacing::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.BIOME, ModBiomes::bootstrap);
     }
 }

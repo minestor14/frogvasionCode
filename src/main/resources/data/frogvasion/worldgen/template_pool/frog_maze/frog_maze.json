@@ -1,0 +1,15 @@
+{
+  "name": "frogvasion:frog_maze/frog_maze",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "frogvasion:frog_maze_entrance",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

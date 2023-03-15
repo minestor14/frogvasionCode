@@ -1,7 +1,9 @@
 package me.Minestor.frogvasion.entities.custom;
 
 import me.Minestor.frogvasion.entities.Goals.FrogAttackGoal;
+import me.Minestor.frogvasion.entities.Goals.FrogWanderJumpGoal;
 import me.Minestor.frogvasion.entities.ModEntities;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -44,7 +46,7 @@ public class SoldierFrog extends ModFrog implements GeoEntity {
         this.goalSelector.add(1, new GoToWalkTargetGoal(this,0.4));
         this.goalSelector.add(2, new FrogAttackGoal(this, 0.4));
         this.goalSelector.add(3, new FollowOwnerGoal(this, 0.4, 10.0F, 2.0F, false));
-        this.goalSelector.add(3, new WanderAroundGoal(this, 0.4D, 2));
+        this.goalSelector.add(3, new FrogWanderJumpGoal(this, 0.4D, 2));
         this.goalSelector.add(4, new LookAroundGoal(this));
         this.goalSelector.add(1, new SwimGoal(this));
 
@@ -59,8 +61,8 @@ public class SoldierFrog extends ModFrog implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController(this, "controller",0, this::predicate));
-        controllers.add(new AnimationController(this, "attackController",0, this::attackPredicate));
+        controllers.add(new AnimationController<>(this, "controller",0, this::predicate));
+        controllers.add(new AnimationController<>(this, "attackController",0, this::attackPredicate));
     }
 
     @Override

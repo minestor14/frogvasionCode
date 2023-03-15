@@ -2,9 +2,7 @@ package me.Minestor.frogvasion;
 
 import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
-import me.Minestor.frogvasion.blocks.entity.renderers.FrogvasiumAttackerRenderer;
-import me.Minestor.frogvasion.blocks.entity.renderers.FrogvasiumDemolisherRenderer;
-import me.Minestor.frogvasion.blocks.entity.renderers.FrogvasiumGrapplerRenderer;
+import me.Minestor.frogvasion.blocks.entity.renderers.*;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.Renderers.*;
 import me.Minestor.frogvasion.events.JoinEvent;
@@ -49,6 +47,8 @@ public class FrogvasionClient implements ClientModInitializer {
         BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_ATTACKER_TYPE, context -> new FrogvasiumAttackerRenderer());
         BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE, context -> new FrogvasiumDemolisherRenderer());
         BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_GRAPPLER_TYPE, context -> new FrogvasiumGrapplerRenderer());
+        BlockEntityRendererRegistry.register(ModBlockEntities.FROG_TRAP_TYPE, FrogTrapRenderer::new);
+        BlockEntityRendererRegistry.register(ModBlockEntities.FROG_CAGE_TYPE, FrogCageRenderer::new);
 
         HandledScreens.register(ModScreenHandlers.CONVERSION_PEDESTAL_SCREEN_HANDLER, ConversionPedestalScreen::new);
 
@@ -62,5 +62,6 @@ public class FrogvasionClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CONCENTRATED_SLIME, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLIME_LAYER, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROGVASIUM_RAIL, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROG_CAGE, RenderLayer.getCutout());
     }
 }

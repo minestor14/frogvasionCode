@@ -1,6 +1,7 @@
 package me.Minestor.frogvasion.entities.custom;
 
 import me.Minestor.frogvasion.entities.Goals.ExplosiveFrogGoal;
+import me.Minestor.frogvasion.entities.Goals.FrogWanderJumpGoal;
 import me.Minestor.frogvasion.entities.ModEntities;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
@@ -38,7 +39,7 @@ public class ExplosiveFrog extends ModFrog implements GeoEntity {
         this.goalSelector.add(1, new GoToWalkTargetGoal(this,0.4));
         this.goalSelector.add(2, new ExplosiveFrogGoal(this, 0.4));
         this.goalSelector.add(3, new FollowOwnerGoal(this, 0.4, 10.0F, 2.0F, false));
-        this.goalSelector.add(3, new WanderAroundGoal(this, 0.4D, 2));
+        this.goalSelector.add(3, new FrogWanderJumpGoal(this, 0.4D, 2));
         this.goalSelector.add(4, new LookAroundGoal(this));
         this.goalSelector.add(1, new SwimGoal(this));
 

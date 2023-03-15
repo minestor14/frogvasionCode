@@ -12,9 +12,10 @@ import net.minecraft.util.Identifier;
 
 public class ModLootTableModifiers {
     private static final Identifier CHEST_MINECART_MINESHAFT_ID = new Identifier("minecraft", "chests/abandoned_mineshaft");
+    private static final Identifier ICE_BLOCK_ID = new Identifier("minecraft", "blocks/ice");
 
     public static void modifyLootTables() {
-        LootTableEvents.MODIFY.register(((resourceManager, lootManager, id, tableBuilder, source) -> {
+        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
             if(CHEST_MINECART_MINESHAFT_ID.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
@@ -23,6 +24,14 @@ public class ModLootTableModifiers {
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
             }
-        }));
+            if (ICE_BLOCK_ID.equals(id)) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.35f))
+                        .with(ItemEntry.builder(ModItems.ICE_SPIKE))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 3.0f)).build());
+                tableBuilder.pool(poolBuilder.build());
+            }
+        });
     }
 }

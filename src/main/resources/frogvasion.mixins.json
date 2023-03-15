@@ -12,6 +12,8 @@
     "FrogvasionMixin",
     "Mixins.ModLevelstorageSessionMixin"
   ],
+  "server": [
+  ],
   "injectors": {
     "defaultRequire": 1
   }

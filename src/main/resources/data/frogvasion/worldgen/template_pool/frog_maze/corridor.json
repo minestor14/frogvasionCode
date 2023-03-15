@@ -1,0 +1,78 @@
+{
+  "name": "frogvasion:frog_maze/corridor",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "location": "frogvasion:maze_corridor_1",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "frogvasion:maze_corridor_2",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "frogvasion:maze_corridor_3",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "frogvasion:maze_corridor_4",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "frogvasion:maze_corridor_5",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "frogvasion:maze_corridor_6",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "frogvasion:maze_corridor_7",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "frogvasion:maze_corridor_8",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

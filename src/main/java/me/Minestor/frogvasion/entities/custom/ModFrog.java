@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.control.LookControl;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -28,12 +29,13 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animation.Animation;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 
-public abstract class ModFrog extends TameableEntity {
+public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
     public static final TrackedData<Integer> MAGMA_EATEN = DataTracker.registerData(ModFrog.class, TrackedDataHandlerRegistry.INTEGER);
     public static final TrackedData<Boolean> INFUSED = DataTracker.registerData(ModFrog.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static final int INFUSED_BRIGHTNESS = 200;
@@ -169,6 +171,27 @@ public abstract class ModFrog extends TameableEntity {
             setMagmaEaten(0);
         }
         super.tick();
+    }
+
+    @Override
+    public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
+        fallDistance -= 4f;
+        damageMultiplier *= 0.5f;
+        return super.handleFallDamage(fallDistance, damageMultiplier, damageSource);
+    }
+
+    public static String getDefaultedFrogName(FrogTypes type) {
+        return switch(type) {
+            case SOLDIER -> "soldier";
+            case BOSS_SOLDIER -> "boss_soldier";
+            case ARMED -> "armed";
+            case ENDER -> "ender";
+            case EXPLOSIVE -> "explosive";
+            case GRAPPLING -> "grappling";
+            case GROWING -> "growing";
+            case TADPOLE_ROCKET -> "tadpole_rocket";
+            case ICE -> "ice";
+        };
     }
 
     public class FrogLookControl extends LookControl {

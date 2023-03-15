@@ -24,7 +24,7 @@ public class IceSpikeItem extends Item {
         if (!world.isClient) {
             IceSpikeItemEntity iceSpikeItemEntity = new IceSpikeItemEntity(user, world);
             iceSpikeItemEntity.setPos(user.getX(),user.getEyeY(),user.getZ());
-            iceSpikeItemEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 0.7F, 0.2F);
+            iceSpikeItemEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1F, 0.2F);
             world.spawnEntity(iceSpikeItemEntity);
         }
         user.incrementStat(Stats.USED.getOrCreateStat(this));

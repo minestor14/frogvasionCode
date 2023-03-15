@@ -17,6 +17,7 @@ import me.Minestor.frogvasion.util.ModLootTableModifiers;
 import me.Minestor.frogvasion.util.ModThrowables;
 import me.Minestor.frogvasion.worldgen.features.ModFeaturesPlacing;
 import me.Minestor.frogvasion.worldgen.spawing.ModEntitySpawning;
+import me.Minestor.frogvasion.worldgen.structures.ModStructures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -31,6 +32,7 @@ public class Frogvasion implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModFeaturesPlacing.registerPlacedFeatures();
+		ModStructures.registerStructures();
 
 		ModArmorMaterials.registerArmorMaterials();
 		ModItems.registerModItems();
@@ -50,8 +52,6 @@ public class Frogvasion implements ModInitializer {
 		ModLootTableModifiers.modifyLootTables();
 
 		ModDamageSources.registerDamageSources();
-
-
 		LOGGER.info("Frogvasion initialized");
 	}
 
@@ -70,13 +70,15 @@ public class Frogvasion implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.GRAPPLING_FROG_ENTITY, GrapplingFrog.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.ENDER_FROG_ENTITY, EnderFrog.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.ICE_FROG_ENTITY, IceFrog.setAttributes());
+
 	}
 
 	private static void registerCommands() {
 		CommandRegistrationCallback.EVENT.register(SetMessageCommand::register);
 	}
 
-	//TODO frog fortress
+	//TODO frog fortress (maybe spawn structure blocks into the world)
 	//TODO get rid of 'I know what im doing' text
-	//TODO ice frog w/ ice spike throwable
+	//todo check chatgtp
+	//todo renderer
 }

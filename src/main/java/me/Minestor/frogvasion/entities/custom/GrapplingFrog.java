@@ -1,5 +1,6 @@
 package me.Minestor.frogvasion.entities.custom;
 
+import me.Minestor.frogvasion.entities.Goals.FrogWanderJumpGoal;
 import me.Minestor.frogvasion.entities.Goals.GrapplingFrogGoal;
 import me.Minestor.frogvasion.entities.ModEntities;
 import net.minecraft.entity.EntityType;
@@ -51,7 +52,7 @@ public class GrapplingFrog extends ModFrog implements GeoEntity {
         this.goalSelector.add(3, new LookAroundGoal(this));
         this.goalSelector.add(3, new FollowOwnerGoal(this, 0.4, 10.0F, 2.0F, false));
         this.goalSelector.add(4, new SwimGoal(this));
-        this.goalSelector.add(1, new WanderAroundGoal(this, 0.4D, 2));
+        this.goalSelector.add(1, new FrogWanderJumpGoal(this, 0.4D, 2));
 
         this.targetSelector.add(1, (new RevengeGoal(this)).setGroupRevenge());
         this.targetSelector.add(2, new TrackOwnerAttackerGoal(this));

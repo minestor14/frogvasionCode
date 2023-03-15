@@ -1,21 +1,23 @@
 package me.Minestor.frogvasion.items.Custom;
 
 import me.Minestor.frogvasion.items.ModItems;
+import me.Minestor.frogvasion.sounds.ModSounds;
 import me.Minestor.frogvasion.util.ModThrowables;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
@@ -41,7 +43,7 @@ public class IceSpikeItemEntity extends PersistentProjectileEntity {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void handleStatus(byte status) { // Also not entirely sure, but probably also has to do with the particles. This method (as well as the previous one) are optional, so if you don't understand, don't include this one.
+    public void handleStatus(byte status) {
         if (status == 3) {
             ParticleEffect particleEffect = this.getParticleParameters();
             for(int i = 0; i < 8; ++i) {
@@ -50,13 +52,12 @@ public class IceSpikeItemEntity extends PersistentProjectileEntity {
         }
     }
     @Override
-    protected void onEntityHit(EntityHitResult entityHitResult) { // called on entity hit.
+    protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
-        Entity entity = entityHitResult.getEntity(); // sets a new Entity instance as the EntityHitResult (victim)
-        int i = entity instanceof BlazeEntity ? 5 : 3; // sets i to 3 if the Entity instance is an instance of BlazeEntity
-        entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float)i); // deals damage
-
+        Entity entity = entityHitResult.getEntity();
         if (entity instanceof LivingEntity livingEntity) {
+            int i = livingEntity.hurtByWater() ? 5 : 3;
+            livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float)i);
             livingEntity.addStatusEffect((new StatusEffectInstance(StatusEffects.SLOWNESS, 20, 2)));
         }
     }
@@ -73,5 +74,19 @@ public class IceSpikeItemEntity extends PersistentProjectileEntity {
             this.kill();
         }
         super.onBlockHit(blockHitResult);
+    }
+
+    @Override
+    protected SoundEvent getHitSound() {
+        return ModSounds.ICE_SPIKE_BREAK;
+    }
+
+    @Override
+    public void tick() {
+        if(this.getBlockStateAtPos().isOf(Blocks.LAVA) || this.getBlockStateAtPos().isOf(Blocks.FIRE)) {
+            this.world.sendEntityStatus(this, (byte)3);
+            this.kill();
+        }
+        super.tick();
     }
 }

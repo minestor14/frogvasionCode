@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "frogvasion:frog_maze",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1017294316,
+    "spacing": 16,
+    "separation": 8
+  }
+}

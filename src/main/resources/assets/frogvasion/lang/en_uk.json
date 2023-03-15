@@ -63,9 +63,12 @@
   "entity.frogvasion.tadpole_rocket": "Tadpole Rocket",
   "entity.frogvasion.armed_frog": "Armed Frog",
   "entity.frogvasion.ender_frog": "Ender Frog",
+  "entity.frogvasion.ice_frog": "Ice Frog",
+  "entity.frogvasion.ice_spike": "Ice Spike",
 
   "subtitles.frogvasion.croak": "Frog croaks",
   "subtitles.frogvasion.charge": "Frog charges",
+  "subtitles.frogvasion.ice_spike_break": "Ice spike breaks",
 
   "effect.frogvasion.improver": "Improver",
 

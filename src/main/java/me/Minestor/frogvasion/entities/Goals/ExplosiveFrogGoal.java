@@ -46,7 +46,7 @@ public class ExplosiveFrogGoal extends Goal {
             this.entity.lookAtEntity(livingentity, 50.0F, 30.0F);
             if (inLineOfSight) {
                 this.entity.getNavigation().startMovingTo(livingentity, this.moveSpeedAmp);
-                if(d <= 3) {
+                if(d <= 3 || this.attackTime > 4) {
                     this.attackTime++;
                 } else {
                     if(this.attackTime >= 0) {

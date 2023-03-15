@@ -54,7 +54,7 @@ public class ModItems {
     public static final Item GHOST_FRAGMENT_BOOTS = registerItem("ghost_fragment_boots",new ArmorItem(ModArmorMaterials.GHOST_FRAGMENT, EquipmentSlot.FEET, new Item.Settings()), ItemGroups.COMBAT);
     public static final Item FROG_LEGS = registerItem("frog_legs", new Item(new FabricItemSettings().food(new FoodComponent.Builder().meat().hunger(2).saturationModifier(0.2f).build())), ItemGroups.FOOD_AND_DRINK);
     public static final Item COOKED_FROG_LEGS = registerItem("cooked_frog_legs", new Item(new FabricItemSettings().food(new FoodComponent.Builder().meat().hunger(4).saturationModifier(0.3f).build())), ItemGroups.FOOD_AND_DRINK);
-    //todo drops
+
     private static Item registerItem(String name, Item item, ItemGroup group) {
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
         return Registry.register(Registries.ITEM, new Identifier(Frogvasion.MOD_ID, name), item);

@@ -4,6 +4,7 @@ import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.util.ModDamageSources;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,7 +35,7 @@ public class CombatFrogStaff extends ToolItem implements Vanishable {
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         if(user.getItemCooldownManager().isCoolingDown(stack.getItem())) return super.useOnEntity(stack, user, entity, hand);
         if(user.getWorld().isClient) return super.useOnEntity(stack, user, entity, hand);
-        if(user.isSneaking()) {
+        if(user.isSneaking() && entity.getType() != EntityType.PLAYER) {
             entity.damage(DamageSource.player(user), stack.getMaxDamage() - stack.getDamage() -1);
             stack.setDamage(stack.getMaxDamage()-1);
             user.getItemCooldownManager().set(stack.getItem(),100);

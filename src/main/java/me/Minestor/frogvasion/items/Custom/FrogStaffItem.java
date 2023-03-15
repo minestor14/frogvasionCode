@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -75,7 +76,7 @@ public class FrogStaffItem extends ToolItem implements Vanishable {
         if(user.getOffHandStack().getItem() == Items.WOODEN_SWORD || user.getOffHandStack().getItem() == Items.STONE_SWORD
                 ||user.getOffHandStack().getItem() == Items.IRON_SWORD ||user.getOffHandStack().getItem() == Items.GOLDEN_SWORD
                 ||user.getOffHandStack().getItem() == Items.DIAMOND_SWORD ||user.getOffHandStack().getItem() == Items.NETHERITE_SWORD) {
-            if(user.isSneaking()) {
+            if(user.isSneaking() && entity.getType() != EntityType.PLAYER) {
                 entity.damage(DamageSource.player(user), stack.getMaxDamage() - stack.getDamage() -1);
                 stack.setDamage(stack.getMaxDamage()-1);
                 user.getItemCooldownManager().set(stack.getItem(),100);
@@ -104,7 +105,6 @@ public class FrogStaffItem extends ToolItem implements Vanishable {
         }
         return super.useOnEntity(stack, user, entity, hand);
     }
-    //todo try make a combat- & other-focussed staff
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         World world = context.getWorld();

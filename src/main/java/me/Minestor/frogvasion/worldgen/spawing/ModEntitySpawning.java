@@ -4,6 +4,7 @@ import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.*;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.world.Heightmap;
@@ -26,5 +27,8 @@ public class ModEntitySpawning {
         //Explosive Frog
         BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), SpawnGroup.MONSTER, ModEntities.EXPLOSIVE_FROG_ENTITY, 1 ,1,2);
         SpawnRestriction.register(ModEntities.EXPLOSIVE_FROG_ENTITY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ExplosiveFrog::isValidNaturalSpawn);
+        //Ice Frog
+        BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityType.STRAY, EntityType.POLAR_BEAR), SpawnGroup.MONSTER, ModEntities.ICE_FROG_ENTITY, 1 ,1,2);
+        SpawnRestriction.register(ModEntities.ICE_FROG_ENTITY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, IceFrog::isValidNaturalSpawn);
     }
 }

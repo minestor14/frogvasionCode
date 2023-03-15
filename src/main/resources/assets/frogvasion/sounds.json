@@ -12,5 +12,12 @@
     "sounds": [
       "frogvasion:explosive_frog_charge"
     ]
+  },
+  "ice_spike_break": {
+    "category": "blocks",
+    "subtitle": "subtitles.frogvasion.ice_spike_break",
+    "sounds": [
+      "frogvasion:ice_spike_break"
+    ]
   }
 }

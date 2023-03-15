@@ -31,7 +31,9 @@ public class ModBlocks {
     public static final Block FROGVASIUM_ATTACKER = registerBlock("frogvasium_attacker", new FrogvasiumAttackerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()) ,ItemGroups.REDSTONE);
     public static final Block FROGVASIUM_DEMOLISHER = registerBlock("frogvasium_demolisher", new FrogvasiumDemolisherBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()), ItemGroups.REDSTONE);
     public static final Block FROGVASIUM_GRAPPLER = registerBlock("frogvasium_grappler", new FrogvasiumGrapplerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()), ItemGroups.REDSTONE);
-
+    public static final Block FROG_TRAP = registerBlock("frog_trap", new FrogTrapBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE)), ItemGroups.REDSTONE);
+    public static final Block FROG_CAGE = registerBlock("frog_cage", new FrogCageBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).nonOpaque()), ItemGroups.REDSTONE);
+    //todo drops, mineable, crafting, texture, redstone functionality
     private static Block registerBlockNoItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, new Identifier(Frogvasion.MOD_ID, name), block);
     }

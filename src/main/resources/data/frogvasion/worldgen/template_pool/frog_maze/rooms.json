@@ -1,0 +1,42 @@
+{
+  "name": "frogvasion:frog_maze/maze_room",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 3,
+      "element": {
+        "location": "frogvasion:maze_room_1",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "frogvasion:maze_room_2",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 4,
+      "element": {
+        "location": "frogvasion:maze_room_3",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "location": "frogvasion:maze_room_4",
+        "processors": "frogvasion:frog_maze_alterner",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

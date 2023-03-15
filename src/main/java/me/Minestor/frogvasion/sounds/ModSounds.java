@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 public class ModSounds {
     public static final SoundEvent CROAK = registerSoundEvent("croak");
     public static final SoundEvent CHARGE = registerSoundEvent("charge");
+    public static final SoundEvent ICE_SPIKE_BREAK = registerSoundEvent("ice_spike_break");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = new Identifier(Frogvasion.MOD_ID, name);

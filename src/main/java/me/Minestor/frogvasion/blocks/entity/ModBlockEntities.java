@@ -13,6 +13,8 @@ public class ModBlockEntities {
     public static BlockEntityType<FrogvasiumAttackerBlockEntity> FROGVASIUM_ATTACKER_TYPE;
     public static BlockEntityType<FrogvasiumDemolisherBlockEntity> FROGVASIUM_DEMOLISHER_TYPE;
     public static BlockEntityType<FrogvasiumGrapplerBlockEntity> FROGVASIUM_GRAPPLER_TYPE;
+    public static BlockEntityType<FrogTrapBlockEntity> FROG_TRAP_TYPE;
+    public static BlockEntityType<FrogCageBlockEntity> FROG_CAGE_TYPE;
 
     public static void registerBlockEntities() {
         CONVERSION_PEDESTAL_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "conversion_pedestal"),
@@ -23,5 +25,9 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(FrogvasiumDemolisherBlockEntity::new, ModBlocks.FROGVASIUM_DEMOLISHER).build(null));
         FROGVASIUM_GRAPPLER_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "frogvasium_grappler"),
                 FabricBlockEntityTypeBuilder.create(FrogvasiumGrapplerBlockEntity::new, ModBlocks.FROGVASIUM_GRAPPLER).build(null));
+        FROG_TRAP_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "frog_trap"),
+                FabricBlockEntityTypeBuilder.create(FrogTrapBlockEntity::new, ModBlocks.FROG_TRAP).build(null));
+        FROG_CAGE_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "frog_cage"),
+                FabricBlockEntityTypeBuilder.create(FrogCageBlockEntity::new, ModBlocks.FROG_CAGE).build(null));
     }
 }
