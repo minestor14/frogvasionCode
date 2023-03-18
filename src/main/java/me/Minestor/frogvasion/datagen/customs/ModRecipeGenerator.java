@@ -163,5 +163,23 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(RecipeProvider.hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT),
                         RecipeProvider.conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
                 .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.GHOST_FRAGMENT_BOOTS)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.FROG_CAGE)
+                .pattern("#?#")
+                .pattern("#?#")
+                .pattern("#?#")
+                .input('#',Items.STRING)
+                .input('?',Items.SLIME_BALL)
+                .criterion(RecipeProvider.hasItem(Items.SLIME_BALL),
+                        RecipeProvider.conditionsFromItem(Items.SLIME_BALL))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROG_CAGE)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModBlocks.FROG_TRAP)
+                .pattern("#?#")
+                .pattern("#!#")
+                .input('#', ModItems.FROGVASIUM_INGOT)
+                .input('!', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE)
+                .input('?', Items.STONECUTTER)
+                .criterion(RecipeProvider.hasItem(ModItems.FROGVASIUM_INGOT),
+                        RecipeProvider.conditionsFromItem(ModItems.FROGVASIUM_INGOT))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROG_TRAP)));
     }
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "!": {
+      "item": "frogvasion:frogvasium_embedded_polished_blackstone"
+    },
+    "#": {
+      "item": "frogvasion:frogvasium_ingot"
+    },
+    "?": {
+      "item": "minecraft:stonecutter"
+    }
+  },
+  "pattern": [
+    "#?#",
+    "#!#"
+  ],
+  "result": {
+    "item": "frogvasion:frog_trap"
+  }
+}

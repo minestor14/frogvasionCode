@@ -9,6 +9,7 @@ import me.Minestor.frogvasion.effects.potion.ModPotions;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.*;
 import me.Minestor.frogvasion.items.ModItems;
+import me.Minestor.frogvasion.networking.ModMessages;
 import me.Minestor.frogvasion.screen.ModScreenHandlers;
 import me.Minestor.frogvasion.sounds.ModSounds;
 import me.Minestor.frogvasion.util.ModArmorMaterials;
@@ -52,6 +53,7 @@ public class Frogvasion implements ModInitializer {
 		ModLootTableModifiers.modifyLootTables();
 
 		ModDamageSources.registerDamageSources();
+		ModMessages.registerC2SPackets();
 		LOGGER.info("Frogvasion initialized");
 	}
 
@@ -76,9 +78,4 @@ public class Frogvasion implements ModInitializer {
 	private static void registerCommands() {
 		CommandRegistrationCallback.EVENT.register(SetMessageCommand::register);
 	}
-
-	//TODO frog fortress (maybe spawn structure blocks into the world)
-	//TODO get rid of 'I know what im doing' text
-	//todo check chatgtp
-	//todo renderer
 }

@@ -17,7 +17,7 @@ public class IceFrogModel extends GeoModel<IceFrog> {
 
     @Override
     public Identifier getTextureResource(IceFrog object) {
-        return object.isInfused() ? new Identifier(Frogvasion.MOD_ID, "textures/entity/ice_frog_infused.png") : new Identifier(Frogvasion.MOD_ID, "textures/entity/soldier_frog.png");
+        return object.isInfused() ? new Identifier(Frogvasion.MOD_ID, "textures/entity/ice_frog_infused.png") : new Identifier(Frogvasion.MOD_ID, "textures/entity/ice_frog.png");
     }
 
     @Override

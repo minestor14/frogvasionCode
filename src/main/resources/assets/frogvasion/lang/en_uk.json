@@ -34,6 +34,10 @@
   "item.frogvasion.ghost_fragment_chestplate": "Ghost Fragment Chestplate",
   "item.frogvasion.ghost_fragment_leggings": "Ghost Fragment Leggings",
   "item.frogvasion.ghost_fragment_boots": "Ghost Fragment Boots",
+  "item.frogvasion.ice_frog_ghost": "Ice Frog Ghost",
+  "item.frogvasion.frog_legs": "Frog Legs",
+  "item.frogvasion.cooked_frog_legs": "Cooked Frog Legs",
+  "item.frogvasion.ice_frog_spawn_egg": "Ice Frog Spawn Egg",
 
   "item.minecraft.potion.effect.improver_potion": "Potion of Improving",
   "item.minecraft.splash_potion.effect.improver_potion": "Splash Potion of Improving",
@@ -54,6 +58,9 @@
   "block.frogvasion.frogvasium_attacker" : "Frogvasium Attacker",
   "block.frogvasion.frogvasium_demolisher" : "Frogvasium Demolisher",
   "block.frogvasion.frogvasium_grappler" : "Frogvasium Grappler",
+  "block.frogvasion.frog_trap": "Frog Trap",
+  "block.frogvasion.frog_cage": "Frog Cage",
+
 
   "entity.frogvasion.soldier_frog": "Soldier Frog",
   "entity.frogvasion.boss_soldier_frog": "General Frog",

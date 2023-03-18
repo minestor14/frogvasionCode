@@ -1,12 +1,10 @@
 package me.Minestor.frogvasion.entities.custom;
 
 import me.Minestor.frogvasion.blocks.ModBlocks;
+import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.sounds.ModSounds;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.LookControl;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
@@ -180,18 +178,14 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
         return super.handleFallDamage(fallDistance, damageMultiplier, damageSource);
     }
 
-    public static String getDefaultedFrogName(FrogTypes type) {
-        return switch(type) {
-            case SOLDIER -> "soldier";
-            case BOSS_SOLDIER -> "boss_soldier";
-            case ARMED -> "armed";
-            case ENDER -> "ender";
-            case EXPLOSIVE -> "explosive";
-            case GRAPPLING -> "grappling";
-            case GROWING -> "growing";
-            case TADPOLE_ROCKET -> "tadpole_rocket";
-            case ICE -> "ice";
-        };
+    @Override
+    public boolean canTarget(LivingEntity target) {
+        if(target instanceof PlayerEntity p) {
+            return !(p.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.GHOST_FRAGMENT_BOOTS && p.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.GHOST_FRAGMENT_HELMET &&
+                    p.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.GHOST_FRAGMENT_LEGGINGS && p.getEquippedStack(EquipmentSlot.CHEST).getItem() == ModItems.GHOST_FRAGMENT_CHESTPLATE)
+                    && (!p.isCreative() && !p.isSpectator());
+        }
+        return true;
     }
 
     public class FrogLookControl extends LookControl {

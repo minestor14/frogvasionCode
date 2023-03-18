@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "down": "frogvasion:block/frog_trap_side",
+    "down": "frogvasion:block/frogvasium_embedded_polished_blackstone",
     "east": "frogvasion:block/frog_trap_side",
     "north": "frogvasion:block/frog_trap_side",
     "particle": "frogvasion:block/frog_trap_side",

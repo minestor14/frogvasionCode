@@ -16,6 +16,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class IceFrogRenderer extends GeoEntityRenderer<IceFrog> {
     public IceFrogRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new IceFrogModel());
+        this.shadowRadius = 0.4f;
     }
     @Override
     public Identifier getTextureLocation(IceFrog animatable) {

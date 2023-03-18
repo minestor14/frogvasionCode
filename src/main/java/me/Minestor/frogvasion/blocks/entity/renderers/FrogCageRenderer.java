@@ -41,16 +41,14 @@ public class FrogCageRenderer implements BlockEntityRenderer<FrogCageBlockEntity
                     ctx.getRenderManager(), new HeldItemRenderer(MinecraftClient.getInstance(), ctx.getEntityRenderDispatcher(), ctx.getItemRenderer())
                     , MinecraftClient.getInstance().getResourceManager(), ctx.getLayerRenderDispatcher(), ctx.getTextRenderer());
 
-            entity = (FrogCageBlockEntity)world.getBlockEntity(pos);
-
             int lightAbove = WorldRenderer.getLightmapCoordinates(world, pos.up());
-            double y = Math.sin(world.getTime() / 8d) / 5;
+            double y = Math.sin(world.getTime() / 8d) / 10;
             matrices.translate(0.5, 0.2 + y, 0.5);
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((world.getTime() + tickDelta) * 4));
+            matrices.scale(0.5f,0.5f,0.5f);
 
+            int defaultedFrog = world.getBlockState(pos).get(FrogCageBlock.FROG);
 
-            int defaultedFrog = entity.getNbt(new NbtCompound()).getInt("frog_cage.frog");
-            Frogvasion.LOGGER.info(String.valueOf(defaultedFrog));
             if(defaultedFrog == 1) {
                 new ModFrogRenderer<>(cont, new SoldierFrogModel()).render(new SoldierFrog(ModEntities.SOLDIER_FROG_ENTITY, world), 0, tickDelta, matrices, vertexConsumers, lightAbove);
             } else if(defaultedFrog == 2) {

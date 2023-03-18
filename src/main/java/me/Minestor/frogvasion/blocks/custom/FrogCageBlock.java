@@ -1,6 +1,5 @@
 package me.Minestor.frogvasion.blocks.custom;
 
-import me.Minestor.frogvasion.blocks.entity.FrogCageBlockEntity;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.ModFrog;
@@ -41,9 +40,6 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
         super.appendProperties(builder);
     }
 
-    public void toggleLoaded(BlockState state) {
-        state.cycle(LOADED);
-    }
 
     @Nullable
     @Override
@@ -53,10 +49,11 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(player.getInventory().getMainHandStack().getItem() == Items.SLIME_BALL) {
+        if(player.getInventory().getMainHandStack().getItem() == Items.SLIME_BALL && !state.get(LOADED)) {
             ItemStack stack = player.getInventory().getMainHandStack();
-            toggleLoaded(state);
+            state = state.with(LOADED,true);
             world.setBlockState(pos, state);
+            world.updateComparators(pos,this);
             stack.decrement(1);
         }
         return super.onUse(state, world, pos, player, hand, hit);
@@ -71,11 +68,8 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if(world.isClient()) return;
         if (state.getBlock() != newState.getBlock()) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof FrogCageBlockEntity be) {
-                summonFrog((ServerWorld) world, pos, be.getDefaultedFrog());
-                world.updateComparators(pos,this);
-            }
+            summonFrog((ServerWorld) world, pos, state.get(FROG));
+            world.updateComparators(pos,this);
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
@@ -98,14 +92,11 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof ModFrog mf && !(entity instanceof TadpoleRocket)) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof FrogCageBlockEntity be && state.get(LOADED)) {
-                be.setDefaultedFrog(ModEntities.getDefaultedInt(mf.getFrogType()));
-                state = state.with(LOADED,false);
+            if (state.get(LOADED) && !mf.isTamed()) {
+                state = state.with(LOADED,false).with(FROG,ModEntities.getDefaultedInt(mf.getFrogType()));
                 world.setBlockState(pos,state);
                 world.updateComparators(pos, this);
-                mf.kill();
-                mf.discard(); //todo maybe exception to tamed frogs
+                mf.discard();
             }
         }
         super.onEntityCollision(state, world, pos, entity);
@@ -118,10 +109,6 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof FrogCageBlockEntity be) {
-            return be.getDefaultedFrog();
-        }
-        return 0;
+        return state.get(FROG);
     }
 }

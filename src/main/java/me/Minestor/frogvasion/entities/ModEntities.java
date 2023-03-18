@@ -32,60 +32,6 @@ public class ModEntities {
     public static final EntityType<IceFrog> ICE_FROG_ENTITY = Registry.register(Registries.ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "ice_frog"), FabricEntityTypeBuilder
             .create(SpawnGroup.MONSTER, IceFrog::new).dimensions(EntityDimensions.fixed(0.5f,0.5f)).build());
 
-    public static ModFrog getFrog(String defaultedFrog, World world) {
-        if(defaultedFrog == null) return new TadpoleRocket(ModEntities.TADPOLE_ROCKET_ENTITY,world);
-        return switch (defaultedFrog) {
-            case "tadpole", "tadpole_rocket", "empty" -> new TadpoleRocket(ModEntities.TADPOLE_ROCKET_ENTITY, world);
-            case "boss_soldier" -> new BossSoldierFrog(ModEntities.BOSS_SOLDIER_FROG_ENTITY, world);
-            case "armed" -> new ArmedFrog(ModEntities.ARMED_FROG_ENTITY, world);
-            case "ender" -> new EnderFrog(ModEntities.ENDER_FROG_ENTITY, world);
-            case "explosive" -> new ExplosiveFrog(ModEntities.EXPLOSIVE_FROG_ENTITY, world);
-            case "grappling" -> new GrapplingFrog(ModEntities.GRAPPLING_FROG_ENTITY, world);
-            case "growing" -> new GrowingFrog(ModEntities.GROWING_FROG_ENTITY, world);
-            case "ice" -> new IceFrog(ModEntities.ICE_FROG_ENTITY, world);
-            default -> new SoldierFrog(ModEntities.SOLDIER_FROG_ENTITY, world);
-        };
-    }
-    public static String getDefaultedFrog(ModFrog frog) {
-        return switch (frog.getFrogType()) {
-            case SOLDIER -> "soldier";
-            case BOSS_SOLDIER -> "boss_soldier";
-            case ARMED ->"armed";
-            case ENDER -> "ender";
-            case EXPLOSIVE -> "explosive";
-            case GRAPPLING ->"grappling" ;
-            case GROWING -> "growing";
-            case TADPOLE_ROCKET -> "tadpole";
-            case ICE -> "ice";
-        };
-    }
-    public static String getDefaultedFrog(FrogTypes type) {
-        return switch (type) {
-            case SOLDIER -> "soldier";
-            case BOSS_SOLDIER -> "boss_soldier";
-            case ARMED ->"armed";
-            case ENDER -> "ender";
-            case EXPLOSIVE -> "explosive";
-            case GRAPPLING ->"grappling" ;
-            case GROWING -> "growing";
-            case TADPOLE_ROCKET -> "tadpole";
-            case ICE -> "ice";
-        };
-    }
-    public static int getDefaultedInt(String defaultedFrog) {
-        return switch (defaultedFrog) {
-            case "soldier" -> 1;
-            case "boss_soldier" -> 2;
-            case "armed" -> 3;
-            case "ender" -> 4;
-            case "explosive" -> 5;
-            case "grappling" -> 6;
-            case "growing" -> 7;
-            case "tadpole" -> 8;
-            case "ice" -> 9;
-            default -> 0;
-        };
-    }
     public static int getDefaultedInt(FrogTypes type) {
         return switch (type) {
             case SOLDIER -> 1;
