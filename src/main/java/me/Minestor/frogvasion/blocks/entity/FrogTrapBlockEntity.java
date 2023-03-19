@@ -80,15 +80,13 @@ public class FrogTrapBlockEntity extends BlockEntity implements ImplementedInven
                 ServerPlayerEntity pl = (ServerPlayerEntity) e;
                 ServerPlayNetworking.send(pl, ModMessages.UPDATE_TRAP, UpdateTrapPacket.createUpdate(pos,be.amountSlimeballs()));
             }
-            if(be.amountSlimeballs() > 0 && !state.get(FrogTrapBlock.LOADED)) {
+            if(be.amountSlimeballs() > 0) {
                 state = state.with(FrogTrapBlock.LOADED,true);
-                world.setBlockState(pos,state);
-                world.updateComparators(pos,state.getBlock());
-            } else if (state.get(FrogTrapBlock.LOADED)) {
+            } else {
                 state = state.with(FrogTrapBlock.LOADED,false);
-                world.setBlockState(pos,state);
-                world.updateComparators(pos,state.getBlock());
             }
+            world.setBlockState(pos,state);
+            world.updateComparators(pos,state.getBlock());
         }
     }
 }

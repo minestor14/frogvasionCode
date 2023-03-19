@@ -1,0 +1,140 @@
+{
+  "display": {
+    "icon": {
+      "item": "frogvasion:empty_frog_ghost"
+    },
+    "title": "Best Frogs Forever",
+    "description": "Tame a frog by using a Frog Ghost on an unsuspecting frog",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "frogvasion:frogvasion/root",
+  "criteria": {
+    "soldier": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:soldier_frog"
+            }
+          }
+        ]
+      }
+    },
+    "boss_soldier": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:boss_soldier_frog"
+            }
+          }
+        ]
+      }
+    },
+    "armed": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:armed_frog"
+            }
+          }
+        ]
+      }
+    },
+    "ender": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:ender_frog"
+            }
+          }
+        ]
+      }
+    },
+    "explosive": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:explosive_frog"
+            }
+          }
+        ]
+      }
+    },
+    "ice": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:ice_frog"
+            }
+          }
+        ]
+      }
+    },
+    "growing": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:growing_frog"
+            }
+          }
+        ]
+      }
+    },
+    "grappling": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:grappling_frog"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      	"soldier",
+		"boss_soldier",
+		"ender",
+		"explosive",
+		"ice",
+		"grappling",
+		"growing",
+		"armed"
+    ]
+  ]
+}

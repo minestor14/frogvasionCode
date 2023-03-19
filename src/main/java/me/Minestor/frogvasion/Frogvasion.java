@@ -78,4 +78,5 @@ public class Frogvasion implements ModInitializer {
 	private static void registerCommands() {
 		CommandRegistrationCallback.EVENT.register(SetMessageCommand::register);
 	}
+	//todo make frogs breed w/ frogvasium
 }

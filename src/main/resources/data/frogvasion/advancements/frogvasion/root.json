@@ -1,0 +1,133 @@
+{
+  "display": {
+    "icon": {
+      "item": "frogvasion:lava_infused_froglight"
+    },
+    "title": "Frogvasion",
+    "description": "Make you ready to fight an endless army of hostile frogs",
+    "background": "frogvasion:textures/gui/advancements/backgrounds/frogvasion.png",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "soldier_frog": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:soldier_frog"
+            }
+          }
+        ]
+      }
+    },"boss_soldier_frog": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:boss_soldier_frog"
+            }
+          }
+        ]
+      }
+    },"explosive_frog": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:explosive_frog"
+            }
+          }
+        ]
+      }
+    },"armed_frog": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:armed_frog"
+            }
+          }
+        ]
+      }
+    },"ender_frog": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:ender_frog"
+            }
+          }
+        ]
+      }
+    },"ice_frog": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:ice_frog"
+            }
+          }
+        ]
+      }
+    },"grappling_frog": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:grappling_frog"
+            }
+          }
+        ]
+      }
+    },"growing_frog": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:growing_frog"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "soldier_frog",
+      "boss_soldier_frog",
+      "explosive_frog",
+      "ender_frog",
+      "armed_frog",
+      "growing_frog",
+      "grappling_frog",
+      "ice_frog"
+    ]
+  ]
+}

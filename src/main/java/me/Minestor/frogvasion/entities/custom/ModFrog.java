@@ -180,6 +180,7 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
 
     @Override
     public boolean canTarget(LivingEntity target) {
+        if(target.isDead()) return false;
         if(target instanceof PlayerEntity p) {
             return !(p.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.GHOST_FRAGMENT_BOOTS && p.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.GHOST_FRAGMENT_HELMET &&
                     p.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.GHOST_FRAGMENT_LEGGINGS && p.getEquippedStack(EquipmentSlot.CHEST).getItem() == ModItems.GHOST_FRAGMENT_CHESTPLATE)
