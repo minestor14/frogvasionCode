@@ -13,7 +13,6 @@
     "Mixins.ModLevelstorageSessionMixin"
   ],
   "server": [
-    "Mixins.BiomeSourceMixin"
   ],
   "injectors": {
     "defaultRequire": 1
