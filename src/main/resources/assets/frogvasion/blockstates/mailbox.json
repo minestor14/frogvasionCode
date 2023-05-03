@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "frogvasion:block/mailbox", "uvlock": true },
+    "facing=east":  { "model": "frogvasion:block/mailbox", "y":  90, "uvlock": true },
+    "facing=south": { "model": "frogvasion:block/mailbox", "y": 180, "uvlock": true },
+    "facing=west":  { "model": "frogvasion:block/mailbox", "y": 270, "uvlock": true }
+  }
+}

@@ -15,6 +15,7 @@ public class ModBlockEntities {
     public static BlockEntityType<FrogvasiumGrapplerBlockEntity> FROGVASIUM_GRAPPLER_TYPE;
     public static BlockEntityType<FrogTrapBlockEntity> FROG_TRAP_TYPE;
     public static BlockEntityType<FrogCageBlockEntity> FROG_CAGE_TYPE;
+    public static BlockEntityType<MailBoxBlockEntity> MAILBOX_TYPE;
 
     public static void registerBlockEntities() {
         CONVERSION_PEDESTAL_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "conversion_pedestal"),
@@ -29,5 +30,7 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(FrogTrapBlockEntity::new, ModBlocks.FROG_TRAP).build(null));
         FROG_CAGE_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "frog_cage"),
                 FabricBlockEntityTypeBuilder.create(FrogCageBlockEntity::new, ModBlocks.FROG_CAGE).build(null));
+        MAILBOX_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "mailbox"),
+                FabricBlockEntityTypeBuilder.create(MailBoxBlockEntity::new, ModBlocks.MAILBOX).build(null));
     }
 }

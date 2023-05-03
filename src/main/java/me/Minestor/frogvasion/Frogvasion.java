@@ -6,16 +6,14 @@ import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import me.Minestor.frogvasion.commands.SetMessageCommand;
 import me.Minestor.frogvasion.effects.ModEffects;
 import me.Minestor.frogvasion.effects.potion.ModPotions;
+import me.Minestor.frogvasion.enchantments.ModEnchantments;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.*;
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.networking.ModMessages;
 import me.Minestor.frogvasion.screen.ModScreenHandlers;
 import me.Minestor.frogvasion.sounds.ModSounds;
-import me.Minestor.frogvasion.util.ModArmorMaterials;
-import me.Minestor.frogvasion.util.ModDamageSources;
-import me.Minestor.frogvasion.util.ModLootTableModifiers;
-import me.Minestor.frogvasion.util.ModThrowables;
+import me.Minestor.frogvasion.util.*;
 import me.Minestor.frogvasion.worldgen.features.ModFeaturesPlacing;
 import me.Minestor.frogvasion.worldgen.spawing.ModEntitySpawning;
 import me.Minestor.frogvasion.worldgen.structures.ModStructures;
@@ -35,7 +33,9 @@ public class Frogvasion implements ModInitializer {
 		ModFeaturesPlacing.registerPlacedFeatures();
 		ModStructures.registerStructures();
 
+		ModEntityGroups.registerEntityGroups();
 		ModArmorMaterials.registerArmorMaterials();
+		ModItemGroups.registerItemGroups();
 		ModItems.registerModItems();
 		ModThrowables.registerThrowables();
 		ModBlocks.registerModBlocks();
@@ -48,6 +48,7 @@ public class Frogvasion implements ModInitializer {
 		ModPotions.registerPotions();
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
+		ModEnchantments.registerEnchantments();
 
 		ModRecipes.registerRecipes();
 		ModLootTableModifiers.modifyLootTables();
@@ -79,4 +80,6 @@ public class Frogvasion implements ModInitializer {
 		CommandRegistrationCallback.EVENT.register(SetMessageCommand::register);
 	}
 	//todo make frogs breed w/ frogvasium
+	//todo capture update, maybe capture nets
+	//todo custom dimention w/ glass frogs (w/ society)
 }

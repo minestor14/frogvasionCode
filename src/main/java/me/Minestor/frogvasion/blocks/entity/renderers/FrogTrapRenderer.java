@@ -1,5 +1,6 @@
 package me.Minestor.frogvasion.blocks.entity.renderers;
 
+import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.blocks.custom.FrogTrapBlock;
 import me.Minestor.frogvasion.blocks.entity.FrogTrapBlockEntity;
 import me.Minestor.frogvasion.networking.packets.UpdateTrapPacket;
@@ -38,7 +39,7 @@ public class FrogTrapRenderer implements BlockEntityRenderer<FrogTrapBlockEntity
     public void render(FrogTrapBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
 
-        if(entity.getWorld().getBlockState(entity.getPos()) != null && !entity.getWorld().getBlockState(entity.getPos()).isOf(Blocks.AIR)) {
+        if(entity.getWorld().getBlockState(entity.getPos()) != null && entity.getWorld().getBlockState(entity.getPos()).isOf(ModBlocks.FROG_TRAP)) {
             boolean l = entity.getWorld().getBlockState(entity.getPos()).get(FrogTrapBlock.LOADED);
 
             ItemStack stack;

@@ -2,6 +2,7 @@ package me.Minestor.frogvasion.blocks;
 
 import me.Minestor.frogvasion.Frogvasion;
 import me.Minestor.frogvasion.blocks.custom.*;
+import me.Minestor.frogvasion.util.ModItemGroups;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -33,6 +34,8 @@ public class ModBlocks {
     public static final Block FROGVASIUM_GRAPPLER = registerBlock("frogvasium_grappler", new FrogvasiumGrapplerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()), ItemGroups.REDSTONE);
     public static final Block FROG_TRAP = registerBlock("frog_trap", new FrogTrapBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).requiresTool().strength(3.5f)), ItemGroups.REDSTONE);
     public static final Block FROG_CAGE = registerBlock("frog_cage", new FrogCageBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).nonOpaque().breakInstantly().sounds(BlockSoundGroup.WOOL)), ItemGroups.REDSTONE);
+    public static final Block MAILBOX = registerBlock("mailbox", new MailBoxBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.BONE).requiresTool().strength(3.2f)), ItemGroups.FUNCTIONAL);
+    //todo recipe
     private static Block registerBlockNoItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, new Identifier(Frogvasion.MOD_ID, name), block);
     }
@@ -43,6 +46,7 @@ public class ModBlocks {
     private static Item registerItem(String name, BlockItem block, ItemGroup tab) {
         Item item = Registry.register(Registries.ITEM, new Identifier(Frogvasion.MOD_ID, name), block);
         ItemGroupEvents.modifyEntriesEvent(tab).register(entries -> entries.add(item));
+        ItemGroupEvents.modifyEntriesEvent(ModItemGroups.FROGVASION_GROUP).register(entries -> entries.add(item));
         return item;
     }
     public static void registerModBlocks() {}

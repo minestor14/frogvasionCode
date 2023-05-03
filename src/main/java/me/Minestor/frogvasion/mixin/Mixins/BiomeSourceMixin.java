@@ -1,6 +1,8 @@
 package me.Minestor.frogvasion.mixin.Mixins;
 
 import me.Minestor.frogvasion.worldgen.biomes.ModBiomes;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
@@ -11,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Set;
-
+@Environment(EnvType.SERVER)
 @Mixin(BiomeSource.class)
 public class BiomeSourceMixin {
     @Shadow
@@ -19,11 +21,6 @@ public class BiomeSourceMixin {
 
     @Inject(method = "getBiomes", at = @At("HEAD"))
     private void getBiomes(CallbackInfoReturnable<Set<RegistryEntry<Biome>>> ci) {
-        ModBiomes.registerBiomes();
-        biomes.add(ModBiomes.RAINFOREST_ENTRY);
-    }
-
-    protected void plsWorkForTheLoveOfgod(Set<RegistryEntry<Biome>> biomes) {
         ModBiomes.registerBiomes();
         biomes.add(ModBiomes.RAINFOREST_ENTRY);
     }

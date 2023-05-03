@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "?": {
+      "item": "frogvasion:address_card"
+    }
+  },
+  "pattern": [
+    "###",
+    "#?#"
+  ],
+  "result": {
+    "item": "frogvasion:mailbox"
+  }
+}

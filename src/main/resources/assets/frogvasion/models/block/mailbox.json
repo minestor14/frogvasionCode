@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "frogvasion:block/mailbox_y",
+    "east": "frogvasion:block/mailbox_right",
+    "north": "frogvasion:block/mailbox_front",
+    "particle": "frogvasion:block/mailbox_left",
+    "south": "frogvasion:block/mailbox_back",
+    "up": "frogvasion:block/mailbox_y",
+    "west": "frogvasion:block/mailbox_left"
+  }
+}

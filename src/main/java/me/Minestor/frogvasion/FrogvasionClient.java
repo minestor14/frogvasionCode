@@ -24,6 +24,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.entity.ArrowEntityRenderer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
@@ -57,6 +58,7 @@ public class FrogvasionClient implements ClientModInitializer {
         BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_GRAPPLER_TYPE, context -> new FrogvasiumGrapplerRenderer());
         BlockEntityRendererRegistry.register(ModBlockEntities.FROG_TRAP_TYPE, FrogTrapRenderer::new);
         BlockEntityRendererRegistry.register(ModBlockEntities.FROG_CAGE_TYPE, FrogCageRenderer::new);
+        BlockEntityRendererRegistry.register(ModBlockEntities.MAILBOX_TYPE, MailBoxBlockEntityRenderer::new);
 
         HandledScreens.register(ModScreenHandlers.CONVERSION_PEDESTAL_SCREEN_HANDLER, ConversionPedestalScreen::new);
 

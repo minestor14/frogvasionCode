@@ -3,6 +3,7 @@ package me.Minestor.frogvasion.entities.custom;
 import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.sounds.ModSounds;
+import me.Minestor.frogvasion.util.ModEntityGroups;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.LookControl;
@@ -187,6 +188,11 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
                     && (!p.isCreative() && !p.isSpectator());
         }
         return true;
+    }
+
+    @Override
+    public EntityGroup getGroup() {
+        return ModEntityGroups.FROGS;
     }
 
     public class FrogLookControl extends LookControl {

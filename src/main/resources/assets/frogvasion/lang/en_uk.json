@@ -60,6 +60,7 @@
   "block.frogvasion.frogvasium_grappler" : "Frogvasium Grappler",
   "block.frogvasion.frog_trap": "Frog Trap",
   "block.frogvasion.frog_cage": "Frog Cage",
+  "block.frogvasion.mailbox": "Mailbox",
 
 
   "entity.frogvasion.soldier_frog": "Soldier Frog",
@@ -80,8 +81,13 @@
   "effect.frogvasion.improver": "Improver",
 
   "text.block.conversion_pedestal_block": "Conversion Pedestal",
-  "text.frogvasion.tooltip.press_shift": "Press shift for more information",
+  "text.frogvasion.tooltip.press_shift": "Press SHIFT for more information",
 
   "death.attack.frogvasium_attack": "%1$s was eaten alive by a block",
-  "death.attack.magic_repay": "%1$s died from the cost of a powerful spell"
+  "death.attack.magic_repay": "%1$s died from the cost of a powerful spell",
+
+  "enchantment.frogvasion.frog_slasher": "Frog Slasher",
+  "enchantment.frogvasion.frog_friend": "Frog Friend",
+
+  "itemGroup.frogvasion.frogvasion_group": "Frogvasion"
 }

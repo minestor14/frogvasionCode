@@ -181,5 +181,15 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(RecipeProvider.hasItem(ModItems.FROGVASIUM_INGOT),
                         RecipeProvider.conditionsFromItem(ModItems.FROGVASIUM_INGOT))
                 .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROG_TRAP)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.MAILBOX)
+                .pattern("###")
+                .pattern("#?#")
+                .input('?', ModItems.ADDRESS_CARD)
+                .input('#', Items.IRON_INGOT)
+                .criterion(RecipeProvider.hasItem(ModItems.ADDRESS_CARD),
+                        RecipeProvider.conditionsFromItem(ModItems.ADDRESS_CARD))
+                .criterion(RecipeProvider.hasItem(Items.IRON_INGOT),
+                        RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.MAILBOX)));
     }
 }

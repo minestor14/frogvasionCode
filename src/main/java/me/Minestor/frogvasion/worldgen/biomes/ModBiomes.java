@@ -25,7 +25,7 @@ import static net.minecraft.world.biome.OverworldBiomeCreator.getSkyColor;
 public class ModBiomes {
     public static final RegistryKey<Biome> RAINFOREST_KEY = registerKey("rainforest");
     public static Biome RAINFOREST;
-    public static RegistryEntry<Biome> RAINFOREST_ENTRY =RegistryEntry.Reference.standAlone(new ModRegistries.AnyOwnerBiome(), RAINFOREST_KEY);
+    public static RegistryEntry<Biome> RAINFOREST_ENTRY = RegistryEntry.Reference.standAlone(new ModRegistries.AnyOwnerBiome(), RAINFOREST_KEY);
     public static RegistryKey<Biome> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.BIOME, new Identifier(Frogvasion.MOD_ID, name));
     }
@@ -42,7 +42,7 @@ public class ModBiomes {
         SpawnSettings.Builder builder = new SpawnSettings.Builder();
         DefaultBiomeFeatures.addJungleMobs(builder);
         builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.PARROT, 40, 1, 2)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.OCELOT, 2, 1, 3)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.PANDA, 1, 1, 2));
-        return createRainforestFeatures(featureLookup, carverLookup, 0.9F, true, true, true, builder);
+        return createRainforestFeatures(featureLookup, carverLookup, 0.9F, false, true, true, builder);
     }
     private static Biome createRainforestFeatures(RegistryEntryLookup<PlacedFeature> featureLookup, RegistryEntryLookup<ConfiguredCarver<?>> carverLookup, float depth, boolean bamboo, boolean sparse, boolean unmodified, SpawnSettings.Builder spawnSettings) {
         GenerationSettings.LookupBackedBuilder lookupBackedBuilder = new GenerationSettings.LookupBackedBuilder(featureLookup, carverLookup);

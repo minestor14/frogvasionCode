@@ -1,4 +1,4 @@
-// 1.19.3	2023-03-18T15:26:13.4556225	Frogvasion/Recipes
+// 1.19.3	2023-05-03T14:16:29.3288656	Frogvasion/Recipes
 8af634e1a008531cef679d62388c162221eb57b1 data\frogvasion\advancements\recipes\redstone\frogvasium_attacker.json
 2014bf0b863402a8f83ab9aa41d829b0b2a45d60 data\frogvasion\advancements\recipes\misc\empty_frog_ghost_fragment_shaped.json
 0559a86cc5234ae178e1060932b6eb6ce107d213 data\frogvasion\recipes\empty_frog_ghost.json
@@ -13,6 +13,7 @@ db2fe594bffc7d6ccbc9b1e8ff04532e7aa8e8e5 data\frogvasion\advancements\recipes\mi
 43e36eac85bcbe26e66d8cd5edd80f89bebc22f5 data\frogvasion\recipes\concentrated_slime.json
 8cf68b7e71b7750ee5c8471f27c131da18098370 data\frogvasion\recipes\cooked_frog_legs_from_smelting_frog_legs.json
 df20c7522a538c89b5910c0e7453794650726a08 data\frogvasion\recipes\frogvasium_demolisher.json
+0cfbd9ff24430bfb63b9671d546c608b076c5a8b data\frogvasion\advancements\recipes\misc\mailbox.json
 778c58bf427e15709e88994dfde0c57091d22622 data\frogvasion\recipes\frogvasium_block_comp.json
 d2bb7455c8be35900ebcd72b2574c6f83d4297dc data\frogvasion\recipes\address_card.json
 1564a42ad50bf2b0c1c9957f0c65452779c46132 data\frogvasion\advancements\recipes\building_blocks\concentrated_slime.json
@@ -24,6 +25,7 @@ e3b13fd76cb4e2dd10184f25d781ec958e22c027 data\frogvasion\advancements\recipes\bu
 3b314c3d37d6cc9690aa86440e9ef51a3f46d027 data\frogvasion\recipes\empty_frog_ghost_fragment.json
 3a27c9f92240a9741bcd03416ded2e98f98fee58 data\frogvasion\recipes\ghost_fragment_helmet.json
 c5a7d41b4faeda63b3e79a2a71748ece11ebbf48 data\frogvasion\advancements\recipes\misc\frog_staff.json
+9f5121e1905f1cc8854033277c5698d928710fba data\frogvasion\recipes\mailbox.json
 c0b99a167564328c45cbaac696392c851c743323 data\frogvasion\advancements\recipes\redstone\frog_cage.json
 5fdd97e9ba75d4a12fcae4208f4ebd03d3dc5a44 data\frogvasion\advancements\recipes\misc\frogvasium_nugget.json
 503d29acde43e89e6001e2aa3d08c7110b2b423b data\frogvasion\advancements\recipes\food\cooked_frog_legs_from_smelting_frog_legs.json
