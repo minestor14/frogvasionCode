@@ -27,10 +27,6 @@ public class IceSpikeItemEntity extends PersistentProjectileEntity {
         super(entityType, world);
     }
 
-    public IceSpikeItemEntity(double d, double e, double f, World world) {
-        super(ModThrowables.ICE_SPIKE_ITEM_ENTITY_TYPE, d, e, f, world);
-    }
-
     public IceSpikeItemEntity(LivingEntity livingEntity, World world) {
         super(ModThrowables.ICE_SPIKE_ITEM_ENTITY_TYPE, livingEntity, world);
     }

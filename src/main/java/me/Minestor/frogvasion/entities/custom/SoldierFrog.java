@@ -3,7 +3,6 @@ package me.Minestor.frogvasion.entities.custom;
 import me.Minestor.frogvasion.entities.Goals.FrogAttackGoal;
 import me.Minestor.frogvasion.entities.Goals.FrogWanderJumpGoal;
 import me.Minestor.frogvasion.entities.ModEntities;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;

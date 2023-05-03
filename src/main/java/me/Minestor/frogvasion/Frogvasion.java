@@ -3,7 +3,6 @@ package me.Minestor.frogvasion;
 import me.Minestor.frogvasion.Recipe.ModRecipes;
 import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
-import me.Minestor.frogvasion.commands.SetMessageCommand;
 import me.Minestor.frogvasion.effects.ModEffects;
 import me.Minestor.frogvasion.effects.potion.ModPotions;
 import me.Minestor.frogvasion.enchantments.ModEnchantments;
@@ -18,7 +17,6 @@ import me.Minestor.frogvasion.worldgen.features.ModFeaturesPlacing;
 import me.Minestor.frogvasion.worldgen.spawing.ModEntitySpawning;
 import me.Minestor.frogvasion.worldgen.structures.ModStructures;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,7 +75,7 @@ public class Frogvasion implements ModInitializer {
 	}
 
 	private static void registerCommands() {
-		CommandRegistrationCallback.EVENT.register(SetMessageCommand::register);
+
 	}
 	//todo make frogs breed w/ frogvasium
 	//todo capture update, maybe capture nets

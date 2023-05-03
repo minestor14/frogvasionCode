@@ -1,15 +1,12 @@
 package me.Minestor.frogvasion;
 
 import me.Minestor.frogvasion.blocks.ModBlocks;
-import me.Minestor.frogvasion.blocks.entity.FrogTrapBlockEntity;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import me.Minestor.frogvasion.blocks.entity.renderers.*;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.Renderers.*;
 import me.Minestor.frogvasion.events.JoinEvent;
-import me.Minestor.frogvasion.items.Custom.IceSpikeItemEntity;
 import me.Minestor.frogvasion.items.Custom.renderers.IceSpikeEntityRenderer;
-import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.networking.ModMessages;
 import me.Minestor.frogvasion.screen.ConversionPedestalScreen;
 import me.Minestor.frogvasion.screen.ModScreenHandlers;
@@ -19,21 +16,10 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.entity.ArrowEntityRenderer;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import net.minecraft.client.render.entity.ProjectileEntityRenderer;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 
 @Environment(EnvType.CLIENT)

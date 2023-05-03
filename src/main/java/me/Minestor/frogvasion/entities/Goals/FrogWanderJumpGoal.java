@@ -15,7 +15,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class FrogWanderJumpGoal extends Goal {
     public static final int DEFAULT_CHANCE = 120;

@@ -2,7 +2,6 @@ package me.Minestor.frogvasion.entities.custom.Models;
 
 import me.Minestor.frogvasion.Frogvasion;
 import me.Minestor.frogvasion.entities.custom.IceFrog;
-import me.Minestor.frogvasion.entities.custom.SoldierFrog;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.util.Identifier;

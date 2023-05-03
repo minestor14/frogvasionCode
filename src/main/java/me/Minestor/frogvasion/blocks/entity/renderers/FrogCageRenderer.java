@@ -1,6 +1,5 @@
 package me.Minestor.frogvasion.blocks.entity.renderers;
 
-import me.Minestor.frogvasion.Frogvasion;
 import me.Minestor.frogvasion.blocks.custom.FrogCageBlock;
 import me.Minestor.frogvasion.blocks.entity.FrogCageBlockEntity;
 import me.Minestor.frogvasion.entities.ModEntities;
@@ -18,7 +17,6 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.item.HeldItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.World;

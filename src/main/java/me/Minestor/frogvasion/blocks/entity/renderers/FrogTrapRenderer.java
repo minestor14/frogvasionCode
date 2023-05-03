@@ -3,10 +3,8 @@ package me.Minestor.frogvasion.blocks.entity.renderers;
 import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.blocks.custom.FrogTrapBlock;
 import me.Minestor.frogvasion.blocks.entity.FrogTrapBlockEntity;
-import me.Minestor.frogvasion.networking.packets.UpdateTrapPacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -20,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RotationAxis;
 
 import java.util.HashMap;
