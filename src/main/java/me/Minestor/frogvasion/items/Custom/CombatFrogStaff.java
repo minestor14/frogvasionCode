@@ -1,7 +1,7 @@
 package me.Minestor.frogvasion.items.Custom;
 
 import me.Minestor.frogvasion.items.ModItems;
-import me.Minestor.frogvasion.util.ModDamageSources;
+import me.Minestor.frogvasion.util.entity.ModDamageSources;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
@@ -23,9 +23,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CombatFrogStaff extends ToolItem implements Vanishable {
+public class CombatFrogStaff extends FrogStaffItem {
     public CombatFrogStaff(Settings settings) {
-        super(ToolMaterials.WOOD, settings);
+        super(settings);
     }
     @Override
     public boolean canRepair(ItemStack stack, ItemStack ingredient) {

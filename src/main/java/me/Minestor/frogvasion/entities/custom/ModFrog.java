@@ -1,9 +1,11 @@
 package me.Minestor.frogvasion.entities.custom;
 
 import me.Minestor.frogvasion.blocks.ModBlocks;
+import me.Minestor.frogvasion.effects.ModEffects;
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.sounds.ModSounds;
-import me.Minestor.frogvasion.util.ModEntityGroups;
+import me.Minestor.frogvasion.util.entity.ModEntityGroups;
+import me.Minestor.frogvasion.util.options.FrogvasionGameOptions;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.LookControl;
@@ -46,7 +48,7 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSounds.CROAK;
+        return world.getRandom().nextFloat() <= (float) FrogvasionGameOptions.getCroakDensity() /10 ? ModSounds.CROAK : null;
     }
     @Nullable
     @Override
@@ -57,6 +59,12 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
     public SoundCategory getSoundCategory() {
         return SoundCategory.HOSTILE;
     }
+
+    @Override
+    protected float getSoundVolume() {
+        return FrogvasionGameOptions.getFrogVolume();
+    }
+
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
@@ -73,7 +81,7 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
         super.setBodyYaw(bodyYaw);
     }
 
-    PlayState predicate(AnimationState event) {
+    PlayState predicate(AnimationState<ModFrog> event) {
         if(this.getBlockStateAtPos().getBlock() == Blocks.WATER) {
             event.getController().setAnimation(RawAnimation.begin().then("animation.frog.swim", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
@@ -94,7 +102,7 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
         return PlayState.CONTINUE;
     }
 
-    PlayState attackPredicate(AnimationState event) {
+    PlayState attackPredicate(AnimationState<ModFrog> event) {
         if(this.handSwinging) {
             event.getController().forceAnimationReset();
             event.getController().setAnimation(RawAnimation.begin().then("animation.frog.attack", Animation.LoopType.PLAY_ONCE));
@@ -183,8 +191,9 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
     public boolean canTarget(LivingEntity target) {
         if(target.isDead()) return false;
         if(target instanceof PlayerEntity p) {
-            return !(p.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.GHOST_FRAGMENT_BOOTS && p.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.GHOST_FRAGMENT_HELMET &&
+            return !((p.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.GHOST_FRAGMENT_BOOTS && p.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.GHOST_FRAGMENT_HELMET &&
                     p.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.GHOST_FRAGMENT_LEGGINGS && p.getEquippedStack(EquipmentSlot.CHEST).getItem() == ModItems.GHOST_FRAGMENT_CHESTPLATE)
+                    || p.hasStatusEffect(ModEffects.FROG_CAMOUFLAGE))
                     && (!p.isCreative() && !p.isSpectator());
         }
         return true;

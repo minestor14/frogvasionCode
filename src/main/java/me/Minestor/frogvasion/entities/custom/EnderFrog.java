@@ -64,8 +64,8 @@ public class EnderFrog extends ModFrog implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController(this, "controller",0, this::predicate));
-        controllers.add(new AnimationController(this, "attackController",0, this::attackPredicate));
+        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
+        controllers.add(new AnimationController<>(this, "attackController",0, this::attackPredicate));
     }
 
     @Override

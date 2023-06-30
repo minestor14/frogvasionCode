@@ -2,6 +2,7 @@ package me.Minestor.frogvasion.worldgen.spawing;
 
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.*;
+import me.Minestor.frogvasion.worldgen.biomes.ModBiomes;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.entity.EntityType;
@@ -30,5 +31,11 @@ public class ModEntitySpawning {
         //Ice Frog
         BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityType.STRAY, EntityType.POLAR_BEAR), SpawnGroup.MONSTER, ModEntities.ICE_FROG_ENTITY, 1 ,1,2);
         SpawnRestriction.register(ModEntities.ICE_FROG_ENTITY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, IceFrog::isValidNaturalSpawn);
+        //Normal Tree Frog
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY), SpawnGroup.MONSTER, ModEntities.NORMAL_TREE_FROG_ENTITY,15,1,3);
+        SpawnRestriction.register(ModEntities.NORMAL_TREE_FROG_ENTITY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, NormalTreeFrog::isValidNaturalSpawn);
+        //Gliding Tree Frog
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY), SpawnGroup.MONSTER, ModEntities.GLIDING_TREE_FROG_ENTITY,5,1,3);
+        SpawnRestriction.register(ModEntities.GLIDING_TREE_FROG_ENTITY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GlidingTreeFrog::isValidNaturalSpawn);
     }
 }

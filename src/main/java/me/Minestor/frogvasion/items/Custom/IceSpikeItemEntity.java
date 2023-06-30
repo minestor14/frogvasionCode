@@ -2,7 +2,7 @@ package me.Minestor.frogvasion.items.Custom;
 
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.sounds.ModSounds;
-import me.Minestor.frogvasion.util.ModThrowables;
+import me.Minestor.frogvasion.util.items.ModThrowables;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Blocks;

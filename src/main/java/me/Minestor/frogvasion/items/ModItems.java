@@ -1,12 +1,13 @@
 package me.Minestor.frogvasion.items;
 
 import me.Minestor.frogvasion.Frogvasion;
+import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.items.Custom.*;
 import me.Minestor.frogvasion.items.Custom.frog_ghosts.EmptyFrogGhostItem;
 import me.Minestor.frogvasion.items.Custom.frog_ghosts.ModFrogGhostItem;
-import me.Minestor.frogvasion.util.ModArmorMaterials;
-import me.Minestor.frogvasion.util.ModItemGroups;
+import me.Minestor.frogvasion.util.armor.ModArmorMaterials;
+import me.Minestor.frogvasion.util.items.ModItemGroups;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.entity.EquipmentSlot;
@@ -14,6 +15,7 @@ import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 public class ModItems {
     public static final Item ICE_SPIKE = registerItem("ice_spike", new IceSpikeItem(new FabricItemSettings().maxCount(16)),ItemGroups.COMBAT);
@@ -46,16 +48,22 @@ public class ModItems {
     public static final Item GHOST_FRAGMENT_BOOTS = registerItem("ghost_fragment_boots", new ArmorItem(ModArmorMaterials.GHOST_FRAGMENT, EquipmentSlot.FEET, new Item.Settings()), ItemGroups.COMBAT);
     public static final Item FROG_LEGS = registerItem("frog_legs", new Item(new FabricItemSettings().food(new FoodComponent.Builder().meat().hunger(2).saturationModifier(0.2f).build())), ItemGroups.FOOD_AND_DRINK);
     public static final Item COOKED_FROG_LEGS = registerItem("cooked_frog_legs", new Item(new FabricItemSettings().food(new FoodComponent.Builder().meat().hunger(4).saturationModifier(0.3f).build())), ItemGroups.FOOD_AND_DRINK);
-    public static final Item SOLDIER_FROG_SPAWN_EGG = registerItem("soldier_frog_spawn_egg", new SpawnEggItem(ModEntities.SOLDIER_FROG_ENTITY, 16741227, 16751544, new FabricItemSettings()),ItemGroups.SPAWN_EGGS);
-    public static final Item BOSS_SOLDIER_FROG_SPAWN_EGG = registerItem("boss_soldier_frog_spawn_egg", new SpawnEggItem(ModEntities.BOSS_SOLDIER_FROG_ENTITY, 16726077, 16751544, new FabricItemSettings()),ItemGroups.SPAWN_EGGS);
-    public static final Item EXPLOSIVE_FROG_SPAWN_EGG = registerItem("explosive_frog_spawn_egg", new SpawnEggItem(ModEntities.EXPLOSIVE_FROG_ENTITY, 12325158, 16751544, new FabricItemSettings()),ItemGroups.SPAWN_EGGS);
-    public static final Item GROWING_FROG_SPAWN_EGG = registerItem("growing_frog_spawn_egg", new SpawnEggItem(ModEntities.GROWING_FROG_ENTITY,8585215, 16751544, new FabricItemSettings()),ItemGroups.SPAWN_EGGS);
-    public static final Item ARMED_FROG_SPAWN_EGG = registerItem("armed_frog_spawn_egg", new SpawnEggItem(ModEntities.ARMED_FROG_ENTITY, 16741179, 16751544, new FabricItemSettings()),ItemGroups.SPAWN_EGGS);
-    public static final Item TADPOLE_ROCKET_SPAWN_EGG = registerItem("tadpole_rocket_spawn_egg", new SpawnEggItem(ModEntities.TADPOLE_ROCKET_ENTITY, 5454115, 16751544, new FabricItemSettings()),ItemGroups.SPAWN_EGGS);
-    public static final Item ENDER_FROG_SPAWN_EGG = registerItem("ender_frog_spawn_egg", new SpawnEggItem(ModEntities.ENDER_FROG_ENTITY,786689 , 16751544, new FabricItemSettings()),ItemGroups.SPAWN_EGGS);
-    public static final Item GRAPPLING_FROG_SPAWN_EGG = registerItem("grappling_frog_spawn_egg", new SpawnEggItem(ModEntities.GRAPPLING_FROG_ENTITY,14049821 , 16751544, new FabricItemSettings()),ItemGroups.SPAWN_EGGS);
-    public static final Item ICE_FROG_SPAWN_EGG = registerItem("ice_frog_spawn_egg", new SpawnEggItem(ModEntities.ICE_FROG_ENTITY,9807304 , 16751544, new FabricItemSettings()),ItemGroups.SPAWN_EGGS);
-
+    public static final Item UNPROCESSED_RUBBER = registerItem("unprocessed_rubber", new Item(new FabricItemSettings()), ItemGroups.NATURAL);
+    public static final Item RUBBER = registerItem("rubber", new RubberItem(new FabricItemSettings()), ItemGroups.INGREDIENTS);
+    public static final Item JUMPY_TOTEM = registerItem("jumpy_totem", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.UNCOMMON)), ItemGroups.TOOLS);
+    public static final Item FROG_FIRE_CHARGE = registerItem("frog_firecharge", new BlockItem(ModBlocks.FROG_FLAME, new FabricItemSettings()), ItemGroups.TOOLS);
+    //spawn eggs
+    public static final Item SOLDIER_FROG_SPAWN_EGG = registerItem("soldier_frog_spawn_egg", new SpawnEggItem(ModEntities.SOLDIER_FROG_ENTITY, 16741227, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
+    public static final Item BOSS_SOLDIER_FROG_SPAWN_EGG = registerItem("boss_soldier_frog_spawn_egg", new SpawnEggItem(ModEntities.BOSS_SOLDIER_FROG_ENTITY, 16726077, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
+    public static final Item EXPLOSIVE_FROG_SPAWN_EGG = registerItem("explosive_frog_spawn_egg", new SpawnEggItem(ModEntities.EXPLOSIVE_FROG_ENTITY, 12325158, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
+    public static final Item GROWING_FROG_SPAWN_EGG = registerItem("growing_frog_spawn_egg", new SpawnEggItem(ModEntities.GROWING_FROG_ENTITY,8585215, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
+    public static final Item ARMED_FROG_SPAWN_EGG = registerItem("armed_frog_spawn_egg", new SpawnEggItem(ModEntities.ARMED_FROG_ENTITY, 16741179, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
+    public static final Item TADPOLE_ROCKET_SPAWN_EGG = registerItem("tadpole_rocket_spawn_egg", new SpawnEggItem(ModEntities.TADPOLE_ROCKET_ENTITY, 5454115, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
+    public static final Item ENDER_FROG_SPAWN_EGG = registerItem("ender_frog_spawn_egg", new SpawnEggItem(ModEntities.ENDER_FROG_ENTITY,786689 , 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
+    public static final Item GRAPPLING_FROG_SPAWN_EGG = registerItem("grappling_frog_spawn_egg", new SpawnEggItem(ModEntities.GRAPPLING_FROG_ENTITY,14049821 , 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
+    public static final Item ICE_FROG_SPAWN_EGG = registerItem("ice_frog_spawn_egg", new SpawnEggItem(ModEntities.ICE_FROG_ENTITY,9807304 , 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
+    public static final Item NORMAL_TREE_FROG_SPAWN_EGG = registerItem("normal_tree_frog_spawn_egg", new SpawnEggItem(ModEntities.NORMAL_TREE_FROG_ENTITY,9941578 , 5793327, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
+    public static final Item GLIDING_TREE_FROG_SPAWN_EGG = registerItem("gliding_tree_frog_spawn_egg", new SpawnEggItem(ModEntities.GLIDING_TREE_FROG_ENTITY,15390158 , 5793327, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
     private static Item registerItem(String name, Item item, ItemGroup group) {
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
         ItemGroupEvents.modifyEntriesEvent(ModItemGroups.FROGVASION_GROUP).register(entries -> entries.add(item));

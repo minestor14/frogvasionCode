@@ -4,6 +4,7 @@ import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.blocks.custom.MailBoxBlock;
 import me.Minestor.frogvasion.blocks.entity.MailBoxBlockEntity;
 import me.Minestor.frogvasion.entities.ModEntities;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
@@ -24,6 +25,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AddressCardItem extends Item {
     public AddressCardItem(Settings settings) {
@@ -60,9 +62,9 @@ public class AddressCardItem extends Item {
             int s = sp.getInventory().selectedSlot;
             sp.getInventory().setStack(s,stack);
 
-            String name = sp.getActiveItem().getName().getString() == "Air" ? Text.translatable("item.frogvasion.address_card").getString() : sp.getActiveItem().getName().getString();
+            String name = Objects.equals(sp.getActiveItem().getName().getString(), "Air") ? Text.translatable("item.frogvasion.address_card").getString() : sp.getActiveItem().getName().getString();
             sp.networkHandler.sendPacket(
-                    new OverlayMessageS2CPacket(Text.literal("Linked " + name + " to §b" + pos.toShortString()))
+                    new OverlayMessageS2CPacket(Text.literal("Bound " + name + " to §b" + pos.toShortString()))
             );
         }
         return super.useOnBlock(context);
@@ -79,6 +81,7 @@ public class AddressCardItem extends Item {
             if(state.isOf(ModBlocks.MAILBOX)) {
                 if(world.getBlockEntity(des) instanceof MailBoxBlockEntity be) {
                     if(state.get(MailBoxBlock.MAIL) <10) {
+                        Criteria.PLAYER_INTERACTED_WITH_ENTITY.trigger((ServerPlayerEntity) user, stack, entity);
                         be.addMail("§e"+user.getDisplayName().getString() + " wrote: §r" + stack.getName().getString());
                         entity.discard();
                         stack.decrement(1);

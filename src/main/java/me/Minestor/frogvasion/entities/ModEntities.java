@@ -31,6 +31,11 @@ public class ModEntities {
     public static final EntityType<IceFrog> ICE_FROG_ENTITY = Registry.register(Registries.ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "ice_frog"), FabricEntityTypeBuilder
             .create(SpawnGroup.MONSTER, IceFrog::new).dimensions(EntityDimensions.fixed(0.5f,0.5f)).build());
 
+
+    public static final EntityType<NormalTreeFrog> NORMAL_TREE_FROG_ENTITY = Registry.register(Registries.ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "normal_tree_frog"), FabricEntityTypeBuilder
+            .create(SpawnGroup.MONSTER, NormalTreeFrog::new).dimensions(EntityDimensions.fixed(0.4f,0.4f)).build());
+    public static final EntityType<GlidingTreeFrog> GLIDING_TREE_FROG_ENTITY = Registry.register(Registries.ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "gliding_tree_frog"), FabricEntityTypeBuilder
+            .create(SpawnGroup.MONSTER, GlidingTreeFrog::new).dimensions(EntityDimensions.fixed(0.4f,0.4f)).build());
     public static int getDefaultedInt(FrogTypes type) {
         return switch (type) {
             case SOLDIER -> 1;

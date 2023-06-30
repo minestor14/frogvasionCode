@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:frogvasion/root",
+  "criteria": {
+    "mail": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "frogvasion:ender_frog"
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "frogvasion:address_card"
+          ]
+        }
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Use an Address Card on an Ender Frog"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:mailbox"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "You have mail"
+    }
+  },
+  "requirements": [
+    [
+      "mail"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  }
+}

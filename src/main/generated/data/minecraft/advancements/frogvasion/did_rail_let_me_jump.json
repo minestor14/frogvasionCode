@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:frogvasion/root",
+  "criteria": {
+    "r": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:minecart"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:started_riding"
+    },
+    "rail": {
+      "conditions": {
+        "block": "frogvasion:frogvasium_rail"
+      },
+      "trigger": "minecraft:enter_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Ride with a minecart of a Frogvasium Rail"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:frogvasium_rail"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Did this rail just let me jump?"
+    }
+  },
+  "requirements": [
+    [
+      "rail"
+    ],
+    [
+      "r"
+    ]
+  ]
+}

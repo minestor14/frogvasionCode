@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:frogvasion/green_flame",
+  "criteria": {
+    "greenwood": {
+      "conditions": {
+        "to": "frogvasion:greenwood"
+      },
+      "trigger": "minecraft:changed_dimension"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Enter the Greenwood dimension by lighting a Greenwood Portal (throw a Frog Ghost in a Frog Flame)"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:orchid"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "You have arrived in Greenwood"
+    }
+  },
+  "requirements": [
+    [
+      "greenwood"
+    ]
+  ],
+  "rewards": {
+    "experience": 150
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "multipart": [
+    {
+      "apply": [
+        {
+          "model": "frogvasion:block/frog_flame_floor0"
+        },
+        {
+          "model": "frogvasion:block/frog_flame_floor1"
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "frogvasion:block/frog_flame_side0"
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side1"
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side_alt0"
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side_alt1"
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "frogvasion:block/frog_flame_side0",
+          "y": 90
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side1",
+          "y": 90
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side_alt0",
+          "y": 90
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side_alt1",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "frogvasion:block/frog_flame_side0",
+          "y": 180
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side1",
+          "y": 180
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side_alt0",
+          "y": 180
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side_alt1",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "frogvasion:block/frog_flame_side0",
+          "y": 270
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side1",
+          "y": 270
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side_alt0",
+          "y": 270
+        },
+        {
+          "model": "frogvasion:block/frog_flame_side_alt1",
+          "y": 270
+        }
+      ]
+    }
+  ]
+}

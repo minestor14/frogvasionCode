@@ -14,13 +14,15 @@ import net.minecraft.util.Identifier;
 
 public class ModPotions {
     public static Potion IMPROVER_POTION;
+    public static Potion FROG_CAMOUFLAGE_POTION;
 
     public static Potion registerPotion(String name, StatusEffect effect, int duration, int amplifier) {
-        return Registry.register(Registries.POTION,new Identifier(Frogvasion.MOD_ID,name),new Potion(new StatusEffectInstance(effect,duration,amplifier)));
+        return Registry.register(Registries.POTION, new Identifier(Frogvasion.MOD_ID, name), new Potion(new StatusEffectInstance(effect, duration, amplifier)));
     }
 
     public static void registerPotions() {
         IMPROVER_POTION = registerPotion("improver_potion", ModEffects.IMPROVER,100,0);
+        FROG_CAMOUFLAGE_POTION = registerPotion("frog_camouflage_potion", ModEffects.FROG_CAMOUFLAGE,24000,0);
         registerPotionRecipes();
     }
     private static void registerPotionRecipes() {

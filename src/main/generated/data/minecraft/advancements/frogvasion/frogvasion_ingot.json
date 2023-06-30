@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:frogvasion/root",
+  "criteria": {
+    "ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:frogvasium_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Obtain a Frogvasium Ingot"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:frogvasium_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Frogvasium Ingot"
+    }
+  },
+  "requirements": [
+    [
+      "ingot"
+    ]
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 30,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "frogvasion:frog_legs"
+  },
+  "result": "frogvasion:cooked_frog_legs"
+}

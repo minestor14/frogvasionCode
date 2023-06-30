@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "frogvasion:block/bromeliad_bottom"
+    },
+    "half=upper": {
+      "model": "frogvasion:block/bromeliad_top"
+    }
+  }
+}

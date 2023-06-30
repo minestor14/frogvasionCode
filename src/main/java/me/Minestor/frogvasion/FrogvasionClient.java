@@ -10,7 +10,8 @@ import me.Minestor.frogvasion.items.Custom.renderers.IceSpikeEntityRenderer;
 import me.Minestor.frogvasion.networking.ModMessages;
 import me.Minestor.frogvasion.screen.ConversionPedestalScreen;
 import me.Minestor.frogvasion.screen.ModScreenHandlers;
-import me.Minestor.frogvasion.util.ModThrowables;
+import me.Minestor.frogvasion.screen.QuestBlockScreen;
+import me.Minestor.frogvasion.util.items.ModThrowables;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -27,6 +28,43 @@ public class FrogvasionClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         initBIRenderers();
+        registerEntityRenderers();
+
+        BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_ATTACKER_TYPE, context -> new FrogvasiumAttackerRenderer());
+        BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE, context -> new FrogvasiumDemolisherRenderer());
+        BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_GRAPPLER_TYPE, context -> new FrogvasiumGrapplerRenderer());
+        BlockEntityRendererRegistry.register(ModBlockEntities.FROG_TRAP_TYPE, FrogTrapRenderer::new);
+        BlockEntityRendererRegistry.register(ModBlockEntities.FROG_CAGE_TYPE, FrogCageRenderer::new);
+        BlockEntityRendererRegistry.register(ModBlockEntities.MAILBOX_TYPE, MailBoxBlockEntityRenderer::new);
+
+        HandledScreens.register(ModScreenHandlers.CONVERSION_PEDESTAL_SCREEN_HANDLER, ConversionPedestalScreen::new);
+        HandledScreens.register(ModScreenHandlers.QUEST_BLOCK_SCREEN_HANDLER, QuestBlockScreen::new);
+
+        initClientEvents();
+        ModMessages.registerS2CPackets();
+    }
+    private static void initClientEvents() {
+        ClientPlayConnectionEvents.JOIN.register(new JoinEvent());
+
+    }
+    private static void initBIRenderers() {
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CONCENTRATED_SLIME, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLIME_LAYER, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROGVASIUM_RAIL, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROG_CAGE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RUBBER_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RUBBER_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BROMELIAD, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ORCHID, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_ORCHID, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.KAURI_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.KAURI_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROG_FLAME, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GREENWOOD_PORTAL, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROG_STATUE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GOLDEN_FROG_STATUE, RenderLayer.getCutout());
+    }
+    private static void registerEntityRenderers() {
         EntityRendererRegistry.register(ModEntities.SOLDIER_FROG_ENTITY, SoldierFrogRenderer::new);
         EntityRendererRegistry.register(ModEntities.BOSS_SOLDIER_FROG_ENTITY, BossSoldierFrogRenderer::new);
         EntityRendererRegistry.register(ModEntities.EXPLOSIVE_FROG_ENTITY, ExplosiveFrogRenderer::new);
@@ -37,27 +75,9 @@ public class FrogvasionClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.ENDER_FROG_ENTITY, EnderFrogRenderer::new);
         EntityRendererRegistry.register(ModEntities.ICE_FROG_ENTITY, IceFrogRenderer::new);
 
+        EntityRendererRegistry.register(ModEntities.NORMAL_TREE_FROG_ENTITY, NormalTreeFrogRenderer::new);
+        EntityRendererRegistry.register(ModEntities.GLIDING_TREE_FROG_ENTITY, GlidingTreeFrogRenderer::new);
+
         EntityRendererRegistry.register(ModThrowables.ICE_SPIKE_ITEM_ENTITY_TYPE, IceSpikeEntityRenderer::new);
-
-        BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_ATTACKER_TYPE, context -> new FrogvasiumAttackerRenderer());
-        BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE, context -> new FrogvasiumDemolisherRenderer());
-        BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_GRAPPLER_TYPE, context -> new FrogvasiumGrapplerRenderer());
-        BlockEntityRendererRegistry.register(ModBlockEntities.FROG_TRAP_TYPE, FrogTrapRenderer::new);
-        BlockEntityRendererRegistry.register(ModBlockEntities.FROG_CAGE_TYPE, FrogCageRenderer::new);
-        BlockEntityRendererRegistry.register(ModBlockEntities.MAILBOX_TYPE, MailBoxBlockEntityRenderer::new);
-
-        HandledScreens.register(ModScreenHandlers.CONVERSION_PEDESTAL_SCREEN_HANDLER, ConversionPedestalScreen::new);
-
-        initClientEvents();
-        ModMessages.registerS2CPackets();
-    }
-    private static void initClientEvents() {
-        ClientPlayConnectionEvents.JOIN.register(new JoinEvent());
-    }
-    private static void initBIRenderers() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CONCENTRATED_SLIME, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLIME_LAYER, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROGVASIUM_RAIL, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROG_CAGE, RenderLayer.getCutout());
     }
 }

@@ -40,7 +40,7 @@ public class FrogCageRenderer implements BlockEntityRenderer<FrogCageBlockEntity
                     , MinecraftClient.getInstance().getResourceManager(), ctx.getLayerRenderDispatcher(), ctx.getTextRenderer());
 
             int lightAbove = WorldRenderer.getLightmapCoordinates(world, pos.up());
-            double y = Math.sin(world.getTime() / 8d) / 10;
+            double y = Math.sin((world.getTime() + tickDelta) / 8d) / 10;
             matrices.translate(0.5, 0.2 + y, 0.5);
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((world.getTime() + tickDelta) * 4));
             matrices.scale(0.5f,0.5f,0.5f);

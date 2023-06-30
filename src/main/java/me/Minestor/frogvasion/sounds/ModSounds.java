@@ -10,6 +10,8 @@ public class ModSounds {
     public static final SoundEvent CROAK = registerSoundEvent("croak");
     public static final SoundEvent CHARGE = registerSoundEvent("charge");
     public static final SoundEvent ICE_SPIKE_BREAK = registerSoundEvent("ice_spike_break");
+    public static final SoundEvent TREE_FROG_CROAK = registerSoundEvent("tree_frog_croak");
+    public static final SoundEvent QUEST_COMPLETED = registerSoundEvent("quest_completed");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = new Identifier(Frogvasion.MOD_ID, name);

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "frogvasion:block/stripped_rubber_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "frogvasion:block/stripped_rubber_wood"
+    },
+    "axis=z": {
+      "model": "frogvasion:block/stripped_rubber_wood",
+      "x": 90
+    }
+  }
+}

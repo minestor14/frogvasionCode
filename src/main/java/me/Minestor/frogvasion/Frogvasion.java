@@ -1,6 +1,5 @@
 package me.Minestor.frogvasion;
 
-import me.Minestor.frogvasion.Recipe.ModRecipes;
 import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import me.Minestor.frogvasion.effects.ModEffects;
@@ -8,16 +7,30 @@ import me.Minestor.frogvasion.effects.potion.ModPotions;
 import me.Minestor.frogvasion.enchantments.ModEnchantments;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.*;
+import me.Minestor.frogvasion.events.*;
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.networking.ModMessages;
+import me.Minestor.frogvasion.recipe.ModRecipes;
 import me.Minestor.frogvasion.screen.ModScreenHandlers;
 import me.Minestor.frogvasion.sounds.ModSounds;
-import me.Minestor.frogvasion.util.*;
+import me.Minestor.frogvasion.util.armor.ModArmorMaterials;
+import me.Minestor.frogvasion.util.blocks.ModFlammables;
+import me.Minestor.frogvasion.util.entity.ModDamageSources;
+import me.Minestor.frogvasion.util.entity.ModEntityGroups;
+import me.Minestor.frogvasion.util.items.ModItemGroups;
+import me.Minestor.frogvasion.util.items.ModLootTableModifiers;
+import me.Minestor.frogvasion.util.items.ModThrowables;
+import me.Minestor.frogvasion.util.quest.ServerQuestProgression;
+import me.Minestor.frogvasion.worldgen.dimension.ModDimensions;
 import me.Minestor.frogvasion.worldgen.features.ModFeaturesPlacing;
 import me.Minestor.frogvasion.worldgen.spawing.ModEntitySpawning;
 import me.Minestor.frogvasion.worldgen.structures.ModStructures;
+import me.Minestor.frogvasion.worldgen.tree.ModTreeGeneration;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.bernie.geckolib.GeckoLib;
@@ -28,22 +41,30 @@ public class Frogvasion implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModFeaturesPlacing.registerPlacedFeatures();
-		ModStructures.registerStructures();
+		initWorldGen();
 
 		ModEntityGroups.registerEntityGroups();
 		ModArmorMaterials.registerArmorMaterials();
+
 		ModItemGroups.registerItemGroups();
 		ModItems.registerModItems();
 		ModThrowables.registerThrowables();
+
 		ModBlocks.registerModBlocks();
+		StrippableBlockRegistry.register(ModBlocks.RUBBER_LOG, ModBlocks.STRIPPED_RUBBER_LOG);
+		StrippableBlockRegistry.register(ModBlocks.RUBBER_WOOD, ModBlocks.STRIPPED_RUBBER_WOOD);
+		StrippableBlockRegistry.register(ModBlocks.KAURI_LOG, ModBlocks.STRIPPED_KAURI_LOG);
+		StrippableBlockRegistry.register(ModBlocks.KAURI_WOOD, ModBlocks.STRIPPED_KAURI_WOOD);
+		ModFlammables.register();
 
 		initAttributes();
-		initWorldGen();
-		registerCommands();
+
+		registerEvents();
 		ModSounds.initSounds();
+
 		ModEffects.initEffects();
 		ModPotions.registerPotions();
+
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
 		ModEnchantments.registerEnchantments();
@@ -53,11 +74,16 @@ public class Frogvasion implements ModInitializer {
 
 		ModDamageSources.registerDamageSources();
 		ModMessages.registerC2SPackets();
+
 		LOGGER.info("Frogvasion initialized");
 	}
 
 	private static void initWorldGen() {
+		ModFeaturesPlacing.registerPlacedFeatures();
+		ModStructures.registerStructures();
 		ModEntitySpawning.addEntitySpawning();
+		ModDimensions.register();
+		ModTreeGeneration.generateTrees();
 	}
 
 	private static void initAttributes() {
@@ -72,12 +98,15 @@ public class Frogvasion implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.ENDER_FROG_ENTITY, EnderFrog.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.ICE_FROG_ENTITY, IceFrog.setAttributes());
 
+		FabricDefaultAttributeRegistry.register(ModEntities.NORMAL_TREE_FROG_ENTITY, NormalTreeFrog.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.GLIDING_TREE_FROG_ENTITY, GlidingTreeFrog.setAttributes());
 	}
 
-	private static void registerCommands() {
-
+	private static void registerEvents() {
+		ServerLivingEntityEvents.ALLOW_DAMAGE.register(new DamageEvent());
+		PlayerBlockBreakEvents.BEFORE.register(new BlockBreakEvent());
+		ServerLivingEntityEvents.ALLOW_DEATH.register(new DeathEvent());
+		ServerQuestProgression.IQuestProgressionEvent.PROGRESS.register(new QuestProgressionEvent());
+		ServerQuestProgression.IQuestCompletionEvent.COMPLETION.register(new QuestCompletionEvent());
 	}
-	//todo make frogs breed w/ frogvasium
-	//todo capture update, maybe capture nets
-	//todo custom dimention w/ glass frogs (w/ society)
 }

@@ -1,0 +1,34 @@
+{
+  "parent": "frogvasion:frogvasion/root",
+  "criteria": {
+    "flame": {
+      "conditions": {
+        "block": "frogvasion:frog_flame"
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Light a Frog Flame by using a Frog Fire Charge on a Frogvasium Block"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:frog_firecharge"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Green Fire???"
+    }
+  },
+  "requirements": [
+    [
+      "flame"
+    ]
+  ],
+  "rewards": {
+    "experience": 150
+  }
+}

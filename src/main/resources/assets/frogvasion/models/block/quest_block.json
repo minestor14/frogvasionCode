@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "frogvasion:block/quest_block_down",
+    "east": "frogvasion:block/quest_block_side",
+    "north": "frogvasion:block/quest_block_side",
+    "particle": "frogvasion:block/quest_block_up",
+    "south": "frogvasion:block/quest_block_side",
+    "up": "frogvasion:block/quest_block_up",
+    "west": "frogvasion:block/quest_block_side"
+  }
+}

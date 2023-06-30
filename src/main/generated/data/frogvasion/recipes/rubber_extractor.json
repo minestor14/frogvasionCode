@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "!": {
+      "item": "frogvasion:frogvasium_embedded_polished_blackstone"
+    },
+    "#": {
+      "item": "frogvasion:rubber"
+    },
+    "?": {
+      "item": "minecraft:cauldron"
+    }
+  },
+  "pattern": [
+    "#?#",
+    "#!#",
+    "###"
+  ],
+  "result": {
+    "item": "frogvasion:rubber_extractor"
+  }
+}

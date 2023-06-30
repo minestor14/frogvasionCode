@@ -5,12 +5,21 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "Mixins.BrewingRecipeRegistryMixin",
+    "Mixins.CraftingResultSlotMixin",
+    "Mixins.ElytraItemMixin",
+    "Mixins.EnchantedItemCriterionMixin",
     "Mixins.EnderPearlItemMixin",
-    "Mixins.LivingEntityMixin"
+    "Mixins.EntityMixin",
+    "Mixins.ItemEntityMixin",
+    "Mixins.LivingEntityMixin",
+    "Mixins.ModEntityDataSaverMixin"
   ],
   "client": [
     "FrogvasionMixin",
-    "Mixins.ModLevelstorageSessionMixin"
+    "Mixins.GameOptionsMixin",
+    "Mixins.IntegratedServerLoaderMixin",
+    "Mixins.ModLevelstorageSessionMixin",
+    "Mixins.OptionsScreenMixin"
   ],
   "server": [
   ],

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "frogvasion:block/kauri_log_top",
+    "side": "frogvasion:block/kauri_log"
+  }
+}

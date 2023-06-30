@@ -1,33 +1,26 @@
 {
-  "display": {
-    "icon": {
-      "item": "frogvasion:frogvasium_ingot"
-    },
-    "title": "Did this rail just let me jump?",
-    "description": "Ride with a minecart off a Frogvasium Rail",
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "parent": "frogvasion:frogvasion/frogvasium_ingot",
+  "parent": "frogvasion:frogvasion/root",
   "criteria": {
     "rail": {
-      "trigger": "minecraft:enter_block",
       "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "vehicle": {
-                "type": "minecraft:minecart"
-              }
-            }
-          }
-        ],
         "block": "frogvasion:frogvasium_rail"
-      }
+      },
+      "trigger": "minecraft:enter_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Ride with a minecart of a Frogvasium Rail"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:frogvasium_rail"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Did this rail just let me jump?"
     }
   },
   "requirements": [

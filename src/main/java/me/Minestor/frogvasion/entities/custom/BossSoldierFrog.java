@@ -57,7 +57,7 @@ public class BossSoldierFrog extends ModFrog implements GeoEntity {
         this.targetSelector.add(6, new ActiveTargetGoal<>(this, MagmaCubeEntity.class, true));
 
     }
-    PlayState attackPredicate(AnimationState event) {
+    PlayState attackPredicate(AnimationState<ModFrog> event) {
 
         if(this.handSwinging)
         {
@@ -69,7 +69,7 @@ public class BossSoldierFrog extends ModFrog implements GeoEntity {
     }
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController(this, "controller",0, this::predicate));
-        controllers.add(new AnimationController(this, "attackController",0, this::attackPredicate));
+        controllers.add(new AnimationController<>(this, "controller",0, this::predicate));
+        controllers.add(new AnimationController<>(this, "attackController",0, this::attackPredicate));
     }
 }

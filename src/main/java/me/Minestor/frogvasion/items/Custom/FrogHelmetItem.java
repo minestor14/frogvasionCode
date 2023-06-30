@@ -1,6 +1,7 @@
 package me.Minestor.frogvasion.items.Custom;
 
 import me.Minestor.frogvasion.items.Custom.renderers.FrogHelmetRenderer;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
@@ -9,6 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Wearable;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
@@ -25,14 +27,15 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class FrogHelmetItem extends ArmorItem implements GeoItem {
+public class FrogHelmetItem extends ArmorItem implements GeoItem, Wearable {
     private final AnimatableInstanceCache factory = new SingletonAnimatableInstanceCache(this);
     private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
     private int time =0;
     public FrogHelmetItem(ArmorMaterial material, Settings settings) {
         super(material, EquipmentSlot.HEAD, settings);
+        DispenserBlock.registerBehavior(this, ArmorItem.DISPENSER_BEHAVIOR);
     }
-    private PlayState predicate(AnimationState event) {
+    private PlayState predicate(AnimationState<FrogHelmetItem> event) {
         event.getController().setAnimation(RawAnimation.begin().then("animation.frog_helmet.blink", Animation.LoopType.LOOP));
         time++;
         if(time > 100) {
@@ -44,7 +47,7 @@ public class FrogHelmetItem extends ArmorItem implements GeoItem {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController(this, "controller",0, this::predicate));
+        controllers.add(new AnimationController<>(this, "controller",0, this::predicate));
     }
 
     @Override

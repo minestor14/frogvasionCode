@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "frogvasion:rubber_log",
+    "frogvasion:rubber_wood",
+    "frogvasion:stripped_rubber_log",
+    "frogvasion:stripped_rubber_wood",
+    "frogvasion:kauri_log",
+    "frogvasion:kauri_wood",
+    "frogvasion:stripped_kauri_log",
+    "frogvasion:stripped_kauri_wood"
+  ]
+}

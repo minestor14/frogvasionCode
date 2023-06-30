@@ -1,7 +1,9 @@
 package me.Minestor.frogvasion.items.Custom.frog_ghosts;
 
+import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.*;
+import me.Minestor.frogvasion.worldgen.dimension.ModDimensions;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
@@ -29,10 +31,14 @@ public abstract class ModFrogGhostItem extends Item {
     }
 
     private static void onDestroyed(ItemEntity entity, ServerWorld world, ModFrog frog) {
-        frog.setPosition(entity.getPos());
-        frog.setVelocity(new Vec3d(world.random.nextBoolean() ? world.random.nextFloat()/2 :-world.random.nextFloat()/2,0.5,world.random.nextBoolean() ?world.random.nextFloat()/2 :-world.random.nextFloat()/2));
-        frog.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE,60 ,0,true,true));
-        world.spawnEntityAndPassengers(frog);
+        if(entity.getBlockStateAtPos().isOf(ModBlocks.FROG_FLAME) && (world.getRegistryKey() == ModDimensions.GREENWOOD_DIMENSION_KEY || world.getRegistryKey() == World.OVERWORLD)) {
+            entity.getWorld().setBlockState(entity.getBlockPos(), ModBlocks.GREENWOOD_PORTAL.getDefaultState());
+        } else {
+            frog.setPosition(entity.getPos());
+            frog.setVelocity(new Vec3d(world.random.nextBoolean() ? world.random.nextFloat() / 2 : -world.random.nextFloat() / 2, 0.5, world.random.nextBoolean() ? world.random.nextFloat() / 2 : -world.random.nextFloat() / 2));
+            frog.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 60, 0, true, true));
+            world.spawnEntityAndPassengers(frog);
+        }
     }
 
     @Override

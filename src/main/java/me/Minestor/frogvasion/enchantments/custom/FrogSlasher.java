@@ -1,6 +1,7 @@
 package me.Minestor.frogvasion.enchantments.custom;
 
-import me.Minestor.frogvasion.util.ModEntityGroups;
+import me.Minestor.frogvasion.items.Custom.FrogStaffItem;
+import me.Minestor.frogvasion.util.entity.ModEntityGroups;
 import net.minecraft.enchantment.DamageEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
@@ -8,10 +9,11 @@ import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 
-public class FrogSlasher extends Enchantment {
+public class FrogSlasher extends DamageEnchantment {
     public FrogSlasher() {
-        super(Rarity.UNCOMMON, EnchantmentTarget.WEAPON, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+        super(Rarity.UNCOMMON, 3, EquipmentSlot.MAINHAND);
     }
 
     @Override
@@ -36,6 +38,6 @@ public class FrogSlasher extends Enchantment {
 
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
-        return stack.getItem() instanceof AxeItem || super.isAcceptableItem(stack);
+        return stack.getItem() instanceof AxeItem || stack.getItem() instanceof SwordItem || stack.getItem() instanceof FrogStaffItem;
     }
 }

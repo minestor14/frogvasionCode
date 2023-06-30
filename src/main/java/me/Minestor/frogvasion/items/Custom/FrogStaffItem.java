@@ -2,7 +2,7 @@ package me.Minestor.frogvasion.items.Custom;
 
 import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.items.ModItems;
-import me.Minestor.frogvasion.util.ModDamageSources;
+import me.Minestor.frogvasion.util.entity.ModDamageSources;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.Screen;

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#frogvasion:rubber_logs",
+    "frogvasion:rubber_planks",
+    "#frogvasion:kauri_logs",
+    "frogvasion:kauri_planks"
+  ]
+}

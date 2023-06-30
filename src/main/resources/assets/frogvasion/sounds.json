@@ -13,11 +13,24 @@
       "frogvasion:explosive_frog_charge"
     ]
   },
+  "tree_frog_croak": {
+    "category": "entities",
+    "subtitle": "subtitles.frogvasion.croak",
+    "sounds": [
+      "frogvasion:tree_frog_croak"
+    ]
+  },
   "ice_spike_break": {
     "category": "blocks",
     "subtitle": "subtitles.frogvasion.ice_spike_break",
     "sounds": [
       "frogvasion:ice_spike_break"
+    ]
+  },
+  "quest_completed": {
+    "subtitle": "subtitles.frogvasion.quest_completed",
+    "sounds": [
+      "frogvasion:quest_completed"
     ]
   }
 }

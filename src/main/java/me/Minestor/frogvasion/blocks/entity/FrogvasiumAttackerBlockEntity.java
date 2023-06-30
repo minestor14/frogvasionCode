@@ -1,7 +1,7 @@
 package me.Minestor.frogvasion.blocks.entity;
 
 import me.Minestor.frogvasion.blocks.custom.FrogvasiumAttackerBlock;
-import me.Minestor.frogvasion.util.ModDamageSources;
+import me.Minestor.frogvasion.util.entity.ModDamageSources;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;

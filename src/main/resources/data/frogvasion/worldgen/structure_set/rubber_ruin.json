@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "frogvasion:rubber_ruin",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 354356499,
+    "spacing": 6,
+    "separation": 3
+  }
+}

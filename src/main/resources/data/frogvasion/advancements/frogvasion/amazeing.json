@@ -1,19 +1,7 @@
 {
-  "display": {
-    "icon": {
-      "item": "minecraft:mud_bricks"
-    },
-    "title": "aMAZEing",
-    "description": "Enter the Frog Maze, the almost endless collection of hallways",
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
   "parent": "frogvasion:frogvasion/root",
   "criteria": {
     "in_maze": {
-      "trigger": "minecraft:location",
       "conditions": {
         "player": [
           {
@@ -26,7 +14,23 @@
             }
           }
         ]
-      }
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Enter the Frog Maze, the almost endless collection of hallways"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:mud_bricks"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "aMAZEing"
     }
   },
   "requirements": [
@@ -35,6 +39,6 @@
     ]
   ],
   "rewards": {
-    "experience": 10
+    "experience": 100
   }
 }

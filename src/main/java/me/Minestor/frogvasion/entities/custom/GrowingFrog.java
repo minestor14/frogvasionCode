@@ -67,8 +67,8 @@ public class GrowingFrog extends ModFrog implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController(this, "controller",0, this::predicate));
-        controllers.add(new AnimationController(this, "attackController",0, this::attackPredicate));
+        controllers.add(new AnimationController<>(this, "controller",0, this::predicate));
+        controllers.add(new AnimationController<>(this, "attackController",0, this::attackPredicate));
     }
 
     @Override
@@ -76,7 +76,7 @@ public class GrowingFrog extends ModFrog implements GeoEntity {
         return factory;
     }
     @Override
-    PlayState predicate(AnimationState event) {
+    PlayState predicate(AnimationState<ModFrog> event) {
         if(this.getBlockStateAtPos().getBlock() == Blocks.WATER && this.getSize() <=10) {
             event.getController().setAnimation(RawAnimation.begin().then("animation.frog.swim", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;

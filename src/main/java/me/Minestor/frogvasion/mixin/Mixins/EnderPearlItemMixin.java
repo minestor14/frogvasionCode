@@ -1,5 +1,6 @@
 package me.Minestor.frogvasion.mixin.Mixins;
 
+import me.Minestor.frogvasion.effects.ModEffects;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.EnderFrog;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +20,7 @@ public class EnderPearlItemMixin {
 
     @Inject(method = "use", at = @At("HEAD"))
     public void use(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-        if (!world.isClient) {
+        if (!world.isClient && !user.hasStatusEffect(ModEffects.FROG_CAMOUFLAGE)) {
             EnderFrog frog = new EnderFrog(ModEntities.ENDER_FROG_ENTITY, world);
             frog.setPos(user.getX(), user.getY(), user.getZ());
             ((ServerWorld)world).spawnEntityAndPassengers(frog);

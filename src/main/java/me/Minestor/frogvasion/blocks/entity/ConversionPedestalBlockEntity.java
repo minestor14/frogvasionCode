@@ -1,6 +1,6 @@
 package me.Minestor.frogvasion.blocks.entity;
 
-import me.Minestor.frogvasion.Recipe.ConversionPedestalRecipe;
+import me.Minestor.frogvasion.recipe.ConversionPedestalRecipe;
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.screen.ConversionPedestalScreenHandler;
 import net.minecraft.block.BlockState;

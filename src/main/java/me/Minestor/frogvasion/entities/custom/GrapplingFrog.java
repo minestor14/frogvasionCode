@@ -63,7 +63,7 @@ public class GrapplingFrog extends ModFrog implements GeoEntity {
 
     }
     @Override
-    PlayState attackPredicate(AnimationState event) {
+    PlayState attackPredicate(AnimationState<ModFrog> event) {
         if(this.handSwinging) {
             event.getController().forceAnimationReset();
             event.getController().setAnimation(RawAnimation.begin().then("animation.grappling_frog.attack", Animation.LoopType.PLAY_ONCE));
@@ -73,8 +73,8 @@ public class GrapplingFrog extends ModFrog implements GeoEntity {
     }
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController(this, "controller",0, this::predicate));
-        controllers.add(new AnimationController(this, "attackController",0, this::attackPredicate));
+        controllers.add(new AnimationController<>(this, "controller",0, this::predicate));
+        controllers.add(new AnimationController<>(this, "attackController",0, this::attackPredicate));
     }
     @Override
     protected void initDataTracker() {

@@ -1,9 +1,6 @@
 package me.Minestor.frogvasion.datagen;
 
-import me.Minestor.frogvasion.datagen.customs.ModBlockLootTableGenerator;
-import me.Minestor.frogvasion.datagen.customs.ModModelsProvider;
-import me.Minestor.frogvasion.datagen.customs.ModRecipeGenerator;
-import me.Minestor.frogvasion.datagen.customs.ModWorldGenGenerator;
+import me.Minestor.frogvasion.datagen.customs.*;
 import me.Minestor.frogvasion.worldgen.biomes.ModBiomes;
 import me.Minestor.frogvasion.worldgen.features.ModConfiguredFeatures;
 import me.Minestor.frogvasion.worldgen.features.ModFeaturesPlacing;
@@ -21,6 +18,7 @@ public class ModDatageneration implements DataGeneratorEntrypoint {
         pack.addProvider(ModRecipeGenerator::new);
         pack.addProvider(ModModelsProvider::new);
         pack.addProvider(ModWorldGenGenerator::new);
+        pack.addProvider(ModAdvancementsProvider::new);
     }
 
     @Override

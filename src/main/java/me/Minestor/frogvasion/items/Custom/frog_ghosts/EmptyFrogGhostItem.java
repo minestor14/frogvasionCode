@@ -1,10 +1,12 @@
 package me.Minestor.frogvasion.items.Custom.frog_ghosts;
 
+import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.entities.custom.ModFrog;
 import me.Minestor.frogvasion.entities.custom.TadpoleRocket;
 import me.Minestor.frogvasion.items.ModItems;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -49,5 +51,13 @@ public class EmptyFrogGhostItem extends Item {
             tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
         }
         super.appendTooltip(stack, world, tooltip, context);
+    }
+
+    @Override
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        if(entity.getBlockStateAtPos().isOf(ModBlocks.FROG_FLAME) && !entity.getWorld().isClient) {
+            entity.getWorld().setBlockState(entity.getBlockPos(), ModBlocks.GREENWOOD_PORTAL.getDefaultState());
+        }
+        super.onItemEntityDestroyed(entity);
     }
 }

@@ -1,0 +1,42 @@
+{
+  "parent": "frogvasion:frogvasion/frogvasion_ingot",
+  "criteria": {
+    "embed": {
+      "conditions": {
+        "item": {
+          "items": [
+            "frogvasion:frogvasium_ingot"
+          ]
+        },
+        "location": {
+          "block": {
+            "blocks": [
+              "minecraft:polished_blackstone"
+            ]
+          }
+        }
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Use a Frogvasium Ingot on a Polished Blackstone block"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:frogvasium_embedded_polished_blackstone"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "A new coating"
+    }
+  },
+  "requirements": [
+    [
+      "embed"
+    ]
+  ]
+}
