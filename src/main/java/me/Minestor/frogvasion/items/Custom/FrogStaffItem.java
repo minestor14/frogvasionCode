@@ -9,7 +9,6 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -73,16 +72,18 @@ public class FrogStaffItem extends ToolItem implements Vanishable {
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         if(user.getItemCooldownManager().isCoolingDown(stack.getItem())) return super.useOnEntity(stack, user, entity, hand);
         if(user.getWorld().isClient) return super.useOnEntity(stack, user, entity, hand);
+
+        World world = user.getWorld();
         if(user.getOffHandStack().getItem() == Items.WOODEN_SWORD || user.getOffHandStack().getItem() == Items.STONE_SWORD
                 ||user.getOffHandStack().getItem() == Items.IRON_SWORD ||user.getOffHandStack().getItem() == Items.GOLDEN_SWORD
                 ||user.getOffHandStack().getItem() == Items.DIAMOND_SWORD ||user.getOffHandStack().getItem() == Items.NETHERITE_SWORD) {
             if(user.isSneaking() && entity.getType() != EntityType.PLAYER) {
-                entity.damage(DamageSource.player(user), stack.getMaxDamage() - stack.getDamage() -1);
+                entity.damage(world.getDamageSources().playerAttack(user), stack.getMaxDamage() - stack.getDamage() -1);
                 stack.setDamage(stack.getMaxDamage()-1);
                 user.getItemCooldownManager().set(stack.getItem(),100);
-                user.damage(ModDamageSources.MAGIC_REPAY, 3);
+                user.damage(world.getDamageSources().create(ModDamageSources.MAGIC_REPAY_KEY), 3);
             } else {
-                entity.damage(DamageSource.player(user), 1);
+                entity.damage(world.getDamageSources().playerAttack(user), 1);
                 stack.damage(1, user, (p) -> p.sendToolBreakStatus(hand)); //important
                 user.getItemCooldownManager().set(stack.getItem(),20);
             }
@@ -96,7 +97,7 @@ public class FrogStaffItem extends ToolItem implements Vanishable {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 30,0,false, false));
                 stack.damage(stack.getMaxDamage()/2 -1, user, (p) -> p.sendToolBreakStatus(hand));
                 user.getItemCooldownManager().set(stack.getItem(),100);
-                user.damage(ModDamageSources.MAGIC_REPAY, 3);
+                user.damage(world.getDamageSources().create(ModDamageSources.MAGIC_REPAY_KEY), 3);
             } else {
                 entity.addVelocity(new Vec3d(0,0.6,0));
                 stack.damage(1, user, (p) -> p.sendToolBreakStatus(hand));

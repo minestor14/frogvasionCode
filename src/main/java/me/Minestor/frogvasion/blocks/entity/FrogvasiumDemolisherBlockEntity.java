@@ -78,7 +78,7 @@ public class FrogvasiumDemolisherBlockEntity extends BlockEntity implements GeoB
         final List<Entity> list = world.getOtherEntities(null, new Box(pos1));
         for(Entity en : list) {
             if(en instanceof LivingEntity) {
-                en.damage(ModDamageSources.FROGVASIUM_ATTACK,5f);
+                en.damage(this.getWorld().getDamageSources().create(ModDamageSources.FROGVASIUM_ATTACK_KEY),5f);
             }
         }
     }

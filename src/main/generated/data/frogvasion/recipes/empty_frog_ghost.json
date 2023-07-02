@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "frogvasion:empty_frog_ghost"
-  }
+  },
+  "show_notification": true
 }

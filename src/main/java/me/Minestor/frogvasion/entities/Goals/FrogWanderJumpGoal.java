@@ -73,7 +73,7 @@ public class FrogWanderJumpGoal extends Goal {
     @Nullable
     protected Vec3d getWanderTarget() {
         Vec3d noTraps = NoPenaltyTargeting.find(this.mob, 10, 7);
-        List<BlockPos> st = getFrogTraps(10, new BlockPos(this.mob.getPos()), this.mob.getWorld());
+        List<BlockPos> st = getFrogTraps(10, this.mob.getBlockPos(), this.mob.getWorld());
         if(!st.isEmpty()) {
             BlockPos pos = st.stream().findAny().get();
             return new Vec3d(pos.getX(),pos.getY(),pos.getZ());

@@ -6,7 +6,6 @@ import me.Minestor.frogvasion.quests.ExtraQuestData;
 import me.Minestor.frogvasion.quests.Quest;
 import me.Minestor.frogvasion.util.entity.IEntityDataSaver;
 import me.Minestor.frogvasion.util.quest.QuestDataManager;
-import me.Minestor.frogvasion.util.quest.QuestUtil;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -24,7 +23,7 @@ public class QuestBlockScreenHandler extends ScreenHandler {
         this.quest = getQuest(inv.player);
         this.inv = inv;
 
-        if(!inv.player.world.isClient){
+        if(!inv.player.getWorld().isClient){
             ServerPlayNetworking.send((ServerPlayerEntity) inv.player, ModMessages.UPDATE_QUEST_S2C, UpdateQuestPacket.createUpdate(quest));
         }
 

@@ -6,10 +6,9 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -35,13 +34,15 @@ public class CombatFrogStaff extends FrogStaffItem {
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         if(user.getItemCooldownManager().isCoolingDown(stack.getItem())) return super.useOnEntity(stack, user, entity, hand);
         if(user.getWorld().isClient) return super.useOnEntity(stack, user, entity, hand);
+
+        World world = user.getWorld();
         if(user.isSneaking() && entity.getType() != EntityType.PLAYER) {
-            entity.damage(DamageSource.player(user), stack.getMaxDamage() - stack.getDamage() -1);
+            entity.damage(world.getDamageSources().playerAttack(user), stack.getMaxDamage() - stack.getDamage() -1);
             stack.setDamage(stack.getMaxDamage()-1);
             user.getItemCooldownManager().set(stack.getItem(),100);
-            user.damage(ModDamageSources.MAGIC_REPAY, 3);
+            user.damage(world.getDamageSources().create(ModDamageSources.FROGVASIUM_ATTACK_KEY), 3);
         } else {
-            entity.damage(DamageSource.player(user), 1);
+            entity.damage(world.getDamageSources().playerAttack(user), 1);
             stack.damage(1, user, (p) -> p.sendToolBreakStatus(hand)); //important
             user.getItemCooldownManager().set(stack.getItem(),20);
         }

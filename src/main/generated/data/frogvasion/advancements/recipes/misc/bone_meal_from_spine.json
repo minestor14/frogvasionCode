@@ -30,5 +30,6 @@
     "recipes": [
       "minecraft:bone_meal_from_spine"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

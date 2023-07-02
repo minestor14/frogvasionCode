@@ -12,6 +12,7 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Box;
+import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -67,9 +68,9 @@ public class ArmedFrog extends ModFrog implements GeoEntity {
 
     }
     public void launchToTarget(float pitchChange) {
-        if (!this.world.isClient && this.getTarget() != null && this.getEntityWorld().getOtherEntities(this, new Box(this.getBlockPos()).expand(50)).size() <= 50) {
+        if (!this.getWorld().isClient && this.getTarget() != null && this.getEntityWorld().getOtherEntities(this, new Box(this.getBlockPos()).expand(50)).size() <= 50) {
             if(this.isTamed()) {
-                ServerWorld serverWorld = (ServerWorld)this.world;
+                ServerWorld serverWorld = (ServerWorld)this.getWorld();
                 TadpoleRocket fr = new TadpoleRocket(ModEntities.TADPOLE_ROCKET_ENTITY, serverWorld);
                 fr.setPos(this.getX(),this.getEyeY(),this.getZ());
                 fr.setVelocity(this, this.getPitch() + pitchChange, this.getYaw(), 0.0F, 1.5F, 1.0F);
@@ -78,7 +79,7 @@ public class ArmedFrog extends ModFrog implements GeoEntity {
                 fr.setTarget(this.getTarget());
                 serverWorld.spawnEntityAndPassengers(fr);
             } else {
-                ServerWorld serverWorld = (ServerWorld)this.world;
+                ServerWorld serverWorld = (ServerWorld)this.getWorld();
                 TadpoleRocket fr = new TadpoleRocket(ModEntities.TADPOLE_ROCKET_ENTITY, serverWorld);
                 fr.setPos(this.getX(),this.getEyeY(),this.getZ());
                 fr.setVelocity(this, this.getPitch() + pitchChange, this.getYaw(), 0.0F, 1.5F, 1.0F);
@@ -100,4 +101,6 @@ public class ArmedFrog extends ModFrog implements GeoEntity {
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return factory;
     }
+
+
 }

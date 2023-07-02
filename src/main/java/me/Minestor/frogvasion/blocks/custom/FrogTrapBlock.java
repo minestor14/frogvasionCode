@@ -60,10 +60,6 @@ public class FrogTrapBlock extends BlockWithEntity implements BlockEntityProvide
         return super.onUse(state, world, pos, player, hand, hit);
     }
 
-    @Override
-    public PistonBehavior getPistonBehavior(BlockState state) {
-        return PistonBehavior.BLOCK;
-    }
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {

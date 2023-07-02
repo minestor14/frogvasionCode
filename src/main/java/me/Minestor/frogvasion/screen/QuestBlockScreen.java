@@ -12,12 +12,13 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.PressableWidget;
 import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenTexts;
@@ -55,34 +56,31 @@ public class QuestBlockScreen extends HandledScreen<QuestBlockScreenHandler> {
     }
 
     @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = (width - backgroundWidth) / 2;
-        int y = (height - backgroundHeight) / 2;
-        drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
-    }
-
-    @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        drawMouseoverTooltip(context, mouseX, mouseY);
 
         RenderSystem.setShader(GameRenderer::getRenderTypeTextProgram);
         int cx = width / 2;
         int cy = height / 2;
 
-        textRenderer.draw(matrices, "Your objective: ", cx - (float) textRenderer.getWidth("Your objective: ") / 2, cy - (float) backgroundHeight /3 -10, 3618615);
-        textRenderer.draw(matrices, objective, cx - (float) textRenderer.getWidth(objective) / 2, cy - (float) backgroundHeight /3 +5, 3618615);
+        textRenderer.draw("Your objective: ", cx - (float) textRenderer.getWidth("Your objective: ") / 2, cy - (float) backgroundHeight /3 -10, 3618615, false,
+                context.getMatrices().peek().getPositionMatrix(), context.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL, 0, 15);
+        textRenderer.draw(objective, cx - (float) textRenderer.getWidth(objective) / 2, cy - (float) backgroundHeight /3 +5, 3618615,false,
+                context.getMatrices().peek().getPositionMatrix(), context.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL, 0, 15);
         switch (quest.getData().getType()) {
-            case Collect, Craft -> textRenderer.draw(matrices, objectiveItem, cx - (float) textRenderer.getWidth(objectiveItem) / 2, cy - (float) backgroundHeight /3 + 20, 3618615);
-            case Kill -> textRenderer.draw(matrices, objectiveEntity, cx - (float) textRenderer.getWidth(objectiveEntity) / 2, cy - (float) backgroundHeight /3 + 20, 3618615);
-            case Mine -> textRenderer.draw(matrices, objectiveBlock, cx - (float) textRenderer.getWidth(objectiveBlock) / 2, cy - (float) backgroundHeight /3 + 20, 3618615);
-            case Enchant -> textRenderer.draw(matrices, objectiveEnchant, cx - (float) textRenderer.getWidth(objectiveEnchant) / 2, cy - (float) backgroundHeight /3 + 20, 3618615);
+            case Collect, Craft -> textRenderer.draw(objectiveItem, cx - (float) textRenderer.getWidth(objectiveItem) / 2, cy - (float) backgroundHeight /3 + 20, 3618615, false,
+                    context.getMatrices().peek().getPositionMatrix(), context.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL, 0, 15);
+            case Kill -> textRenderer.draw(objectiveEntity, cx - (float) textRenderer.getWidth(objectiveEntity) / 2, cy - (float) backgroundHeight /3 + 20, 3618615, false,
+                    context.getMatrices().peek().getPositionMatrix(), context.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL, 0, 15);
+            case Mine -> textRenderer.draw(objectiveBlock, cx - (float) textRenderer.getWidth(objectiveBlock) / 2, cy - (float) backgroundHeight /3 + 20, 3618615, false,
+                    context.getMatrices().peek().getPositionMatrix(), context.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL, 0, 15);
+            case Enchant -> textRenderer.draw(objectiveEnchant, cx - (float) textRenderer.getWidth(objectiveEnchant) / 2, cy - (float) backgroundHeight /3 + 20, 3618615, false,
+                    context.getMatrices().peek().getPositionMatrix(), context.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL, 0, 15);
         }
     }
+
     @Override
     protected void init() {
         super.init();
@@ -96,6 +94,16 @@ public class QuestBlockScreen extends HandledScreen<QuestBlockScreenHandler> {
         widgets.add(cancel);
 
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+    }
+
+    @Override
+    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, TEXTURE);
+        int x = (width - backgroundWidth) / 2;
+        int y = (height - backgroundHeight) / 2;
+        context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
     }
 
     @Nullable
@@ -187,9 +195,11 @@ public class QuestBlockScreen extends HandledScreen<QuestBlockScreenHandler> {
             this.v = l;
         }
 
-        protected void renderExtra(MatrixStack matrices) {
-            this.drawTexture(matrices, this.getX() + 2, this.getY() + 2, this.u, this.v, 18, 18);
+        @Override
+        protected void renderExtra(DrawContext context) {
+            context.drawTexture(QuestBlockScreen.TEXTURE, this.getX() + 2, this.getY() + 2, u, v, this.width, this.height);
         }
+
         public abstract void markDirty();
     }
     @Environment(EnvType.CLIENT)
@@ -199,24 +209,25 @@ public class QuestBlockScreen extends HandledScreen<QuestBlockScreenHandler> {
             super(x, y, 22, 22, message);
         }
 
-        public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        @Override
+        protected void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
             RenderSystem.setShader(GameRenderer::getPositionTexProgram);
             RenderSystem.setShaderTexture(0, QuestBlockScreen.TEXTURE);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-            int j = 0;
+            int u = 0;
             if (!this.active) {
-                j += this.width * 2;
+                u += this.width * 2;
             } else if (this.disabled) {
-                j += this.width;
+                u += this.width;
             } else if (this.isHovered()) {
-                j += this.width * 3;
+                u += this.width * 3;
             }
-
-            this.drawTexture(matrices, this.getX(), this.getY(), j, 219, this.width, this.height);
-            this.renderExtra(matrices);
+            context.drawTexture(QuestBlockScreen.TEXTURE, this.getX(), this.getY(), u, 219, this.width, this.height);
+            this.renderExtra(context);
         }
-        protected abstract void renderExtra(MatrixStack matrices);
+
+        protected abstract void renderExtra(DrawContext context);
 
         public void setEnabled(boolean enabled) {
             this.disabled = !enabled;

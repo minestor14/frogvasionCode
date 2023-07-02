@@ -9,7 +9,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -43,7 +42,7 @@ public class IceSpikeItemEntity extends PersistentProjectileEntity {
         if (status == 3) {
             ParticleEffect particleEffect = this.getParticleParameters();
             for(int i = 0; i < 8; ++i) {
-                this.world.addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+                this.getWorld().addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
     }
@@ -53,7 +52,7 @@ public class IceSpikeItemEntity extends PersistentProjectileEntity {
         Entity entity = entityHitResult.getEntity();
         if (entity instanceof LivingEntity livingEntity) {
             int i = livingEntity.hurtByWater() ? 5 : 3;
-            livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float)i);
+            livingEntity.damage(this.getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float)i);
             livingEntity.addStatusEffect((new StatusEffectInstance(StatusEffects.SLOWNESS, 20, 2)));
         }
     }
@@ -65,8 +64,8 @@ public class IceSpikeItemEntity extends PersistentProjectileEntity {
 
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
-        if (!this.world.isClient) {
-            this.world.sendEntityStatus(this, (byte)3);
+        if (!this.getWorld().isClient) {
+            this.getWorld().sendEntityStatus(this, (byte)3);
             this.kill();
         }
         super.onBlockHit(blockHitResult);
@@ -80,7 +79,7 @@ public class IceSpikeItemEntity extends PersistentProjectileEntity {
     @Override
     public void tick() {
         if(this.getBlockStateAtPos().isOf(Blocks.LAVA) || this.getBlockStateAtPos().isOf(Blocks.FIRE)) {
-            this.world.sendEntityStatus(this, (byte)3);
+            this.getWorld().sendEntityStatus(this, (byte)3);
             this.kill();
         }
         super.tick();

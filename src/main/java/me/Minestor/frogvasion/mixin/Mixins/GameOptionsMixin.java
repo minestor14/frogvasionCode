@@ -171,7 +171,7 @@ public abstract class GameOptionsMixin {
             final PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(this.frogvasionOptionsFile), StandardCharsets.UTF_8));
 
             try {
-                printWriter.println("version:" + SharedConstants.getGameVersion().getWorldVersion());
+                printWriter.println("version:" + SharedConstants.getGameVersion().getSaveVersion().getId());
                 this.accept(new FrogvasionGameOptions.Visitor() {
                     public void print(String key) {
                         printWriter.print(key);

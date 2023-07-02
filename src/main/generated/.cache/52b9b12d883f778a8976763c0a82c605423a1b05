@@ -1,4 +1,4 @@
-// 1.19.3	2023-06-30T10:30:49.6910477	Frogvasion/Model Definitions
+// 1.20.1	2023-07-01T22:57:18.8494623	Frogvasion/Model Definitions
 5c4b20cf277430c1e9f04522e809c9f0b2ba922d assets\frogvasion\models\block\rubber_sapling.json
 e27ac2c1b32ad6d063d581403fa634a81c8a5711 assets\frogvasion\blockstates\kauri_sapling.json
 2653cccfdc5b086eea39a36aa8dbd192543aac67 assets\frogvasion\models\item\stripped_kauri_log.json
@@ -32,11 +32,11 @@ aa1486399a7a52cb7b5fa0c942ddfe6ffe8a66b2 assets\frogvasion\models\item\kauri_woo
 8b2bf43453b3cc42fa320c02ff59aef6ea7c80e2 assets\frogvasion\blockstates\kauri_wood.json
 f73848b18b96e04ee4b70624c25d777f4a626a94 assets\frogvasion\blockstates\rubber_wood.json
 66c27ab1fdb17815377ae252abac74e810d2eb64 assets\frogvasion\models\block\rubber_wood.json
-47a94ccd57c204dda266be290c4766bbe77a4e96 assets\frogvasion\models\block\stripped_kauri_log_horizontal.json
 cca7112ca0b9468b744aff4f1106c79caa3c0721 assets\frogvasion\blockstates\rubber_planks.json
+47a94ccd57c204dda266be290c4766bbe77a4e96 assets\frogvasion\models\block\stripped_kauri_log_horizontal.json
 a46ff917781dec410e448e8baa29351d0b893555 assets\frogvasion\models\block\kauri_log_horizontal.json
-335a08d8a82f032c7b0854167d4fe70a6e29c389 assets\frogvasion\blockstates\concentrated_slime.json
 487978f42972eb085e6e29753c7ab67216494fae assets\frogvasion\blockstates\rubber_log.json
+335a08d8a82f032c7b0854167d4fe70a6e29c389 assets\frogvasion\blockstates\concentrated_slime.json
 10a62a8cb2023f371436efb7fa6d23a098741342 assets\frogvasion\models\block\kauri_planks.json
 f290eadbf71e3ffb333c36fc23d47b166c131963 assets\frogvasion\models\item\concentrated_slime.json
 857712ebffa0794e092d602348398ad791f9dcb4 assets\frogvasion\models\item\rubber_wood.json

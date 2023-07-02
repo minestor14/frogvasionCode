@@ -31,11 +31,6 @@ public class FrogvasiumRailBlock extends RailBlock {
     }
 
     @Override
-    public PistonBehavior getPistonBehavior(BlockState state) {
-        return PistonBehavior.PUSH_ONLY;
-    }
-
-    @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos,  Entity entity) {
         if(!world.isClient()) {
             List<AbstractMinecartEntity> list = this.getCarts(world, pos, AbstractMinecartEntity.class, (entity1) -> true);

@@ -56,5 +56,6 @@
     "recipes": [
       "minecraft:conversion_pedestal"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

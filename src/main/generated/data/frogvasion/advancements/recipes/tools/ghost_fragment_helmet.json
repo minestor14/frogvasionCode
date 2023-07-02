@@ -30,5 +30,6 @@
     "recipes": [
       "minecraft:ghost_fragment_helmet"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

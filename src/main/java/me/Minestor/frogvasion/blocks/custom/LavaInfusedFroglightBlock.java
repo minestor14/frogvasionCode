@@ -20,7 +20,7 @@ public class LavaInfusedFroglightBlock extends Block {
 
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         if (!entity.bypassesSteppingEffects() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)) {
-            entity.damage(DamageSource.HOT_FLOOR, 1.0F);
+            entity.damage(world.getDamageSources().hotFloor(), 1.0F);
         }
         if(entity instanceof ModFrog) {
             if (world.random.nextInt(100) == 69) {

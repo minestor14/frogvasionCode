@@ -3,7 +3,12 @@
   "criteria": {
     "flame": {
       "conditions": {
-        "block": "frogvasion:frog_flame"
+        "location": [
+          {
+            "block": "frogvasion:frog_flame",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     }
@@ -30,5 +35,6 @@
   ],
   "rewards": {
     "experience": 150
-  }
+  },
+  "sends_telemetry_event": true
 }

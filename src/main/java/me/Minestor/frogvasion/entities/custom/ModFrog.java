@@ -27,6 +27,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
@@ -37,18 +38,20 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 
 public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
+    public World world;
     public static final TrackedData<Integer> MAGMA_EATEN = DataTracker.registerData(ModFrog.class, TrackedDataHandlerRegistry.INTEGER);
     public static final TrackedData<Boolean> INFUSED = DataTracker.registerData(ModFrog.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static final int INFUSED_BRIGHTNESS = 200;
 
     public ModFrog(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
+        this.world = world;
     }
 
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return world.getRandom().nextFloat() <= (float) FrogvasionGameOptions.getCroakDensity() /10 ? ModSounds.CROAK : null;
+        return this.getWorld().getRandom().nextFloat() <= (float) FrogvasionGameOptions.getCroakDensity() /10 ? ModSounds.CROAK : null;
     }
     @Nullable
     @Override
@@ -202,6 +205,11 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
     @Override
     public EntityGroup getGroup() {
         return ModEntityGroups.FROGS;
+    }
+
+    @Override
+    public EntityView method_48926() {
+        return this.getWorld();
     }
 
     public class FrogLookControl extends LookControl {

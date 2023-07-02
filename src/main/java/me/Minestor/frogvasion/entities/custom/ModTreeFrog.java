@@ -25,8 +25,10 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 
 public abstract class ModTreeFrog extends PassiveEntity {
+    public World world;
     public ModTreeFrog(EntityType<? extends PassiveEntity> entityType, World world) {
         super(entityType, world);
+        this.world = world;
     }
 
     @Override
@@ -72,7 +74,7 @@ public abstract class ModTreeFrog extends PassiveEntity {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return world.getRandom().nextFloat() <= (float) FrogvasionGameOptions.getCroakDensity() /10 ? ModSounds.TREE_FROG_CROAK : null;
+        return this.getWorld().getRandom().nextFloat() <= (float) FrogvasionGameOptions.getCroakDensity() /10 ? ModSounds.TREE_FROG_CROAK : null;
     }
     @Nullable
     @Override

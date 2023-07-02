@@ -57,7 +57,7 @@ public abstract class ModFrogGhostItem extends Item {
                 frogToSpawn.setPosition(entityClickedOn.getPos());
                 frogToSpawn.setYaw(entityClickedOn.getYaw());
                 frogToSpawn.setTamed(true,user);
-                ((ServerWorld) entityClickedOn.world).spawnEntityAndPassengers(frogToSpawn);
+                ((ServerWorld) entityClickedOn.getWorld()).spawnEntityAndPassengers(frogToSpawn);
                 entityClickedOn.discard();
                 stack.decrement(1);
             }
@@ -71,7 +71,7 @@ public abstract class ModFrogGhostItem extends Item {
         public void onItemEntityDestroyed(ItemEntity entity) {
             super.onItemEntityDestroyed(entity);
             if(!entity.getWorld().isClient()) {
-                ServerWorld sworld = (ServerWorld) entity.world;
+                ServerWorld sworld = (ServerWorld) entity.getWorld();
                 onDestroyed(entity, sworld, new ArmedFrog(ModEntities.ARMED_FROG_ENTITY, sworld));
             }
         }
@@ -89,7 +89,7 @@ public abstract class ModFrogGhostItem extends Item {
         public void onItemEntityDestroyed(ItemEntity entity) {
             super.onItemEntityDestroyed(entity);
             if(!entity.getWorld().isClient()) {
-                ServerWorld sworld = (ServerWorld) entity.world;
+                ServerWorld sworld = (ServerWorld) entity.getWorld();
                 onDestroyed(entity, sworld, new BossSoldierFrog(ModEntities.BOSS_SOLDIER_FROG_ENTITY, sworld));
             }
         }
@@ -107,7 +107,7 @@ public abstract class ModFrogGhostItem extends Item {
         public void onItemEntityDestroyed(ItemEntity entity) {
             super.onItemEntityDestroyed(entity);
             if(!entity.getWorld().isClient()) {
-                ServerWorld sworld = (ServerWorld) entity.world;
+                ServerWorld sworld = (ServerWorld) entity.getWorld();
                 onDestroyed(entity, sworld, new ExplosiveFrog(ModEntities.EXPLOSIVE_FROG_ENTITY, sworld));
             }
         }
@@ -125,7 +125,7 @@ public abstract class ModFrogGhostItem extends Item {
         public void onItemEntityDestroyed(ItemEntity entity) {
             super.onItemEntityDestroyed(entity);
             if(!entity.getWorld().isClient()) {
-                ServerWorld sworld = (ServerWorld) entity.world;
+                ServerWorld sworld = (ServerWorld) entity.getWorld();
                 onDestroyed(entity, sworld, new GrapplingFrog(ModEntities.GRAPPLING_FROG_ENTITY, sworld));
             }
         }
@@ -143,7 +143,7 @@ public abstract class ModFrogGhostItem extends Item {
         public void onItemEntityDestroyed(ItemEntity entity) {
             super.onItemEntityDestroyed(entity);
             if(!entity.getWorld().isClient()) {
-                ServerWorld sworld = (ServerWorld) entity.world;
+                ServerWorld sworld = (ServerWorld) entity.getWorld();
                 onDestroyed(entity, sworld, new GrowingFrog(ModEntities.GROWING_FROG_ENTITY, sworld));
             }
         }
@@ -161,7 +161,7 @@ public abstract class ModFrogGhostItem extends Item {
         public void onItemEntityDestroyed(ItemEntity entity) {
             super.onItemEntityDestroyed(entity);
             if(!entity.getWorld().isClient()) {
-                ServerWorld sworld = (ServerWorld) entity.world;
+                ServerWorld sworld = (ServerWorld) entity.getWorld();
                 onDestroyed(entity, sworld, new SoldierFrog(ModEntities.SOLDIER_FROG_ENTITY, sworld));
             }
         }
@@ -179,7 +179,7 @@ public abstract class ModFrogGhostItem extends Item {
         public void onItemEntityDestroyed(ItemEntity entity) {
             super.onItemEntityDestroyed(entity);
             if(!entity.getWorld().isClient()) {
-                ServerWorld sworld = (ServerWorld) entity.world;
+                ServerWorld sworld = (ServerWorld) entity.getWorld();
                 onDestroyed(entity, sworld, new EnderFrog(ModEntities.ENDER_FROG_ENTITY, sworld));
             }
         }
@@ -197,7 +197,7 @@ public abstract class ModFrogGhostItem extends Item {
         public void onItemEntityDestroyed(ItemEntity entity) {
             super.onItemEntityDestroyed(entity);
             if(!entity.getWorld().isClient()) {
-                ServerWorld sworld = (ServerWorld) entity.world;
+                ServerWorld sworld = (ServerWorld) entity.getWorld();
                 onDestroyed(entity, sworld, new IceFrog(ModEntities.ICE_FROG_ENTITY, sworld));
             }
         }

@@ -10,9 +10,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolItem;
-import net.minecraft.item.ToolMaterials;
-import net.minecraft.item.Vanishable;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -39,12 +36,14 @@ public class JumpFrogStaff extends FrogStaffItem {
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         if(user.getItemCooldownManager().isCoolingDown(stack.getItem())) return super.useOnEntity(stack, user, entity, hand);
         if(user.getWorld().isClient) return super.useOnEntity(stack, user, entity, hand);
+
+        World world = user.getWorld();
         if(user.isSneaking()) {
             entity.addVelocity(new Vec3d(0,2.4,0));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 50,0,false, false));
             stack.damage(stack.getMaxDamage()/2 -1, user, (p) -> p.sendToolBreakStatus(hand));
             user.getItemCooldownManager().set(stack.getItem(),100);
-            user.damage(ModDamageSources.MAGIC_REPAY, 3);
+            user.damage(world.getDamageSources().create(ModDamageSources.MAGIC_REPAY_KEY), 3);
         } else {
             entity.addVelocity(new Vec3d(0,0.6,0));
             stack.damage(1, user, (p) -> p.sendToolBreakStatus(hand));

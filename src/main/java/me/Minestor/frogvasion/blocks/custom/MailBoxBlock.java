@@ -63,7 +63,7 @@ public class MailBoxBlock extends BlockWithEntity implements BlockEntityProvider
     }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
     }
     private boolean doubleprevent = false;
     @Override

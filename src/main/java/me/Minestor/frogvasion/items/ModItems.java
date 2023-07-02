@@ -14,6 +14,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
@@ -42,10 +43,10 @@ public class ModItems {
     public static final Item FROG_STAFF = registerItem("frog_staff", new FrogStaffItem(new FabricItemSettings().maxCount(1).maxDamage(50)), ItemGroups.TOOLS);
     public static final Item COMBAT_FROG_STAFF = registerItem("combat_frog_staff", new CombatFrogStaff(new FabricItemSettings().maxCount(1).maxDamage(75)), ItemGroups.COMBAT);
     public static final Item JUMP_FROG_STAFF = registerItem("jump_frog_staff", new JumpFrogStaff(new FabricItemSettings().maxCount(1).maxDamage(75)), ItemGroups.FUNCTIONAL);
-    public static final Item GHOST_FRAGMENT_HELMET = registerItem("ghost_fragment_helmet", new ArmorItem(ModArmorMaterials.GHOST_FRAGMENT, EquipmentSlot.HEAD, new Item.Settings()), ItemGroups.COMBAT);
-    public static final Item GHOST_FRAGMENT_CHESTPLATE = registerItem("ghost_fragment_chestplate", new ArmorItem(ModArmorMaterials.GHOST_FRAGMENT, EquipmentSlot.CHEST, new Item.Settings()), ItemGroups.COMBAT);
-    public static final Item GHOST_FRAGMENT_LEGGINGS = registerItem("ghost_fragment_leggings", new ArmorItem(ModArmorMaterials.GHOST_FRAGMENT, EquipmentSlot.LEGS, new Item.Settings()), ItemGroups.COMBAT);
-    public static final Item GHOST_FRAGMENT_BOOTS = registerItem("ghost_fragment_boots", new ArmorItem(ModArmorMaterials.GHOST_FRAGMENT, EquipmentSlot.FEET, new Item.Settings()), ItemGroups.COMBAT);
+    public static final Item GHOST_FRAGMENT_HELMET = registerItem("ghost_fragment_helmet", new ArmorItem(ModArmorMaterials.GHOST_FRAGMENT, ArmorItem.Type.HELMET, new Item.Settings()), ItemGroups.COMBAT);
+    public static final Item GHOST_FRAGMENT_CHESTPLATE = registerItem("ghost_fragment_chestplate", new ArmorItem(ModArmorMaterials.GHOST_FRAGMENT, ArmorItem.Type.CHESTPLATE, new Item.Settings()), ItemGroups.COMBAT);
+    public static final Item GHOST_FRAGMENT_LEGGINGS = registerItem("ghost_fragment_leggings", new ArmorItem(ModArmorMaterials.GHOST_FRAGMENT, ArmorItem.Type.LEGGINGS, new Item.Settings()), ItemGroups.COMBAT);
+    public static final Item GHOST_FRAGMENT_BOOTS = registerItem("ghost_fragment_boots", new ArmorItem(ModArmorMaterials.GHOST_FRAGMENT, ArmorItem.Type.BOOTS, new Item.Settings()), ItemGroups.COMBAT);
     public static final Item FROG_LEGS = registerItem("frog_legs", new Item(new FabricItemSettings().food(new FoodComponent.Builder().meat().hunger(2).saturationModifier(0.2f).build())), ItemGroups.FOOD_AND_DRINK);
     public static final Item COOKED_FROG_LEGS = registerItem("cooked_frog_legs", new Item(new FabricItemSettings().food(new FoodComponent.Builder().meat().hunger(4).saturationModifier(0.3f).build())), ItemGroups.FOOD_AND_DRINK);
     public static final Item UNPROCESSED_RUBBER = registerItem("unprocessed_rubber", new Item(new FabricItemSettings()), ItemGroups.NATURAL);
@@ -64,9 +65,9 @@ public class ModItems {
     public static final Item ICE_FROG_SPAWN_EGG = registerItem("ice_frog_spawn_egg", new SpawnEggItem(ModEntities.ICE_FROG_ENTITY,9807304 , 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
     public static final Item NORMAL_TREE_FROG_SPAWN_EGG = registerItem("normal_tree_frog_spawn_egg", new SpawnEggItem(ModEntities.NORMAL_TREE_FROG_ENTITY,9941578 , 5793327, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
     public static final Item GLIDING_TREE_FROG_SPAWN_EGG = registerItem("gliding_tree_frog_spawn_egg", new SpawnEggItem(ModEntities.GLIDING_TREE_FROG_ENTITY,15390158 , 5793327, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
-    private static Item registerItem(String name, Item item, ItemGroup group) {
+    private static Item registerItem(String name, Item item, RegistryKey<ItemGroup> group) {
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
-        ItemGroupEvents.modifyEntriesEvent(ModItemGroups.FROGVASION_GROUP).register(entries -> entries.add(item));
+        ItemGroupEvents.modifyEntriesEvent(ModItemGroups.FROGVASION_KEY).register(entries -> entries.add(item));
         return Registry.register(Registries.ITEM, new Identifier(Frogvasion.MOD_ID, name), item);
     }
     public static void registerModItems() {}

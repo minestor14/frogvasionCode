@@ -148,7 +148,7 @@ public class GrowingFrog extends ModFrog implements GeoEntity {
     public void tick() {
         super.tick();
         calculateDimensions();
-        if (!this.world.isClient) {
+        if (!this.getWorld().isClient) {
             if (getSize() >= 6) {
                 this.targetSelector.add(3, new ActiveTargetGoal<>(this, AnimalEntity.class, true));
             }
@@ -157,7 +157,7 @@ public class GrowingFrog extends ModFrog implements GeoEntity {
             }
             if (getSize() >= 21) {
                 this.dead = true;
-                this.world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 8f, this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) ? World.ExplosionSourceType.MOB : World.ExplosionSourceType.NONE);
+                this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), 8f, this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) ? World.ExplosionSourceType.MOB : World.ExplosionSourceType.NONE);
                 this.discard();
             }
         }

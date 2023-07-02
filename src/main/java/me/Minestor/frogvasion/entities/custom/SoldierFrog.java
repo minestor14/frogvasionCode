@@ -27,7 +27,7 @@ public class SoldierFrog extends ModFrog implements GeoEntity {
     public SoldierFrog(EntityType<? extends TameableEntity> type, World world) {
         super(ModEntities.SOLDIER_FROG_ENTITY, world);
         this.lookControl = new FrogLookControl(this);
-        this.stepHeight = 2F;
+        this.setStepHeight(2F);
     }
 
     @Override

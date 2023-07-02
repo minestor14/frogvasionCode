@@ -12,13 +12,14 @@ import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.RotationAxis;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +38,8 @@ public class FrogTrapRenderer implements BlockEntityRenderer<FrogTrapBlockEntity
         matrices.push();
 
         if(entity.getWorld().getBlockState(entity.getPos()) != null && entity.getWorld().getBlockState(entity.getPos()).isOf(ModBlocks.FROG_TRAP)) {
-            boolean l = entity.getWorld().getBlockState(entity.getPos()).get(FrogTrapBlock.LOADED);
+            World world = entity.getWorld();
+            boolean l = world.getBlockState(entity.getPos()).get(FrogTrapBlock.LOADED);
 
             ItemStack stack;
             if(l) {
@@ -46,28 +48,30 @@ public class FrogTrapRenderer implements BlockEntityRenderer<FrogTrapBlockEntity
                 stack = new ItemStack(Items.AIR);
             }
 
-            int lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
+            int lightAbove = WorldRenderer.getLightmapCoordinates(world, entity.getPos().up());
 
             final ItemRenderer itemRenderer= MinecraftClient.getInstance().getItemRenderer();
             final TextRenderer textRenderer = ctx.getTextRenderer();
 
             matrices.translate(0.5, 0.4, 0);
-            itemRenderer.renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
+            itemRenderer.renderItem(stack, ModelTransformationMode.GROUND, lightAbove, overlay, matrices, vertexConsumers, world, 0);
 
             matrices.translate(0, 0, 1);
-            itemRenderer.renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
+            itemRenderer.renderItem(stack, ModelTransformationMode.GROUND, lightAbove, overlay, matrices, vertexConsumers, world, 0);
 
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90));
             matrices.translate(0.5, 0, -0.5);
-            itemRenderer.renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
+            itemRenderer.renderItem(stack, ModelTransformationMode.GROUND, lightAbove, overlay, matrices, vertexConsumers, world, 0);
 
             matrices.translate(0, 0, 1);
-            itemRenderer.renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
+            itemRenderer.renderItem(stack, ModelTransformationMode.GROUND, lightAbove, overlay, matrices, vertexConsumers, world, 0);
 
             matrices.translate(0,0.601,-0.5);
             matrices.scale(0.04f,0.04f,0.04f);
             matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
-            textRenderer.draw(matrices, Text.literal(String.valueOf(map.getOrDefault(entity.getPos().toString(),0))).formatted(Formatting.UNDERLINE),0,0,l ? 15322006 : 12125489);
+
+            textRenderer.draw(Text.literal(String.valueOf(map.getOrDefault(entity.getPos().toString(),0))).formatted(Formatting.UNDERLINE),
+                    0,0, l ? 15322006 : 12125489, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.NORMAL, 0, lightAbove);
         }
         matrices.pop();
     }

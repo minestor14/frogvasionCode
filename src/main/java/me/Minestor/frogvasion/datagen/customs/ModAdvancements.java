@@ -11,8 +11,6 @@ import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.Blocks;
-import net.minecraft.loot.condition.EntityPropertiesLootCondition;
-import net.minecraft.loot.context.LootContext;
 import net.minecraft.predicate.BlockPredicate;
 import net.minecraft.predicate.FluidPredicate;
 import net.minecraft.predicate.LightPredicate;
@@ -46,7 +44,7 @@ public class ModAdvancements implements Consumer<Consumer<Advancement>>{
                 .criterion("grappling", OnKilledCriterion.Conditions.createPlayerKilledEntity(new EntityPredicate.Builder().type(ModEntities.GRAPPLING_FROG_ENTITY).build()))
                 .criterion("ice", OnKilledCriterion.Conditions.createPlayerKilledEntity(new EntityPredicate.Builder().type(ModEntities.ICE_FROG_ENTITY).build()))
                 .requirements(new String[][]{{"soldier","boss_soldier","explosive","ender","armed","growing","grappling","ice"}})
-                .build(consumer, "frogvasion" + "/root");
+                .build(consumer, "frogvasion:frogvasion" + "/root");
         Advancement aMAZEing = Advancement.Builder.create().parent(rootAdvancement)
                 .display(
                         Blocks.MUD_BRICKS,
@@ -61,7 +59,7 @@ public class ModAdvancements implements Consumer<Consumer<Advancement>>{
                         NumberRange.FloatRange.ANY, NumberRange.FloatRange.ANY, NumberRange.FloatRange.ANY,
                         null, ModStructures.FROG_MAZE_KEY, null, null,
                         LightPredicate.ANY, BlockPredicate.ANY, FluidPredicate.ANY)))
-                .build(consumer, "frogvasion/amazeing");
+                .build(consumer, "frogvasion:frogvasion/amazeing");
         Advancement did_rail_jump = Advancement.Builder.create().parent(rootAdvancement)
                 .display(
                         ModBlocks.FROGVASIUM_RAIL,
@@ -71,7 +69,7 @@ public class ModAdvancements implements Consumer<Consumer<Advancement>>{
                         AdvancementFrame.TASK,
                         true, true, false)
                 .criterion("rail", EnterBlockCriterion.Conditions.block(ModBlocks.FROGVASIUM_RAIL))
-                .build(consumer, "frogvasion/did_rail_let_me_jump");
+                .build(consumer, "frogvasion:frogvasion/did_rail_let_me_jump");
         Advancement frogvasium_ingot = Advancement.Builder.create().parent(rootAdvancement)
                 .display(
                         ModItems.FROGVASIUM_INGOT,
@@ -82,7 +80,7 @@ public class ModAdvancements implements Consumer<Consumer<Advancement>>{
                         true, true, false
                 )
                 .criterion("ingot", InventoryChangedCriterion.Conditions.items(ModItems.FROGVASIUM_INGOT))
-                .build(consumer, "frogvasion/frogvasion_ingot");
+                .build(consumer, "frogvasion:frogvasion/frogvasion_ingot");
         Advancement tame_frog = Advancement.Builder.create().parent(rootAdvancement)
                 .display(ModItems.EMPTY_FROG_GHOST,
                         Text.literal("Best Frogs Forever"),
@@ -101,7 +99,7 @@ public class ModAdvancements implements Consumer<Consumer<Advancement>>{
                 .criterion("grappling", TameAnimalCriterion.Conditions.create(new EntityPredicate.Builder().type(ModEntities.GRAPPLING_FROG_ENTITY).build()))
                 .criterion("ice", TameAnimalCriterion.Conditions.create(new EntityPredicate.Builder().type(ModEntities.ICE_FROG_ENTITY).build()))
                 .requirements(new String[][]{{"soldier","boss_soldier","explosive","ender","armed","growing","grappling","ice"}})
-                .build(consumer, "frogvasion/tame_frog");
+                .build(consumer, "frogvasion:frogvasion/tame_frog");
         Advancement tame_frog_army = Advancement.Builder.create().parent(tame_frog)
                 .display(ModItems.SOLDIER_FROG_GHOST,
                         Text.literal("Tame an army... of frogs?"),
@@ -120,7 +118,7 @@ public class ModAdvancements implements Consumer<Consumer<Advancement>>{
                 .criterion("grappling", TameAnimalCriterion.Conditions.create(new EntityPredicate.Builder().type(ModEntities.GRAPPLING_FROG_ENTITY).build()))
                 .criterion("ice", TameAnimalCriterion.Conditions.create(new EntityPredicate.Builder().type(ModEntities.ICE_FROG_ENTITY).build()))
                 .requirements(new String[][]{{"soldier"},{"boss_soldier"},{"explosive"}, {"ender"}, {"armed"}, {"growing"}, {"grappling"},{"ice"}})
-                .build(consumer, "frogvasion/tame_frog_army");
+                .build(consumer, "frogvasion:frogvasion/tame_frog_army");
         Advancement you_have_mail = Advancement.Builder.create().parent(rootAdvancement)
                 .display(
                         ModBlocks.MAILBOX,
@@ -131,8 +129,8 @@ public class ModAdvancements implements Consumer<Consumer<Advancement>>{
                         true, true, false
                 ).rewards(new AdvancementRewards.Builder().setExperience(100))
                 .criterion("mail", PlayerInteractedWithEntityCriterion.Conditions.create(ItemPredicate.Builder.create().items(ModItems.ADDRESS_CARD),
-                        EntityPredicate.Extended.create(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().type(ModEntities.ENDER_FROG_ENTITY).build()).build())))
-                .build(consumer, "frogvasion/you_have_mail");
+                        EntityPredicate.asLootContextPredicate(new EntityPredicate.Builder().type(ModEntities.ENDER_FROG_ENTITY).build())))
+                .build(consumer, "frogvasion:frogvasion/you_have_mail");
         Advancement green_fire = Advancement.Builder.create().parent(rootAdvancement)
                 .display(
                         ModItems.FROG_FIRE_CHARGE,
@@ -142,8 +140,8 @@ public class ModAdvancements implements Consumer<Consumer<Advancement>>{
                         AdvancementFrame.TASK,
                         true, true, false
                 ).rewards(new AdvancementRewards.Builder().setExperience(150))
-                .criterion("flame", PlacedBlockCriterion.Conditions.block(ModBlocks.FROG_FLAME))
-                .build(consumer, "frogvasion/green_flame");
+                .criterion("flame", ItemCriterion.Conditions.createPlacedBlock(ModBlocks.FROG_FLAME))
+                .build(consumer, "frogvasion:frogvasion/green_flame");
         Advancement arrived_in_greenwood = Advancement.Builder.create().parent(green_fire)
                 .display(
                         ModBlocks.ORCHID,
@@ -154,7 +152,7 @@ public class ModAdvancements implements Consumer<Consumer<Advancement>>{
                         true, true, false
                 ).rewards(new AdvancementRewards.Builder().setExperience(150))
                 .criterion("greenwood", ChangedDimensionCriterion.Conditions.to(ModDimensions.GREENWOOD_DIMENSION_KEY))
-                .build(consumer, "frogvasion/arrived_in_greenwood");
+                .build(consumer, "frogvasion:frogvasion/arrived_in_greenwood");
         Advancement embed_frogvasium = Advancement.Builder.create().parent(frogvasium_ingot)
                 .display(
                         ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE,
@@ -163,8 +161,8 @@ public class ModAdvancements implements Consumer<Consumer<Advancement>>{
                         null,
                         AdvancementFrame.TASK,
                         true, true, false
-                ).criterion("embed", ItemCriterion.Conditions.create(new LocationPredicate.Builder().block(BlockPredicate.Builder.create().blocks(Blocks.POLISHED_BLACKSTONE).build()),
+                ).criterion("embed", ItemCriterion.Conditions.createItemUsedOnBlock(new LocationPredicate.Builder().block(BlockPredicate.Builder.create().blocks(Blocks.POLISHED_BLACKSTONE).build()),
                         ItemPredicate.Builder.create().items(ModItems.FROGVASIUM_INGOT)))
-                .build(consumer, "frogvasion/embed_frogvasium");
+                .build(consumer, "frogvasion:frogvasion/embed_frogvasium");
     }
 }

@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -46,15 +47,44 @@ public class ConversionPedestalScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int invSlot) {
-        ItemStack newStack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(invSlot);
-        if (slot != null && slot.hasStack()) {
-            ItemStack originalStack = slot.getStack();
-            newStack = originalStack.copy();
+    public ItemStack quickMove(PlayerEntity player, int slot) {
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot2 = this.slots.get(slot);
+        if (slot2 != null && slot2.hasStack()) {
+            ItemStack itemStack2 = slot2.getStack();
+            itemStack = itemStack2.copy();
+            if (slot == 0) {
+                if (!this.insertItem(itemStack2, 2, 38, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (slot == 1) {
+                if (!this.insertItem(itemStack2, 2, 38, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                if (this.slots.get(0).hasStack() || !this.slots.get(0).canInsert(itemStack2)) {
+                    return ItemStack.EMPTY;
+                }
+
+                ItemStack itemStack3 = itemStack2.copyWithCount(1);
+                itemStack2.decrement(1);
+                this.slots.get(0).setStack(itemStack3);
+            }
+
+            if (itemStack2.isEmpty()) {
+                slot2.setStack(ItemStack.EMPTY);
+            } else {
+                slot2.markDirty();
+            }
+
+            if (itemStack2.getCount() == itemStack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            slot2.onTakeItem(player, itemStack2);
         }
 
-        return newStack;
+        return itemStack;
     }
 
     @Override

@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "frogvasion:raw_frogvasium_block"
-  }
+  },
+  "show_notification": true
 }

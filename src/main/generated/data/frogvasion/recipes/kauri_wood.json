@@ -14,5 +14,6 @@
   "result": {
     "count": 3,
     "item": "frogvasion:kauri_wood"
-  }
+  },
+  "show_notification": true
 }

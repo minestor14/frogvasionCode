@@ -31,7 +31,7 @@ public abstract class OptionsScreenMixin extends Screen implements Drawable, Par
         this.addDrawableChild(ButtonWidget.builder(FrogvasionOptionsScreen.NAME, (button) -> {
             FrogvasionOptionsScreen screen = new FrogvasionOptionsScreen(this,this.settings);
             MinecraftClient.getInstance().setScreen(screen);
-        }).dimensions(this.width / 2 - 100, this.height / 4 + 150, 200, 20).build());
+        }).dimensions(this.width - 100, this.height - 60, 100, 20).build());
     }
 
 }

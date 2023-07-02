@@ -30,5 +30,6 @@
     "recipes": [
       "frogvasion:kauri_wood"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

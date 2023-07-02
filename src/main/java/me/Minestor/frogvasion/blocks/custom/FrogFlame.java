@@ -2,9 +2,11 @@ package me.Minestor.frogvasion.blocks.custom;
 
 import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.items.ModItems;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
@@ -124,7 +126,7 @@ public class FrogFlame extends Block {
             }
         }
 
-        entity.damage(DamageSource.IN_FIRE, this.damage);
+        entity.damage(world.getDamageSources().inFire(), this.damage);
         super.onEntityCollision(state, world, pos, entity);
     }
 

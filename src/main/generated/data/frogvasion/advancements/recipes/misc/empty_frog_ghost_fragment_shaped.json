@@ -56,5 +56,6 @@
     "recipes": [
       "frogvasion:empty_frog_ghost_fragment_shaped"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

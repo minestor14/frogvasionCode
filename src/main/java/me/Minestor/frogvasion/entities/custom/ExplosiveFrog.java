@@ -7,7 +7,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.GameRules;
@@ -52,7 +51,7 @@ public class ExplosiveFrog extends ModFrog implements GeoEntity {
     public void explode() {
         if (!this.world.isClient) {
             this.dead = true;
-            if(isInfused()) world.createExplosion(this, DamageSource.explosion(this,this),null , this.getX() + 0.5, this.getY(), this.getZ() + 0.5, 4.0F, true, this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) ? World.ExplosionSourceType.MOB : World.ExplosionSourceType.NONE);
+            if(isInfused()) world.createExplosion(this, world.getDamageSources().explosion(this,this),null , this.getX() + 0.5, this.getY(), this.getZ() + 0.5, 4.0F, true, this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) ? World.ExplosionSourceType.MOB : World.ExplosionSourceType.NONE);
             else this.world.createExplosion(this, this.getX() + 0.5, this.getY(), this.getZ() + 0.5, 4f, this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) ? World.ExplosionSourceType.MOB : World.ExplosionSourceType.NONE);
             this.discard();
         }

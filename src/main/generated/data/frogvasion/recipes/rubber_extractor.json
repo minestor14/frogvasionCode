@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "frogvasion:rubber_extractor"
-  }
+  },
+  "show_notification": true
 }

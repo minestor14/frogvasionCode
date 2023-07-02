@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "frogvasion:conversion_pedestal"
-  }
+  },
+  "show_notification": true
 }

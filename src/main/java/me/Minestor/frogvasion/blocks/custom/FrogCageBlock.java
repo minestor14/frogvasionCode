@@ -6,7 +6,6 @@ import me.Minestor.frogvasion.entities.custom.ModFrog;
 import me.Minestor.frogvasion.entities.custom.TadpoleRocket;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -84,10 +83,7 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
         frog.setPos(pos.getX() + 0.5,pos.getY() + 0.1,pos.getZ() + 0.5);
         world.spawnEntityAndPassengers(frog);
     }
-    @Override
-    public PistonBehavior getPistonBehavior(BlockState state) {
-        return PistonBehavior.BLOCK;
-    }
+
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {

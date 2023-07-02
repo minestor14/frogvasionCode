@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "frogvasion:quest_block"
-  }
+  },
+  "show_notification": true
 }

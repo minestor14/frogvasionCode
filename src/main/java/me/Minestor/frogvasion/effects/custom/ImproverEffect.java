@@ -24,7 +24,7 @@ public class ImproverEffect extends StatusEffect {
     @Override
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
         super.onApplied(entity, attributes, amplifier);
-        if((entity instanceof SoldierFrog|| entity instanceof GrapplingFrog || entity instanceof ArmedFrog || entity instanceof ExplosiveFrog) && !entity.world.isClient()) {
+        if((entity instanceof SoldierFrog|| entity instanceof GrapplingFrog || entity instanceof ArmedFrog || entity instanceof ExplosiveFrog) && !entity.getWorld().isClient()) {
             World world = entity.getWorld();
             GrowingFrog frog = new GrowingFrog(ModEntities.GROWING_FROG_ENTITY, world);
             frog.setPosition(entity.getPos());

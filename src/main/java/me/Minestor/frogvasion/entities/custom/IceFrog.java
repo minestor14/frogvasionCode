@@ -4,7 +4,10 @@ import me.Minestor.frogvasion.entities.Goals.FrogWanderJumpGoal;
 import me.Minestor.frogvasion.entities.Goals.IceFrogGoal;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.items.Custom.IceSpikeItemEntity;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FrostedIceBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -29,6 +32,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 
 public class IceFrog extends ModFrog implements GeoEntity {
+
     private final AnimatableInstanceCache factory = new SingletonAnimatableInstanceCache(this);
     public IceFrog(EntityType<? extends TameableEntity> entityType, World world) {
         super(ModEntities.ICE_FROG_ENTITY, world);
@@ -103,14 +107,14 @@ public class IceFrog extends ModFrog implements GeoEntity {
     }
     public void tickMovement() {
         super.tickMovement();
-        if (!this.world.isClient) {
+        if (this.world != null && !this.world.isClient) {
             int i = MathHelper.floor(this.getX());
             int j = MathHelper.floor(this.getY());
             int k = MathHelper.floor(this.getZ());
             BlockPos blockPos = new BlockPos(i, j, k);
             Biome biome = this.world.getBiome(blockPos).value();
-            if (biome.isHot(blockPos)) {
-                this.damage(DamageSource.ON_FIRE, 1.0F);
+            if (biome.getTemperature() >= 0.9) {
+                this.damage(world.getDamageSources().onFire(), 1.0F);
             }
             if (!this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
                 return;
@@ -129,16 +133,16 @@ public class IceFrog extends ModFrog implements GeoEntity {
             }
             if (this.isOnGround()) {
                 BlockState blockState = Blocks.FROSTED_ICE.getDefaultState();
-                float f = 3f;
+                int f = 3;
                 BlockPos.Mutable mutable = new BlockPos.Mutable();
 
-                for (BlockPos blockPos2 : BlockPos.iterate(blockPos.add(-f, -1.0, -f), blockPos.add(f, -1.0, f))) {
+                for (BlockPos blockPos2 : BlockPos.iterate(blockPos.add(-f, -1, -f), blockPos.add(f, -1, f))) {
                     if (blockPos2.isWithinDistance(this.getPos(), f)) {
                         mutable.set(blockPos2.getX(), blockPos2.getY() + 1, blockPos2.getZ());
                         BlockState blockState2 = world.getBlockState(mutable);
                         if (blockState2.isAir()) {
                             BlockState blockState3 = world.getBlockState(blockPos2);
-                            if (blockState3.getMaterial() == Material.WATER && blockState3.get(FluidBlock.LEVEL) == 0 && blockState.canPlaceAt(world, blockPos2) && world.canPlace(blockState, blockPos2, ShapeContext.absent())) {
+                            if (blockState3 == FrostedIceBlock.getMeltedState() && blockState.canPlaceAt(world, blockPos2) && world.canPlace(blockState, blockPos2, ShapeContext.absent())) {
                                 world.setBlockState(blockPos2, blockState);
                                 world.scheduleBlockTick(blockPos2, Blocks.FROSTED_ICE, MathHelper.nextInt(this.getRandom(), 60, 120));
                             }

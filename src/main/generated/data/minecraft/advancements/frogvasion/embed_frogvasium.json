@@ -1,20 +1,28 @@
 {
-  "parent": "minecraft:frogvasion/root",
+  "parent": "minecraft:frogvasion/frogvasion_ingot",
   "criteria": {
     "embed": {
       "conditions": {
-        "item": {
-          "items": [
-            "frogvasion:frogvasium_ingot"
-          ]
-        },
-        "location": {
-          "block": {
-            "blocks": [
-              "minecraft:polished_blackstone"
-            ]
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "minecraft:polished_blackstone"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "frogvasion:frogvasium_ingot"
+              ]
+            }
           }
-        }
+        ]
       },
       "trigger": "minecraft:item_used_on_block"
     }
@@ -38,5 +46,6 @@
     [
       "embed"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

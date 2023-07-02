@@ -5,6 +5,7 @@ import me.Minestor.frogvasion.blocks.entity.MailBoxBlockEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
@@ -35,8 +36,11 @@ public class MailBoxBlockEntityRenderer implements BlockEntityRenderer<MailBoxBl
             TextRenderer textRenderer = ctx.getTextRenderer();
             float h = (float)(-textRenderer.getWidth(mail) / 2);
 
+            int lightAbove = WorldRenderer.getLightmapCoordinates(world, entity.getPos().up());
             int color = Math.sin(world.getTimeOfDay() / 3f) > 0 ? 16776960 : 16711680;
-            textRenderer.draw(matrices, mail, h,0, color);
+
+            textRenderer.draw(mail,h,0, color, false, matrices.peek().getPositionMatrix(), vertexConsumers,
+                    TextRenderer.TextLayerType.NORMAL, 0, lightAbove);
         }
         matrices.pop();
     }

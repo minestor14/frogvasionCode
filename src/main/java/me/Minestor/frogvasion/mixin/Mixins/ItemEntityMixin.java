@@ -36,7 +36,7 @@ public abstract class ItemEntityMixin extends Entity implements Nameable, Entity
 
     @Inject(method = "onPlayerCollision", at = @At("HEAD"), cancellable = true)
     public void onPlayerPickup(PlayerEntity player, CallbackInfo ci) {
-        if(!this.world.isClient) {
+        if(!this.getWorld().isClient) {
             ItemStack itemStack = this.getStack();
             Item item = itemStack.getItem();
             int i = itemStack.getCount();

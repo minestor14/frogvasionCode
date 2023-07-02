@@ -9,8 +9,8 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Equipment;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Wearable;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
@@ -27,12 +27,12 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class FrogHelmetItem extends ArmorItem implements GeoItem, Wearable {
+public class FrogHelmetItem extends ArmorItem implements GeoItem, Equipment {
     private final AnimatableInstanceCache factory = new SingletonAnimatableInstanceCache(this);
     private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
     private int time =0;
     public FrogHelmetItem(ArmorMaterial material, Settings settings) {
-        super(material, EquipmentSlot.HEAD, settings);
+        super(material, Type.HELMET, settings);
         DispenserBlock.registerBehavior(this, ArmorItem.DISPENSER_BEHAVIOR);
     }
     private PlayState predicate(AnimationState<FrogHelmetItem> event) {

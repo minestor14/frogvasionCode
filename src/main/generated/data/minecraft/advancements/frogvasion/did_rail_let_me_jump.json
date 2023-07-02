@@ -1,20 +1,6 @@
 {
   "parent": "minecraft:frogvasion/root",
   "criteria": {
-    "r": {
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "type": "minecraft:minecart"
-            }
-          }
-        ]
-      },
-      "trigger": "minecraft:started_riding"
-    },
     "rail": {
       "conditions": {
         "block": "frogvasion:frogvasium_rail"
@@ -40,9 +26,7 @@
   "requirements": [
     [
       "rail"
-    ],
-    [
-      "r"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

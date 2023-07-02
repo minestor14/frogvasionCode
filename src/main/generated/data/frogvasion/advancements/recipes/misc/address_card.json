@@ -56,5 +56,6 @@
     "recipes": [
       "minecraft:address_card"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
