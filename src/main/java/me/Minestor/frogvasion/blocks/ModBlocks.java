@@ -65,6 +65,10 @@ public class ModBlocks {
     public static final Block FROG_STATUE = registerBlock("frog_statue", new FrogStatueBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).breakInstantly().nonOpaque()), ItemGroups.BUILDING_BLOCKS);
     public static final Block GOLDEN_FROG_STATUE = registerBlock("golden_frog_statue", new FrogStatueBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).breakInstantly().nonOpaque()), ItemGroups.BUILDING_BLOCKS);
     public static final Block QUEST_BLOCK = registerBlock("quest_block", new QuestBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).strength(3.5f,5f)), ItemGroups.BUILDING_BLOCKS);
+
+    public static final Block LICHEN = registerBlock("lichen", new LichenBlock(FabricBlockSettings.copyOf(Blocks.GLOW_LICHEN).luminance(0)), ItemGroups.NATURAL);
+    public static final Block HONEY_FUNGUS = registerBlock("honey_fungus", new HoneyFungusBlock(FabricBlockSettings.create().breakInstantly().collidable(false).noCollision().nonOpaque().pistonBehavior(PistonBehavior.DESTROY).ticksRandomly()), ItemGroups.NATURAL);
+
     private static Block registerBlockNoItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, new Identifier(Frogvasion.MOD_ID, name), block);
     }

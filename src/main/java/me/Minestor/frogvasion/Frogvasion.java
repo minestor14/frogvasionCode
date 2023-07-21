@@ -66,7 +66,6 @@ public class Frogvasion implements ModInitializer {
 		ModPotions.registerPotions();
 
 		ModBlockEntities.registerBlockEntities();
-		ModScreenHandlers.registerScreenHandlers();
 		ModEnchantments.registerEnchantments();
 
 		ModRecipes.registerRecipes();
@@ -75,6 +74,7 @@ public class Frogvasion implements ModInitializer {
 		ModDamageSources.registerDamageSources();
 		ModMessages.registerC2SPackets();
 
+		ModScreenHandlers.registerScreenHandlers();
 		LOGGER.info("Frogvasion initialized");
 	}
 
@@ -109,4 +109,6 @@ public class Frogvasion implements ModInitializer {
 		ServerQuestProgression.IQuestProgressionEvent.PROGRESS.register(new QuestProgressionEvent());
 		ServerQuestProgression.IQuestCompletionEvent.COMPLETION.register(new QuestCompletionEvent());
 	}
+	//todo new biome in greenwood, swamplike, very humid, lots of mushrooms/mold, check chatGPT
+	//todo new structures, maybe polevillages w/ bridges in between
 }

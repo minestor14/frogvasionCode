@@ -15,7 +15,7 @@ public class ModSounds {
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = new Identifier(Frogvasion.MOD_ID, name);
-        return Registry.register(Registries.SOUND_EVENT,id,SoundEvent.of(id));
+        return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
     public static void initSounds() {}
 }

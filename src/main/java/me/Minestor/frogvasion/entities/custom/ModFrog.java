@@ -5,7 +5,6 @@ import me.Minestor.frogvasion.effects.ModEffects;
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.sounds.ModSounds;
 import me.Minestor.frogvasion.util.entity.ModEntityGroups;
-import me.Minestor.frogvasion.util.options.FrogvasionGameOptions;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.LookControl;
@@ -51,7 +50,7 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return this.getWorld().getRandom().nextFloat() <= (float) FrogvasionGameOptions.getCroakDensity() /10 ? ModSounds.CROAK : null;
+        return ModSounds.CROAK;
     }
     @Nullable
     @Override
@@ -61,11 +60,6 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
     @Override
     public SoundCategory getSoundCategory() {
         return SoundCategory.HOSTILE;
-    }
-
-    @Override
-    protected float getSoundVolume() {
-        return FrogvasionGameOptions.getFrogVolume();
     }
 
     @Nullable

@@ -37,11 +37,11 @@ public class FrogvasionClient implements ClientModInitializer {
         BlockEntityRendererRegistry.register(ModBlockEntities.FROG_CAGE_TYPE, FrogCageRenderer::new);
         BlockEntityRendererRegistry.register(ModBlockEntities.MAILBOX_TYPE, MailBoxBlockEntityRenderer::new);
 
-        HandledScreens.register(ModScreenHandlers.CONVERSION_PEDESTAL_SCREEN_HANDLER, ConversionPedestalScreen::new);
-        HandledScreens.register(ModScreenHandlers.QUEST_BLOCK_SCREEN_HANDLER, QuestBlockScreen::new);
-
         initClientEvents();
         ModMessages.registerS2CPackets();
+
+        HandledScreens.register(ModScreenHandlers.CONVERSION_PEDESTAL_SCREEN_HANDLER, ConversionPedestalScreen::new);
+        HandledScreens.register(ModScreenHandlers.QUEST_BLOCK_SCREEN_HANDLER, QuestBlockScreen::new);
     }
     private static void initClientEvents() {
         ClientPlayConnectionEvents.JOIN.register(new JoinEvent());
@@ -63,6 +63,8 @@ public class FrogvasionClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GREENWOOD_PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROG_STATUE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GOLDEN_FROG_STATUE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LICHEN, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HONEY_FUNGUS, RenderLayer.getCutout());
     }
     private static void registerEntityRenderers() {
         EntityRendererRegistry.register(ModEntities.SOLDIER_FROG_ENTITY, SoldierFrogRenderer::new);

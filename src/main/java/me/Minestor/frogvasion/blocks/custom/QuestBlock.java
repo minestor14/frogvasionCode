@@ -22,7 +22,7 @@ public class QuestBlock extends Block {
         if (world.isClient) {
             return ActionResult.SUCCESS;
         } else {
-            player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
+            player.openHandledScreen(this.createScreenHandlerFactory(state, world, pos));
             return ActionResult.CONSUME;
         }
     }

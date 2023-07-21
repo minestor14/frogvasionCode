@@ -16,10 +16,12 @@
   ],
   "client": [
     "FrogvasionMixin",
+    "Mixins.ClientWorldMixin",
     "Mixins.GameOptionsMixin",
     "Mixins.IntegratedServerLoaderMixin",
     "Mixins.ModLevelstorageSessionMixin",
-    "Mixins.OptionsScreenMixin"
+    "Mixins.OptionsScreenMixin",
+    "Mixins.PositionedSoundInstanceMixin"
   ],
   "server": [
   ],

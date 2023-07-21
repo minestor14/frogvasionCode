@@ -126,16 +126,18 @@ public class FrogStaffItem extends ToolItem implements Vanishable {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        if(Screen.hasShiftDown()) {
-            tooltip.add(Text.literal("Use with a sword in offhand to deal damage, sneak for maximum damage").formatted(Formatting.AQUA));
-            tooltip.add(Text.literal("Use with any rabbit-related item in offhand to make an entity jump,").formatted(Formatting.DARK_AQUA));
-            tooltip.add(Text.literal("sneak for a more powerful jump").formatted(Formatting.DARK_AQUA));
-            tooltip.add(Text.literal("Use on a Polished Blackstone block to embed it with frogvasium").formatted(Formatting.LIGHT_PURPLE));
-            tooltip.add(Text.literal("You can combine the offhand-items with this to lock their spells").formatted(Formatting.DARK_PURPLE));
-        } else {
-            tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
+        if (!(this instanceof CombatFrogStaff || this instanceof JumpFrogStaff)){
+            if (Screen.hasShiftDown()) {
+                tooltip.add(Text.literal("Use with a sword in offhand to deal damage, sneak for maximum damage").formatted(Formatting.AQUA));
+                tooltip.add(Text.literal("Use with any rabbit-related item in offhand to make an entity jump,").formatted(Formatting.DARK_AQUA));
+                tooltip.add(Text.literal("sneak for a more powerful jump").formatted(Formatting.DARK_AQUA));
+                tooltip.add(Text.literal("Use on a Polished Blackstone block to embed it with frogvasium").formatted(Formatting.LIGHT_PURPLE));
+                tooltip.add(Text.literal("You can combine the offhand-items with this to lock their spells").formatted(Formatting.DARK_PURPLE));
+            } else {
+                tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
+            }
+            tooltip.add(Text.literal("Recharge this staff with clicking frog-drops on this item in the inventory").formatted(Formatting.GOLD));
         }
-        tooltip.add(Text.literal("Recharge this staff with clicking frog-drops on this item in the inventory").formatted(Formatting.GOLD));
         super.appendTooltip(stack, world, tooltip, context);
     }
 

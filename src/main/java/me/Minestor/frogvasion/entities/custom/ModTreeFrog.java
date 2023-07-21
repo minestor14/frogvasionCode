@@ -3,7 +3,6 @@ package me.Minestor.frogvasion.entities.custom;
 import me.Minestor.frogvasion.effects.ModEffects;
 import me.Minestor.frogvasion.sounds.ModSounds;
 import me.Minestor.frogvasion.util.entity.ModEntityGroups;
-import me.Minestor.frogvasion.util.options.FrogvasionGameOptions;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -74,17 +73,12 @@ public abstract class ModTreeFrog extends PassiveEntity {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return this.getWorld().getRandom().nextFloat() <= (float) FrogvasionGameOptions.getCroakDensity() /10 ? ModSounds.TREE_FROG_CROAK : null;
+        return ModSounds.TREE_FROG_CROAK;
     }
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_FROG_DEATH;
-    }
-
-    @Override
-    protected float getSoundVolume() {
-        return FrogvasionGameOptions.getFrogVolume();
     }
 
     @Override

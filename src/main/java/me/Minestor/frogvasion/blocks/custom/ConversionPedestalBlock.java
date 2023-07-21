@@ -45,14 +45,13 @@ public class ConversionPedestalBlock extends BlockWithEntity implements BlockEnt
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos,
-                              PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
-            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-
-            if (screenHandlerFactory != null) {
-                player.openHandledScreen(screenHandlerFactory);
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof ConversionPedestalBlockEntity) {
+                player.openHandledScreen((ConversionPedestalBlockEntity) blockEntity);
             }
+            return ActionResult.CONSUME;
         }
 
         return ActionResult.SUCCESS;
