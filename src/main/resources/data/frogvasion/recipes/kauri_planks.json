@@ -1,14 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "building",
-  "group": "planks",
-  "ingredients": [
-    {
-      "tag": "frogvasion:kauri_logs"
+  "key": {
+    "#": {
+      "item": "frogvasion:kauri_slab"
     }
+  },
+  "pattern": [
+    "###"
   ],
   "result": {
-    "count": 4,
+    "count": 6,
     "item": "frogvasion:kauri_planks"
-  }
+  },
+  "show_notification": true
 }

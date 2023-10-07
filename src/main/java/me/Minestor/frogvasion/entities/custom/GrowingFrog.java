@@ -1,9 +1,8 @@
 package me.Minestor.frogvasion.entities.custom;
 
-import me.Minestor.frogvasion.entities.Goals.FrogAttackGoal;
-import me.Minestor.frogvasion.entities.Goals.FrogWanderJumpGoal;
 import me.Minestor.frogvasion.entities.ModEntities;
-import net.minecraft.block.Blocks;
+import me.Minestor.frogvasion.entities.goals.FrogAttackGoal;
+import me.Minestor.frogvasion.entities.goals.FrogWanderJumpGoal;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
@@ -23,15 +22,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
 
-public class GrowingFrog extends ModFrog implements GeoEntity {
+public class GrowingFrog extends ModFrog {
     public static final TrackedData<Integer> SIZE= DataTracker.registerData(GrowingFrog.class, TrackedDataHandlerRegistry.INTEGER);
-    private final AnimatableInstanceCache factory = new SingletonAnimatableInstanceCache(this);
     public GrowingFrog(EntityType<? extends TameableEntity> entityType, World world) {
         super(ModEntities.GROWING_FROG_ENTITY, world);
     }
@@ -62,39 +55,6 @@ public class GrowingFrog extends ModFrog implements GeoEntity {
         this.targetSelector.add(4, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.add(5, new ActiveTargetGoal<>(this, SlimeEntity.class, true));
         this.targetSelector.add(6, new ActiveTargetGoal<>(this, MagmaCubeEntity.class, true));
-
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller",0, this::predicate));
-        controllers.add(new AnimationController<>(this, "attackController",0, this::attackPredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return factory;
-    }
-    @Override
-    PlayState predicate(AnimationState<ModFrog> event) {
-        if(this.getBlockStateAtPos().getBlock() == Blocks.WATER && this.getSize() <=10) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.frog.swim", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-        if(!this.isOnGround() && this.getSize() <=10) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.frog.off_ground", Animation.LoopType.HOLD_ON_LAST_FRAME));
-            return PlayState.CONTINUE;
-        }
-        if (event.isMoving()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.frog.walk", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-        if(this.random.nextInt(15) == 1) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.frog.croak", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-        event.getController().setAnimation(RawAnimation.begin().then("animation.frog.idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
     }
 
     @Override

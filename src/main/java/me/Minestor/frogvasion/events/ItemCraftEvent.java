@@ -7,12 +7,11 @@ import me.Minestor.frogvasion.quests.QuestType;
 import me.Minestor.frogvasion.util.entity.IEntityDataSaver;
 import me.Minestor.frogvasion.util.quest.QuestDataManager;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class ItemCraftEvent {
-    public static ItemStack craft(ItemStack stack, int count, PlayerEntity p) {
-        if(!p.getWorld().isClient) return stack;
+    public static ItemStack craft(ItemStack stack, int count, ServerPlayerEntity p) {
         if(QuestDataManager.getData((IEntityDataSaver) p) == null) return stack;
         Quest quest = QuestDataManager.getQuest((IEntityDataSaver) p);
 
@@ -21,14 +20,13 @@ public class ItemCraftEvent {
 
         int amount = quest.getData().getAmount();
         if(count >= amount) {
-            QuestDataManager.completedClientTask((IEntityDataSaver) p, quest, count);
+            QuestDataManager.completedTask(p, quest, count);
             stack.setCount(count - amount);
 
         } else {
-            QuestDataManager.completedClientTask((IEntityDataSaver) p, quest, count);
+            QuestDataManager.completedTask(p, quest, count);
             stack.setCount(0);
         }
-        ClientPlayNetworking.send(ModMessages.UPDATE_QUEST_C2S, UpdateQuestPacket.createUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
         return stack;
     }
 }

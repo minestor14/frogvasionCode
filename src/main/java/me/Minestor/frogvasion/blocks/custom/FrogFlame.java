@@ -42,7 +42,7 @@ public class FrogFlame extends Block {
     }
 
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return isFrogvasiumBase(world.getBlockState(pos.down()));
+        return isFrogvasiumBase(world.getBlockState(pos.down())) && pos.getY() >= 2 && pos.getY() <= 255;
     }
 
     public static boolean isFrogvasiumBase(BlockState state) {

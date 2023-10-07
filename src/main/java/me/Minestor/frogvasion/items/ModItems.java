@@ -10,7 +10,6 @@ import me.Minestor.frogvasion.util.armor.ModArmorMaterials;
 import me.Minestor.frogvasion.util.items.ModItemGroups;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -19,24 +18,24 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 public class ModItems {
-    public static final Item ICE_SPIKE = registerItem("ice_spike", new IceSpikeItem(new FabricItemSettings().maxCount(16)),ItemGroups.COMBAT);
-    public static final Item GRAPPLING_TONGUE = registerItem("grappling_tongue",new Item(new FabricItemSettings()),ItemGroups.INGREDIENTS);
-    public static final Item SLIME_LIKE_GOO = registerItem("slime_like_goo", new SlimeLikeGooItem(new FabricItemSettings()),ItemGroups.FUNCTIONAL);
-    public static final Item FROG_HELMET_ITEM = registerItem("frog_helmet", new FrogHelmetItem(ArmorMaterials.LEATHER, new FabricItemSettings()),ItemGroups.COMBAT);
-    public static final Item FROG_HIDE = registerItem("frog_hide", new Item(new FabricItemSettings()),ItemGroups.INGREDIENTS);
-    public static final Item ENHANCED_MUTAGEN = registerItem("enhanced_mutagen", new Item(new FabricItemSettings()),ItemGroups.INGREDIENTS);
-    public static final Item SPINE = registerItem("spine", new Item(new FabricItemSettings()),ItemGroups.INGREDIENTS);
-    public static final Item EMPTY_FROG_GHOST_FRAGMENT = registerItem("empty_frog_ghost_fragment", new Item(new FabricItemSettings()),ItemGroups.INGREDIENTS);
-    public static final Item EMPTY_FROG_GHOST = registerItem("empty_frog_ghost", new EmptyFrogGhostItem(new FabricItemSettings()),ItemGroups.INGREDIENTS);
-    public static final Item GROWING_FROG_GHOST = registerItem("growing_frog_ghost", new ModFrogGhostItem.GrowingFrogGhostItem(new FabricItemSettings()),ItemGroups.FUNCTIONAL);
-    public static final Item SOLDIER_FROG_GHOST = registerItem("soldier_frog_ghost", new ModFrogGhostItem.SoldierFrogGhostItem(new FabricItemSettings()),ItemGroups.FUNCTIONAL);
-    public static final Item ARMED_FROG_GHOST = registerItem("armed_frog_ghost", new ModFrogGhostItem.ArmedFrogGhostItem(new FabricItemSettings()),ItemGroups.FUNCTIONAL);
-    public static final Item GRAPPLING_FROG_GHOST = registerItem("grappling_frog_ghost", new ModFrogGhostItem.GrapplingFrogGhostItem(new FabricItemSettings()),ItemGroups.FUNCTIONAL);
-    public static final Item BOSS_SOLDIER_FROG_GHOST = registerItem("boss_soldier_frog_ghost", new ModFrogGhostItem.BossSoldierFrogGhostItem(new FabricItemSettings()),ItemGroups.FUNCTIONAL);
-    public static final Item ENDER_FROG_GHOST = registerItem("ender_frog_ghost", new ModFrogGhostItem.EnderFrogGhostItem(new FabricItemSettings()),ItemGroups.FUNCTIONAL);
-    public static final Item EXPLOSIVE_FROG_GHOST = registerItem("explosive_frog_ghost", new ModFrogGhostItem.ExplosiveFrogGhostItem(new FabricItemSettings()),ItemGroups.FUNCTIONAL);
-    public static final Item ICE_FROG_GHOST = registerItem("ice_frog_ghost", new ModFrogGhostItem.IceFrogGhostItem(new FabricItemSettings()),ItemGroups.FUNCTIONAL);
-    public static final Item ADDRESS_CARD = registerItem("address_card", new AddressCardItem(new FabricItemSettings().maxCount(1)),ItemGroups.TOOLS);
+    public static final Item ICE_SPIKE = registerItem("ice_spike", new IceSpikeItem(new FabricItemSettings().maxCount(16)), ItemGroups.COMBAT);
+    public static final Item GRAPPLING_TONGUE = registerItem("grappling_tongue",new Item(new FabricItemSettings()), ItemGroups.INGREDIENTS);
+    public static final Item SLIME_LIKE_GOO = registerItem("slime_like_goo", new SlimeLikeGooItem(new FabricItemSettings()), ItemGroups.FUNCTIONAL);
+    public static final Item FROG_HELMET_ITEM = registerItem("frog_helmet", new FrogHelmetItem(ArmorMaterials.LEATHER, new FabricItemSettings()), ItemGroups.COMBAT);
+    public static final Item FROG_HIDE = registerItem("frog_hide", new Item(new FabricItemSettings()), ItemGroups.INGREDIENTS);
+    public static final Item ENHANCED_MUTAGEN = registerItem("enhanced_mutagen", new Item(new FabricItemSettings()), ItemGroups.INGREDIENTS);
+    public static final Item SPINE = registerItem("spine", new Item(new FabricItemSettings()), ItemGroups.INGREDIENTS);
+    public static final Item EMPTY_FROG_GHOST_FRAGMENT = registerItem("empty_frog_ghost_fragment", new Item(new FabricItemSettings()), ItemGroups.INGREDIENTS);
+    public static final Item EMPTY_FROG_GHOST = registerItem("empty_frog_ghost", new EmptyFrogGhostItem(new FabricItemSettings()), ItemGroups.INGREDIENTS);
+    public static final Item GROWING_FROG_GHOST = registerItem("growing_frog_ghost", new ModFrogGhostItem.GrowingFrogGhostItem(new FabricItemSettings()), ItemGroups.FUNCTIONAL);
+    public static final Item SOLDIER_FROG_GHOST = registerItem("soldier_frog_ghost", new ModFrogGhostItem.SoldierFrogGhostItem(new FabricItemSettings()), ItemGroups.FUNCTIONAL);
+    public static final Item ARMED_FROG_GHOST = registerItem("armed_frog_ghost", new ModFrogGhostItem.ArmedFrogGhostItem(new FabricItemSettings()), ItemGroups.FUNCTIONAL);
+    public static final Item GRAPPLING_FROG_GHOST = registerItem("grappling_frog_ghost", new ModFrogGhostItem.GrapplingFrogGhostItem(new FabricItemSettings()), ItemGroups.FUNCTIONAL);
+    public static final Item BOSS_SOLDIER_FROG_GHOST = registerItem("boss_soldier_frog_ghost", new ModFrogGhostItem.BossSoldierFrogGhostItem(new FabricItemSettings()), ItemGroups.FUNCTIONAL);
+    public static final Item ENDER_FROG_GHOST = registerItem("ender_frog_ghost", new ModFrogGhostItem.EnderFrogGhostItem(new FabricItemSettings()), ItemGroups.FUNCTIONAL);
+    public static final Item EXPLOSIVE_FROG_GHOST = registerItem("explosive_frog_ghost", new ModFrogGhostItem.ExplosiveFrogGhostItem(new FabricItemSettings()), ItemGroups.FUNCTIONAL);
+    public static final Item ICE_FROG_GHOST = registerItem("ice_frog_ghost", new ModFrogGhostItem.IceFrogGhostItem(new FabricItemSettings()), ItemGroups.FUNCTIONAL);
+    public static final Item ADDRESS_CARD = registerItem("address_card", new AddressCardItem(new FabricItemSettings().maxCount(1)), ItemGroups.TOOLS);
     public static final Item RAW_FROGVASIUM = registerItem("raw_frogvasium", new Item(new FabricItemSettings()), ItemGroups.INGREDIENTS);
     public static final Item FROGVASIUM_INGOT = registerItem("frogvasium_ingot", new FrogvasiumIngotItem(new FabricItemSettings()), ItemGroups.INGREDIENTS);
     public static final Item FROGVASIUM_NUGGET = registerItem("frogvasium_nugget", new Item(new FabricItemSettings()), ItemGroups.INGREDIENTS);
@@ -53,6 +52,10 @@ public class ModItems {
     public static final Item RUBBER = registerItem("rubber", new RubberItem(new FabricItemSettings()), ItemGroups.INGREDIENTS);
     public static final Item JUMPY_TOTEM = registerItem("jumpy_totem", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.UNCOMMON)), ItemGroups.TOOLS);
     public static final Item FROG_FIRE_CHARGE = registerItem("frog_firecharge", new BlockItem(ModBlocks.FROG_FLAME, new FabricItemSettings()), ItemGroups.TOOLS);
+    public static final Item SALI_TYSSE_SEEDS = registerItem("sali_tysse_seeds", new AliasedBlockItem(ModBlocks.SALI_TYSSE_CROP,new FabricItemSettings()), ItemGroups.FOOD_AND_DRINK);
+    public static final Item SALI_TYSSE = registerItem("sali_tysse", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(5).saturationModifier(3).build())), ItemGroups.FOOD_AND_DRINK);
+    //todo recipes & shit
+
     //spawn eggs
     public static final Item SOLDIER_FROG_SPAWN_EGG = registerItem("soldier_frog_spawn_egg", new SpawnEggItem(ModEntities.SOLDIER_FROG_ENTITY, 16741227, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
     public static final Item BOSS_SOLDIER_FROG_SPAWN_EGG = registerItem("boss_soldier_frog_spawn_egg", new SpawnEggItem(ModEntities.BOSS_SOLDIER_FROG_ENTITY, 16726077, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);

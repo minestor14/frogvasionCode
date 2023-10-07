@@ -22,6 +22,7 @@ public class FrogvasionOptionsScreen extends GameOptionsScreen {
         this.optionButtons = new OptionListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
         this.optionButtons.addSingleOptionEntry(FrogvasionGameOptions.FROG_VOLUME);
         this.optionButtons.addSingleOptionEntry(FrogvasionGameOptions.CROAK_DENSITY);
+        this.optionButtons.addSingleOptionEntry(FrogvasionGameOptions.SILLY_MODE);
         this.addSelectableChild(this.optionButtons);
         this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
             MinecraftClient.getInstance().options.write();

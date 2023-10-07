@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "frogvasion:address_card"
-  }
+  },
+  "show_notification": true
 }

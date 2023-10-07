@@ -23,7 +23,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 
-public class ModBlocks {
+public final class ModBlocks {
     public static final Block CONCENTRATED_SLIME = registerBlock("concentrated_slime",new ConcentratedSlimeBlock(FabricBlockSettings.copy(Blocks.SLIME_BLOCK).breakInstantly().nonOpaque()), ItemGroups.NATURAL);
     public static final Block SLIME_LAYER = registerBlockNoItem("slime_layer",new SlimeLayerBlock(FabricBlockSettings.copyOf(Blocks.SNOW_BLOCK).breakInstantly().noCollision().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block CONVERSION_PEDESTAL = registerBlock("conversion_pedestal", new ConversionPedestalBlock(FabricBlockSettings.copy(Blocks.ENCHANTING_TABLE).strength(4f).requiresTool()), ItemGroups.FUNCTIONAL);
@@ -47,6 +47,8 @@ public class ModBlocks {
     public static final Block STRIPPED_RUBBER_LOG = registerBlock("stripped_rubber_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG).strength(2.0f)), ItemGroups.NATURAL);
     public static final Block STRIPPED_RUBBER_WOOD = registerBlock("stripped_rubber_wood", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(2.0f)), ItemGroups.NATURAL);
     public static final Block RUBBER_PLANKS = registerBlock("rubber_planks", new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)), ItemGroups.NATURAL);
+    public static final Block RUBBER_STAIRS = registerBlock("rubber_stairs", new StairsBlock(ModBlocks.RUBBER_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS)), ItemGroups.BUILDING_BLOCKS);
+    public static final Block RUBBER_SLAB = registerBlock("rubber_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB)), ItemGroups.BUILDING_BLOCKS);
     public static final Block RUBBER_LEAVES = registerBlock("rubber_leaves", new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).strength(0.2F).nonOpaque().blockVision(ModBlocks::never)), ItemGroups.NATURAL);
     public static final Block RUBBER_SAPLING = registerBlock("rubber_sapling", new SaplingBlock(new RubberSaplingGenerator(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).breakInstantly()), ItemGroups.NATURAL);
     public static final Block RUBBER_EXTRACTOR = registerBlock("rubber_extractor", new RubberExtractorBlock(FabricBlockSettings.copyOf(Blocks.CRAFTING_TABLE).strength(2.2f).requiresTool().ticksRandomly()), ItemGroups.FUNCTIONAL);
@@ -55,6 +57,8 @@ public class ModBlocks {
     public static final Block STRIPPED_KAURI_LOG = registerBlock("stripped_kauri_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG).strength(2.0f)), ItemGroups.NATURAL);
     public static final Block STRIPPED_KAURI_WOOD = registerBlock("stripped_kauri_wood", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(2.0f)), ItemGroups.NATURAL);
     public static final Block KAURI_PLANKS = registerBlock("kauri_planks", new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)), ItemGroups.NATURAL);
+    public static final Block KAURI_STAIRS = registerBlock("kauri_stairs", new StairsBlock(ModBlocks.KAURI_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS)), ItemGroups.BUILDING_BLOCKS);
+    public static final Block KAURI_SLAB = registerBlock("kauri_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB)), ItemGroups.BUILDING_BLOCKS);
     public static final Block KAURI_LEAVES = registerBlock("kauri_leaves", new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).strength(0.2F).nonOpaque().blockVision(ModBlocks::never)), ItemGroups.NATURAL);
     public static final Block KAURI_SAPLING = registerBlock("kauri_sapling", new SaplingBlock(new KauriSaplingGenerator(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).breakInstantly()), ItemGroups.NATURAL);
     public static final Block BROMELIAD = registerBlock("bromeliad", new TallFlowerBlock(FabricBlockSettings.copyOf(Blocks.SUNFLOWER).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ)), ItemGroups.NATURAL);
@@ -65,10 +69,10 @@ public class ModBlocks {
     public static final Block FROG_STATUE = registerBlock("frog_statue", new FrogStatueBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).breakInstantly().nonOpaque()), ItemGroups.BUILDING_BLOCKS);
     public static final Block GOLDEN_FROG_STATUE = registerBlock("golden_frog_statue", new FrogStatueBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).breakInstantly().nonOpaque()), ItemGroups.BUILDING_BLOCKS);
     public static final Block QUEST_BLOCK = registerBlock("quest_block", new QuestBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).strength(3.5f,5f)), ItemGroups.BUILDING_BLOCKS);
-
-    public static final Block LICHEN = registerBlock("lichen", new LichenBlock(FabricBlockSettings.copyOf(Blocks.GLOW_LICHEN).luminance(0)), ItemGroups.NATURAL);
     public static final Block HONEY_FUNGUS = registerBlock("honey_fungus", new HoneyFungusBlock(FabricBlockSettings.create().breakInstantly().collidable(false).noCollision().nonOpaque().pistonBehavior(PistonBehavior.DESTROY).ticksRandomly()), ItemGroups.NATURAL);
-
+    public static final Block MUD_FARMLAND = registerBlockNoItem("mud_farmland", new MudFarmlandBlock(FabricBlockSettings.copyOf(Blocks.FARMLAND)));
+    public static final Block SALI_TYSSE_CROP = registerBlockNoItem("sali_tysse_crop", new SaliTysseCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)));
+    public static final Block CHROMA_CLUMP = registerBlock("chroma_clump", new Block(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), ItemGroups.BUILDING_BLOCKS);
     private static Block registerBlockNoItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, new Identifier(Frogvasion.MOD_ID, name), block);
     }

@@ -30,18 +30,24 @@ import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animation.Animation;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
 
-public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
+public abstract class ModFrog extends TameableEntity{
     public World world;
     public static final TrackedData<Integer> MAGMA_EATEN = DataTracker.registerData(ModFrog.class, TrackedDataHandlerRegistry.INTEGER);
     public static final TrackedData<Boolean> INFUSED = DataTracker.registerData(ModFrog.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(ModFrog.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static final int INFUSED_BRIGHTNESS = 200;
-
+    public boolean isMoving = false;
+    public final AnimationState moveAnimationState = new AnimationState();
+    public final AnimationState idleAnimationState = new AnimationState();
+    public final AnimationState jumpAnimationState = new AnimationState();
+    public final AnimationState attackAnimationState = new AnimationState();
+    public final AnimationState swimAnimationState = new AnimationState();
+    public final AnimationState croakAnimationState = new AnimationState();
+    private int idleAnimTimeout = 0;
+    private int moveAnimTimeout = 0;
+    private int attackAnimTimeout = 0;
+    private int swimAnimTimeout = 0;
     public ModFrog(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
         this.world = world;
@@ -77,36 +83,6 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
         this.setYaw(bodyYaw);
         super.setBodyYaw(bodyYaw);
     }
-
-    PlayState predicate(AnimationState<ModFrog> event) {
-        if(this.getBlockStateAtPos().getBlock() == Blocks.WATER) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.frog.swim", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-        if(!this.isOnGround()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.frog.off_ground", Animation.LoopType.HOLD_ON_LAST_FRAME));
-            return PlayState.CONTINUE;
-        }
-        if (event.isMoving()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.frog.walk", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-        if(this.random.nextInt(15) == 1) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.frog.croak", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-        event.getController().setAnimation(RawAnimation.begin().then("animation.frog.idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
-    }
-
-    PlayState attackPredicate(AnimationState<ModFrog> event) {
-        if(this.handSwinging) {
-            event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().then("animation.frog.attack", Animation.LoopType.PLAY_ONCE));
-            this.handSwinging = false;
-        }
-        return PlayState.CONTINUE;
-    }
     public void setTamed(boolean tamed, PlayerEntity owner) {
         setTamed(tamed);
         setOwner(owner);
@@ -116,6 +92,7 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
         super.initDataTracker();
         this.dataTracker.startTracking(MAGMA_EATEN, 0);
         this.dataTracker.startTracking(INFUSED, false);
+        this.dataTracker.startTracking(ATTACKING, false);
     }
 
     @Override
@@ -164,7 +141,84 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
         if(isInfused()) target.setFireTicks(40);
         return super.tryAttack(target);
     }
+    private void setupAnimationStates() {
+        boolean swim = this.swimAnimationState.isRunning();
+        if(this.getBlockStateAtPos().isOf(Blocks.WATER) && this.swimAnimTimeout <=0) {
+            swimAnimTimeout = 45;
+            swimAnimationState.start(this.age);
+        } else {
+            --this.swimAnimTimeout;
+        }
+        if(!this.getBlockStateAtPos().isOf(Blocks.WATER)) {
+            swimAnimationState.stop();
+        }
 
+        boolean jump = this.jumpAnimationState.isRunning();
+        if(!this.isOnGround() && !jump && !swim) {
+            jumpAnimationState.start(this.age);
+        } else if (this.isOnGround()) {
+            jumpAnimationState.stop();
+        }
+
+        boolean move = this.moveAnimationState.isRunning();
+        if(this.isMoving && this.moveAnimTimeout <=0 && !jump && !swim) {
+            moveAnimTimeout = 16;
+            moveAnimationState.start(this.age);
+        } else {
+            --this.moveAnimTimeout;
+        }
+        if(!this.isMoving) {
+            moveAnimationState.stop();
+            moveAnimTimeout = 0;
+        }
+
+        if (this.idleAnimTimeout <= 0 && !move && !jump && !swim) {
+            idleAnimTimeout = this.random.nextInt(40) + 80;
+            idleAnimationState.start(this.age);
+
+            if(this.random.nextInt(15) == 1) croakAnimationState.start(this.age);
+        } else {
+            --this.idleAnimTimeout;
+        }
+
+        if(this.isAttacking() && this.attackAnimTimeout <=0 && !attackAnimationState.isRunning()) {
+            attackAnimTimeout = getAttackLength(this);
+            attackAnimationState.start(this.age);
+        } else {
+            --this.attackAnimTimeout;
+        }
+        if(!this.isAttacking()) {
+            attackAnimationState.stop();
+            attackAnimTimeout = 0;
+        }
+    }
+    private int getAttackLength(ModFrog frog) {
+        return switch (frog.getFrogType()) {
+            case ARMED, EXPLOSIVE -> 20;
+            case GRAPPLING -> 60;
+            default -> 10;
+        };
+    }
+    private void setupAnimationStatesTadpole() {
+        boolean move = this.moveAnimationState.isRunning();
+        if(this.isMoving && this.moveAnimTimeout <=0) {
+            moveAnimTimeout = 20;
+            moveAnimationState.start(this.age);
+        } else {
+            --this.moveAnimTimeout;
+        }
+        if(!this.isMoving) {
+            moveAnimationState.stop();
+            moveAnimTimeout = 0;
+        }
+
+        if (this.idleAnimTimeout <= 0 && !move) {
+            idleAnimTimeout = this.random.nextInt(40) + 80;
+            idleAnimationState.start(this.age);
+        } else {
+            --this.idleAnimTimeout;
+        }
+    }
     @Override
     public void tick() {
         if(getMagmaEaten() >= 10 && !getWorld().isClient()) {
@@ -175,6 +229,18 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
             setMagmaEaten(0);
         }
         super.tick();
+
+        if (this.getWorld().isClient()) {
+            if (this instanceof TadpoleRocket){
+                this.setupAnimationStatesTadpole();
+            } else {
+                this.setupAnimationStates();
+            }
+        }
+
+        Vec3d velocity = this.getVelocity();
+        float avgVelocity = (float)(Math.abs(velocity.x) + Math.abs(velocity.z) / 2f);
+        isMoving = avgVelocity >= 0.015f;
     }
 
     @Override
@@ -204,6 +270,24 @@ public abstract class ModFrog extends TameableEntity implements GeoAnimatable {
     @Override
     public EntityView method_48926() {
         return this.getWorld();
+    }
+
+    @Override
+    public boolean isAttacking() {
+        return dataTracker.get(ATTACKING);
+    }
+
+    @Override
+    public void setAttacking(boolean attacking) {
+        dataTracker.set(ATTACKING, attacking);
+    }
+
+    @Override
+    public boolean shouldRender(double distance) {
+        if(this instanceof TadpoleRocket) {
+            return distance < 40*40;
+        }
+        return distance < 52*52;
     }
 
     public class FrogLookControl extends LookControl {

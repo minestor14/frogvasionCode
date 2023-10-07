@@ -1,8 +1,11 @@
 package me.Minestor.frogvasion.datagen.customs;
 
 import me.Minestor.frogvasion.blocks.ModBlocks;
+import me.Minestor.frogvasion.items.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.block.Blocks;
+import net.minecraft.loot.condition.SurvivesExplosionLootCondition;
 
 public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
 
@@ -35,5 +38,15 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.FROG_STATUE);
         addDrop(ModBlocks.GOLDEN_FROG_STATUE);
         addDrop(ModBlocks.QUEST_BLOCK);
+        
+        addDrop(ModBlocks.KAURI_STAIRS);
+        addDrop(ModBlocks.RUBBER_STAIRS);
+        addDrop(ModBlocks.KAURI_SLAB, slabDrops(ModBlocks.KAURI_SLAB));
+        addDrop(ModBlocks.RUBBER_SLAB, slabDrops(ModBlocks.RUBBER_SLAB));
+
+        addDrop(ModBlocks.HONEY_FUNGUS, dropsWithShears(ModBlocks.HONEY_FUNGUS));
+        addDrop(ModBlocks.MUD_FARMLAND, Blocks.MUD);
+        addDrop(ModBlocks.SALI_TYSSE_CROP, cropDrops(ModBlocks.SALI_TYSSE_CROP, ModItems.SALI_TYSSE, ModItems.SALI_TYSSE_SEEDS, SurvivesExplosionLootCondition.builder()));
+        addDrop(ModBlocks.CHROMA_CLUMP);
     }
 }

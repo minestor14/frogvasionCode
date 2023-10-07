@@ -17,7 +17,7 @@ import net.minecraft.util.ActionResult;
 public class QuestCompletionEvent implements ServerQuestProgression.IQuestCompletionEvent {
     @Override
     public ActionResult interact(ServerPlayerEntity player, Quest quest) {
-        player.networkHandler.sendPacket(new OverlayMessageS2CPacket(Text.literal("Progress on quest: §l§aCOMPLETED")));
+        player.networkHandler.sendPacket(new OverlayMessageS2CPacket(Text.translatable("text.quest.completed")));
 
         player.playSound(ModSounds.QUEST_COMPLETED, SoundCategory.RECORDS, 1f, 1f);
 

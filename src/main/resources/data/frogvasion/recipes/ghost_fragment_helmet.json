@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "frogvasion:ghost_fragment_helmet"
-  }
+  },
+  "show_notification": true
 }

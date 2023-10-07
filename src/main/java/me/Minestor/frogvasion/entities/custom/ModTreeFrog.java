@@ -3,10 +3,10 @@ package me.Minestor.frogvasion.entities.custom;
 import me.Minestor.frogvasion.effects.ModEffects;
 import me.Minestor.frogvasion.sounds.ModSounds;
 import me.Minestor.frogvasion.util.entity.ModEntityGroups;
-import net.minecraft.entity.EntityGroup;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -14,16 +14,22 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.core.animation.Animation;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
 
 public abstract class ModTreeFrog extends PassiveEntity {
+    public static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(ModTreeFrog.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public boolean isMoving = false;
+    public final AnimationState moveAnimationState = new AnimationState();
+    public final AnimationState idleAnimationState = new AnimationState();
+    public final AnimationState jumpAnimationState = new AnimationState();
+    public final AnimationState attackAnimationState = new AnimationState();
+    private int idleAnimTimeout = 0;
+    private int moveAnimTimeout = 0;
+    private int attackAnimTimeout = 0;
     public World world;
     public ModTreeFrog(EntityType<? extends PassiveEntity> entityType, World world) {
         super(entityType, world);
@@ -34,27 +40,7 @@ public abstract class ModTreeFrog extends PassiveEntity {
     public EntityGroup getGroup() {
         return ModEntityGroups.TREEFROGS;
     }
-    PlayState predicate(AnimationState event) {
-        if(!this.isOnGround()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.tree_frog.jump", Animation.LoopType.HOLD_ON_LAST_FRAME));
-            return PlayState.CONTINUE;
-        }
-        if (event.isMoving()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.tree_frog.walking", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
-        event.getController().setAnimation(RawAnimation.begin().then("animation.tree_frog.idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
-    }
-
-    PlayState attackPredicate(AnimationState event) {
-        if(this.handSwinging) {
-            event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().then("animation.tree_frog.attack", Animation.LoopType.PLAY_ONCE));
-            this.handSwinging = false;
-        }
-        return PlayState.CONTINUE;
-    }
+    
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
@@ -84,5 +70,73 @@ public abstract class ModTreeFrog extends PassiveEntity {
     @Override
     public boolean canTarget(LivingEntity target) {
         return super.canTarget(target) && !target.hasStatusEffect(ModEffects.FROG_CAMOUFLAGE);
+    }
+    private void setupAnimationStates() {
+        if(!this.isOnGround() && !this.jumpAnimationState.isRunning()) {
+            this.jumpAnimationState.start(this.age);
+        } else if (this.isOnGround()) {
+            this.jumpAnimationState.stop();
+        }
+
+        if(this.isMoving && this.moveAnimTimeout <=0 && !this.jumpAnimationState.isRunning()) {
+            moveAnimTimeout = 38;
+            moveAnimationState.start(this.age);
+        } else {
+            --this.moveAnimTimeout;
+        }
+        if(!this.isMoving) {
+            moveAnimationState.stop();
+            this.moveAnimTimeout = 0;
+        }
+
+        if (this.idleAnimTimeout <= 0 && !this.moveAnimationState.isRunning() && !this.jumpAnimationState.isRunning()) {
+            this.idleAnimTimeout = this.random.nextInt(40) + 80;
+            this.idleAnimationState.start(this.age);
+        } else {
+            --this.idleAnimTimeout;
+        }
+
+        if(this.isAttacking() && this.attackAnimTimeout <=0) {
+            this.attackAnimTimeout = 5;
+            this.attackAnimationState.start(this.age);
+        } else {
+            --this.attackAnimTimeout;
+        }
+        if(!this.isAttacking()) {
+            this.attackAnimationState.stop();
+            this.attackAnimTimeout = 0;
+        }
+    }
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (this.getWorld().isClient()) {
+            this.setupAnimationStates();
+        }
+
+        Vec3d velocity = this.getVelocity();
+        float avgVelocity = (float)(Math.abs(velocity.x) + Math.abs(velocity.z) / 2f);
+        isMoving = avgVelocity >= 0.015f;
+    }
+
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(ATTACKING, false);
+    }
+    @Override
+    public boolean isAttacking() {
+        return dataTracker.get(ATTACKING);
+    }
+
+    @Override
+    public void setAttacking(boolean attacking) {
+        dataTracker.set(ATTACKING, attacking);
+    }
+
+    @Override
+    public boolean shouldRender(double distance) {
+        return distance < 52*52;
     }
 }

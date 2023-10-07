@@ -25,7 +25,7 @@ public class MailBoxBlockEntityRenderer implements BlockEntityRenderer<MailBoxBl
         final World world = entity.getWorld();
         final BlockPos pos = entity.getPos();
 
-        Text mail = Text.literal("You have mail!");
+        Text mail = Text.translatable("text.block.mailbox");
 
         if (!world.getBlockState(pos).isOf(Blocks.AIR) && world.getBlockState(pos).get(MailBoxBlock.MAIL) > 0) {
 

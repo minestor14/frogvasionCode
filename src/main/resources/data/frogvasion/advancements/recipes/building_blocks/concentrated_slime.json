@@ -30,5 +30,6 @@
     "recipes": [
       "minecraft:concentrated_slime"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

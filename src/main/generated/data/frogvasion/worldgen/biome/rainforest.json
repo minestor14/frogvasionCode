@@ -67,9 +67,7 @@
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper",
       "minecraft:underwater_magma",
-      "minecraft:disk_sand",
-      "minecraft:disk_clay",
-      "minecraft:disk_gravel"
+      "minecraft:disk_clay"
     ],
     [],
     [
@@ -78,12 +76,13 @@
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:bamboo_light",
+      "frogvasion:bromeliad_placed",
+      "frogvasion:orchid_placed",
       "minecraft:trees_sparse_jungle",
       "frogvasion:kauri_tree_placed",
       "frogvasion:rubber_tree_placed",
-      "frogvasion:bromeliad_placed",
-      "frogvasion:orchid_placed",
+      "minecraft:lush_caves_vegetation",
+      "minecraft:spore_blossom",
       "minecraft:trees_jungle",
       "minecraft:trees_savanna",
       "minecraft:trees_windswept_savanna",
@@ -91,8 +90,6 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
       "minecraft:vines",
-      "minecraft:lush_caves_vegetation",
-      "minecraft:spore_blossom",
       "minecraft:patch_melon_sparse"
     ]
   ],

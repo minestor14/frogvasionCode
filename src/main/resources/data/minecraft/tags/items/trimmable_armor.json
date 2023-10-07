@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "frogvasion:ghost_fragment_helmet",
+    "frogvasion:ghost_fragment_chestplate",
+    "frogvasion:ghost_fragment_leggings",
+    "frogvasion:ghost_fragment_boots"
+  ]
+}

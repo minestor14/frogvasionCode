@@ -35,7 +35,7 @@ public class ModEntitySpawning {
         BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY), SpawnGroup.MONSTER, ModEntities.NORMAL_TREE_FROG_ENTITY,15,1,3);
         SpawnRestriction.register(ModEntities.NORMAL_TREE_FROG_ENTITY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, NormalTreeFrog::isValidNaturalSpawn);
         //Gliding Tree Frog
-        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY), SpawnGroup.MONSTER, ModEntities.GLIDING_TREE_FROG_ENTITY,5,1,3);
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY).or(BiomeSelectors.includeByKey(ModBiomes.FROG_MARSH_KEY)), SpawnGroup.MONSTER, ModEntities.GLIDING_TREE_FROG_ENTITY,5,1,3);
         SpawnRestriction.register(ModEntities.GLIDING_TREE_FROG_ENTITY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GlidingTreeFrog::isValidNaturalSpawn);
     }
 }

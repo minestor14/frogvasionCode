@@ -1,8 +1,8 @@
 package me.Minestor.frogvasion.entities.custom;
 
-import me.Minestor.frogvasion.entities.Goals.ExplosiveFrogGoal;
-import me.Minestor.frogvasion.entities.Goals.FrogWanderJumpGoal;
 import me.Minestor.frogvasion.entities.ModEntities;
+import me.Minestor.frogvasion.entities.goals.ExplosiveFrogGoal;
+import me.Minestor.frogvasion.entities.goals.FrogWanderJumpGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -11,14 +11,8 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
 
-public class ExplosiveFrog extends ModFrog implements GeoEntity {
-    private final AnimatableInstanceCache factory = new SingletonAnimatableInstanceCache(this);
+public class ExplosiveFrog extends ModFrog{
     public ExplosiveFrog(EntityType<? extends TameableEntity> type,World world) {
         super(ModEntities.EXPLOSIVE_FROG_ENTITY, world);
     }
@@ -56,26 +50,5 @@ public class ExplosiveFrog extends ModFrog implements GeoEntity {
             this.discard();
         }
 
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller",0, this::predicate));
-        controllers.add(new AnimationController<>(this, "attackController",0, this::attackPredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return factory;
-    }
-    @Override
-    PlayState attackPredicate(AnimationState<ModFrog> event) {
-        if(this.handSwinging)
-        {
-            event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().then("animation.explosive_frog.attack", Animation.LoopType.PLAY_ONCE));
-            this.handSwinging = false;
-        }
-        return PlayState.CONTINUE;
     }
 }

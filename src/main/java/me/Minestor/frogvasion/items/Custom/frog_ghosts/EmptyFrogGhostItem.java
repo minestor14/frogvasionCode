@@ -4,6 +4,7 @@ import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.entities.custom.ModFrog;
 import me.Minestor.frogvasion.entities.custom.TadpoleRocket;
 import me.Minestor.frogvasion.items.ModItems;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
@@ -11,6 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -41,12 +43,15 @@ public class EmptyFrogGhostItem extends Item {
                 default -> user.giveItemStack(new ItemStack(ModItems.EMPTY_FROG_GHOST));
             }
         }
+        if(!user.getWorld().isClient){
+            Criteria.PLAYER_INTERACTED_WITH_ENTITY.trigger((ServerPlayerEntity) user, stack, entity);
+        }
         return super.useOnEntity(stack, user, entity, hand);
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()) {
-            tooltip.add(Text.literal("Right click on a hostile frog to copy the type of frog or use a conversion pedestal").formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable("text.item.empty_frog_ghost", Text.translatable("block.frogvasion.conversion_pedestal")).formatted(Formatting.AQUA));
         } else {
             tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
         }

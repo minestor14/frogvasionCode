@@ -13,7 +13,6 @@ import net.minecraft.util.math.Box;
 import java.util.Objects;
 
 public class FrogCamouflageEffect extends StatusEffect {
-
     int ticksLastForgive = 0;
     public FrogCamouflageEffect() {
         super(StatusEffectCategory.BENEFICIAL, 6768936);

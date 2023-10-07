@@ -1,6 +1,5 @@
 package me.Minestor.frogvasion.datagen.customs;
 
-import me.Minestor.frogvasion.Frogvasion;
 import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.items.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -11,10 +10,9 @@ import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -38,12 +36,24 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
 
         offerSmelting(exporter, List.of(ModItems.UNPROCESSED_RUBBER), RecipeCategory.MISC, ModItems.RUBBER, 2, 50, RecipeCategory.MISC.getName());
         offer2x2CompactingRecipe(exporter, RecipeCategory.MISC, ModItems.RUBBER, ModBlocks.SLIME_LAYER);
+        
+        offerShapelessRecipe(exporter, ModBlocks.RUBBER_PLANKS, ModBlocks.RUBBER_LOG, RecipeCategory.BUILDING_BLOCKS.getName(), 4);
+        offerShapelessRecipe(exporter, ModBlocks.KAURI_PLANKS, ModBlocks.KAURI_LOG, RecipeCategory.BUILDING_BLOCKS.getName(), 4);
+        offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.RUBBER_PLANKS, ModBlocks.RUBBER_SLAB);
+        offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.KAURI_PLANKS, ModBlocks.KAURI_SLAB);
+        createStairsRecipe(ModBlocks.RUBBER_STAIRS, Ingredient.ofItems(ModBlocks.RUBBER_PLANKS))
+                .criterion(RecipeProvider.hasItem(ModBlocks.RUBBER_PLANKS), RecipeProvider.conditionsFromItem(ModBlocks.RUBBER_PLANKS))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.RUBBER_STAIRS)));
+        createStairsRecipe(ModBlocks.KAURI_STAIRS, Ingredient.ofItems(ModBlocks.KAURI_PLANKS))
+                .criterion(RecipeProvider.hasItem(ModBlocks.KAURI_PLANKS), RecipeProvider.conditionsFromItem(ModBlocks.KAURI_PLANKS))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.KAURI_STAIRS)));
 
         offerSmelting(exporter, List.of(ModItems.RAW_FROGVASIUM, ModBlocks.FROGVASIUM_ORE, ModBlocks.DEEPSLATE_FROGVASIUM_ORE), RecipeCategory.MISC, ModItems.FROGVASIUM_INGOT, 1, 40, RecipeCategory.MISC.getName());
         offerBlasting(exporter, List.of(ModItems.RAW_FROGVASIUM, ModBlocks.FROGVASIUM_ORE, ModBlocks.DEEPSLATE_FROGVASIUM_ORE), RecipeCategory.MISC, ModItems.FROGVASIUM_INGOT, 1, 20, RecipeCategory.MISC.getName());
         offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.FROGVASIUM_NUGGET, RecipeCategory.MISC, ModItems.FROGVASIUM_INGOT);
         offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.FROGVASIUM_INGOT, RecipeCategory.MISC, ModBlocks.FROGVASIUM_BLOCK, "frogvasium_block_comp", RecipeCategory.MISC.getName(), "frogvasium_ingot_comp", RecipeCategory.MISC.getName());
         offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.RAW_FROGVASIUM, RecipeCategory.MISC, ModBlocks.RAW_FROGVASIUM_BLOCK);
+        offerShapelessRecipe(exporter, ModItems.SALI_TYSSE_SEEDS, ModItems.SALI_TYSSE, RecipeCategory.FOOD.getName(), 3);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CONVERSION_PEDESTAL)
                 .pattern("###")
@@ -177,9 +187,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         offerBarkBlockRecipe(exporter, ModBlocks.STRIPPED_RUBBER_WOOD, ModBlocks.STRIPPED_RUBBER_LOG);
         offerBarkBlockRecipe(exporter, ModBlocks.KAURI_WOOD, ModBlocks.KAURI_LOG);
         offerBarkBlockRecipe(exporter, ModBlocks.STRIPPED_KAURI_WOOD, ModBlocks.STRIPPED_KAURI_LOG);
-        
-        offerPlanksRecipe(exporter, ModBlocks.RUBBER_PLANKS, TagKey.of(RegistryKeys.ITEM, new Identifier(Frogvasion.MOD_ID, "rubber_logs")), 4);
-        offerPlanksRecipe(exporter, ModBlocks.KAURI_PLANKS, TagKey.of(RegistryKeys.ITEM, new Identifier(Frogvasion.MOD_ID, "kauri_logs")), 4);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RUBBER_EXTRACTOR)
                 .pattern("#?#")
@@ -195,5 +202,12 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('#', ModItems.FROGVASIUM_INGOT).input('!', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE).input('?', ModItems.RUBBER)
                 .criterion(RecipeProvider.hasItem(ModItems.FROGVASIUM_INGOT), RecipeProvider.conditionsFromItem(ModItems.FROGVASIUM_INGOT))
                 .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.QUEST_BLOCK)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHROMA_CLUMP)
+                .pattern("###")
+                .pattern("#!#")
+                .pattern("###")
+                .input('#', ModItems.SALI_TYSSE_SEEDS).input('!', Items.IRON_INGOT)
+                .criterion(RecipeProvider.hasItem(Items.IRON_INGOT), RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.CHROMA_CLUMP)));
     }
 }

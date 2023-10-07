@@ -158,9 +158,8 @@ public class QuestBlockScreen extends HandledScreen<QuestBlockScreenHandler> {
             boolean bl = data != null && (!data.isActive() || data.isEmpty());
 
             this.setEnabled(data == null || bl);
-            Tooltip accept = Tooltip.of(Text.literal("§aClick to accept this quest!" +
-                    "\n§4§lDURING A QUEST, NO ITEMS FROM THE SPECIFIED BLOCK OR MOB WILL BE DROPPED. SAME WITH CRAFTING THE QUEST ITEM"));
-            Tooltip accepted = Tooltip.of(Text.literal("You haven't finished this quest yet!"));
+            Tooltip accept = Tooltip.of(Text.translatable("text.quest.button.accept"));
+            Tooltip accepted = Tooltip.of(Text.translatable("text.quest.button.accepted"));
 
             this.setTooltip(bl ? accept : accepted);
         }
@@ -170,7 +169,7 @@ public class QuestBlockScreen extends HandledScreen<QuestBlockScreenHandler> {
         public CancelButtonWidget(int x, int y) {
             super(x, y, 112, 220, ScreenTexts.CANCEL);
 
-            this.setTooltip(Tooltip.of(Text.literal("§aClick to clear this quest!\n§4§lYOU WILL NOT GET ANY REWARDS FOR CANCELLING")));
+            this.setTooltip(Tooltip.of(Text.translatable("text.quest.button.cancel")));
         }
 
         public void onPress() {

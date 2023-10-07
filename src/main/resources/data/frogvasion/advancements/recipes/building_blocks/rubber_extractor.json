@@ -30,5 +30,6 @@
     "recipes": [
       "minecraft:rubber_extractor"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

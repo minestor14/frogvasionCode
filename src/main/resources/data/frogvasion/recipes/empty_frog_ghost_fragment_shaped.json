@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "frogvasion:empty_frog_ghost_fragment"
-  }
+  },
+  "show_notification": true
 }

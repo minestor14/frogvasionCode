@@ -35,8 +35,8 @@ public class AddressCardItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()) {
-            tooltip.add(Text.literal("Right click a Mailbox to set a location").formatted(Formatting.AQUA));
-            tooltip.add(Text.literal("Right click on an ender frog to send this letter to the Mailbox").formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable("text.item.address_card1", Text.translatable("block.frogvasion.mailbox")).formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable("text.item.address_card2", Text.translatable("entity.frogvasion.ender_frog"), Text.translatable("block.frogvasion.mailbox")).formatted(Formatting.AQUA));
         } else {
             tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
         }
@@ -52,7 +52,7 @@ public class AddressCardItem extends Item {
             BlockPos pos = context.getBlockPos();
             ItemStack stack = context.getStack();
 
-            NbtCompound nbt = new NbtCompound();
+            NbtCompound nbt = stack.getOrCreateNbt();
             nbt.putInt("x", pos.getX());
             nbt.putInt("y", pos.getY());
             nbt.putInt("z", pos.getZ());
@@ -60,11 +60,11 @@ public class AddressCardItem extends Item {
 
             ServerPlayerEntity sp = (ServerPlayerEntity) context.getPlayer();
             int s = sp.getInventory().selectedSlot;
-            sp.getInventory().setStack(s,stack);
+            sp.getInventory().setStack(s, stack);
 
             String name = Objects.equals(sp.getActiveItem().getName().getString(), "Air") ? Text.translatable("item.frogvasion.address_card").getString() : sp.getActiveItem().getName().getString();
             sp.networkHandler.sendPacket(
-                    new OverlayMessageS2CPacket(Text.literal("Bound " + name + " to §b" + pos.toShortString()))
+                    new OverlayMessageS2CPacket(Text.translatable("text.item.address_card3", name , pos.toShortString()))
             );
         }
         return super.useOnBlock(context);
@@ -86,15 +86,15 @@ public class AddressCardItem extends Item {
                         entity.discard();
                         stack.decrement(1);
                     } else {
-                        user.sendMessage(Text.literal("The mailbox of that location is full!").formatted(Formatting.RED));
+                        user.sendMessage(Text.translatable("text.item.address_card4").formatted(Formatting.RED));
                     }
                 }
             } else {
-                user.sendMessage(Text.literal("No valid mailbox at set location!").formatted(Formatting.RED));
+                user.sendMessage(Text.translatable("text.item.address_card5").formatted(Formatting.RED));
             }
 
         } else {
-            user.sendMessage(Text.literal("Destination not set!").formatted(Formatting.RED));
+            user.sendMessage(Text.translatable("text.item.address_card6").formatted(Formatting.RED));
         }
         return super.useOnEntity(stack, user, entity, hand);
     }

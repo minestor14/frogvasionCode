@@ -39,7 +39,8 @@ public class RubberExtractorBlock extends Block {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()) {
-            tooltip.add(Text.literal("Place this block under a Rubber Log/Wood to generate Unprocessed Rubber").formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable("text.block.rubber_extractor", Text.translatable("block.frogvasion.rubber_log")
+                    , Text.translatable("block.frogvasion.rubber_wood"), Text.translatable("item.frogvasion.unprocessed_rubber")).formatted(Formatting.AQUA));
         } else {
             tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
         }

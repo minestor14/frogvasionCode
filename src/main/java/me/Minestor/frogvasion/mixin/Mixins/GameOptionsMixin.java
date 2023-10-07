@@ -22,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -39,7 +40,9 @@ import static me.Minestor.frogvasion.Frogvasion.LOGGER;
 @Mixin(GameOptions.class)
 //stole most of this code from GameOptions.class
 public abstract class GameOptionsMixin {
+    @Unique
     private static final Gson GSON = new Gson();
+    @Unique
     private File frogvasionOptionsFile;
     @Shadow @Final private static Splitter COLON_SPLITTER;
     @Shadow protected abstract NbtCompound update(NbtCompound nbt);
@@ -49,6 +52,7 @@ public abstract class GameOptionsMixin {
     public void accept(FrogvasionGameOptions.Visitor visitor) {
         visitor.accept("frog_volume", FrogvasionGameOptions.FROG_VOLUME);
         visitor.accept("croak_density", FrogvasionGameOptions.CROAK_DENSITY);
+        visitor.accept("silly_mode", FrogvasionGameOptions.SILLY_MODE);
     }
 
     @Inject(method = "load", at = @At("TAIL"), cancellable = true)

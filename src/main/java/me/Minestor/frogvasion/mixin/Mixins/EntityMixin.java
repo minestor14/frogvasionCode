@@ -18,22 +18,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput {
-    @Shadow public World world;
     @Shadow public abstract BlockPos getBlockPos();
     @Shadow public abstract Vec3d getVelocity();
     @Shadow public abstract float getYaw();
     @Shadow public abstract float getPitch();
-
     @Shadow public abstract double getX();
-
     @Shadow public abstract double getY();
-
     @Shadow public abstract double getZ();
+    @Shadow public abstract World getWorld();
 
     @Inject(method = "getTeleportTarget", at = @At("HEAD"), cancellable = true)
     public void getTeleportTarget(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> cir) {
-        if(destination.getRegistryKey() == ModDimensions.GREENWOOD_DIMENSION_KEY || this.world.getRegistryKey() == ModDimensions.GREENWOOD_DIMENSION_KEY) {
-
+        if(destination.getRegistryKey() == ModDimensions.GREENWOOD_DIMENSION_KEY || this.getWorld().getRegistryKey() == ModDimensions.GREENWOOD_DIMENSION_KEY) {
             cir.setReturnValue(new TeleportTarget(new Vec3d(this.getX(),this.getY(),this.getZ()), this.getVelocity(),this.getYaw(), this.getPitch()));
         }
     }

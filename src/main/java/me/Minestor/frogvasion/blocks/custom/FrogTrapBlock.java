@@ -3,6 +3,7 @@ package me.Minestor.frogvasion.blocks.custom;
 import me.Minestor.frogvasion.blocks.entity.FrogTrapBlockEntity;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import me.Minestor.frogvasion.entities.custom.ModFrog;
+import me.Minestor.frogvasion.util.entity.ModDamageSources;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -64,9 +65,9 @@ public class FrogTrapBlock extends BlockWithEntity implements BlockEntityProvide
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         if(!entity.bypassesSteppingEffects() && entity instanceof ModFrog mf && !mf.isDead() && !world.isClient) {
-            entity.kill();
+            entity.damage(world.getDamageSources().create(ModDamageSources.FROGVASIUM_ATTACK_KEY), 5f);
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof FrogTrapBlockEntity be) {
+            if (blockEntity instanceof FrogTrapBlockEntity be && mf.isDead()) {
                 be.decreaseSlimeballs(1);
             }
         }

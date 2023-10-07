@@ -27,5 +27,6 @@ public class ModPotions {
     }
     private static void registerPotionRecipes() {
         BrewingRecipeRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.ENHANCED_MUTAGEN, ModPotions.IMPROVER_POTION);
+        BrewingRecipeRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.FROG_LEGS, Potions.LEAPING);
     }
 }

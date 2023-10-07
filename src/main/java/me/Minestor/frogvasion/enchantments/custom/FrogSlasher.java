@@ -13,7 +13,7 @@ import net.minecraft.item.SwordItem;
 
 public class FrogSlasher extends DamageEnchantment {
     public FrogSlasher() {
-        super(Rarity.UNCOMMON, 3, EquipmentSlot.MAINHAND);
+        super(Rarity.UNCOMMON, 1, EquipmentSlot.MAINHAND);
     }
 
     @Override

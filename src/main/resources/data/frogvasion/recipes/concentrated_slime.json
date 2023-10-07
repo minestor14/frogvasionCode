@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "frogvasion:concentrated_slime"
-  }
+  },
+  "show_notification": true
 }

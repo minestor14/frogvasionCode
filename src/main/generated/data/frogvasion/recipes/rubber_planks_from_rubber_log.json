@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "building_blocks",
+  "ingredients": [
+    {
+      "item": "frogvasion:rubber_log"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "frogvasion:rubber_planks"
+  }
+}

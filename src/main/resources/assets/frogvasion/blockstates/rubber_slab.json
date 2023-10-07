@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frogvasion:block/rubber_slab"
+    },
+    "type=double": {
+      "model": "frogvasion:block/rubber_planks"
+    },
+    "type=top": {
+      "model": "frogvasion:block/rubber_slab_top"
+    }
+  }
+}

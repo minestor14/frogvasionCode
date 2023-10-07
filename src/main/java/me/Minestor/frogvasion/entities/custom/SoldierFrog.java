@@ -1,8 +1,8 @@
 package me.Minestor.frogvasion.entities.custom;
 
-import me.Minestor.frogvasion.entities.Goals.FrogAttackGoal;
-import me.Minestor.frogvasion.entities.Goals.FrogWanderJumpGoal;
 import me.Minestor.frogvasion.entities.ModEntities;
+import me.Minestor.frogvasion.entities.goals.FrogAttackGoal;
+import me.Minestor.frogvasion.entities.goals.FrogWanderJumpGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -15,15 +15,8 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
 
-public class SoldierFrog extends ModFrog implements GeoEntity {
-    private final AnimatableInstanceCache factory = new SingletonAnimatableInstanceCache(this);
-
+public class SoldierFrog extends ModFrog{
     public SoldierFrog(EntityType<? extends TameableEntity> type, World world) {
         super(ModEntities.SOLDIER_FROG_ENTITY, world);
         this.lookControl = new FrogLookControl(this);
@@ -57,18 +50,6 @@ public class SoldierFrog extends ModFrog implements GeoEntity {
         this.targetSelector.add(6, new ActiveTargetGoal<>(this, MagmaCubeEntity.class, true));
 
     }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller",0, this::predicate));
-        controllers.add(new AnimationController<>(this, "attackController",0, this::attackPredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return factory;
-    }
-
     @Override
     public void onDeath(DamageSource damageSource) {
         super.onDeath(damageSource);

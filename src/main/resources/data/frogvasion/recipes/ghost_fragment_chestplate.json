@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "frogvasion:ghost_fragment_chestplate"
-  }
+  },
+  "show_notification": true
 }

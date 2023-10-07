@@ -43,5 +43,6 @@
     "recipes": [
       "minecraft:mailbox"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "frogvasion:frogvasium_grappler"
-  }
+  },
+  "show_notification": true
 }

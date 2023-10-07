@@ -1,0 +1,70 @@
+{
+  "parent": "frogvasion:frogvasion/ghost_science",
+  "criteria": {
+    "frog_ghost": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "nbt": "{Infused:0b}"
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "frogvasion:empty_frog_ghost"
+          ]
+        }
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
+    },
+    "frog_ghost_inf": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "nbt": "{Infused:1b}"
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "frogvasion:empty_frog_ghost"
+          ]
+        }
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "text.frogvasion.advancement.description.frog_photocopy",
+      "with": [
+        {
+          "translate": "item.frogvasion.empty_frog_ghost"
+        }
+      ]
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:empty_frog_ghost"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "text.frogvasion.advancement.title.frog_photocopy"
+    }
+  },
+  "requirements": [
+    [
+      "frog_ghost",
+      "frog_ghost_inf"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

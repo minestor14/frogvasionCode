@@ -4,6 +4,7 @@ import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.*;
 import me.Minestor.frogvasion.worldgen.dimension.ModDimensions;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
@@ -32,7 +33,12 @@ public abstract class ModFrogGhostItem extends Item {
 
     private static void onDestroyed(ItemEntity entity, ServerWorld world, ModFrog frog) {
         if(entity.getBlockStateAtPos().isOf(ModBlocks.FROG_FLAME) && (world.getRegistryKey() == ModDimensions.GREENWOOD_DIMENSION_KEY || world.getRegistryKey() == World.OVERWORLD)) {
-            entity.getWorld().setBlockState(entity.getBlockPos(), ModBlocks.GREENWOOD_PORTAL.getDefaultState());
+            if(entity.getBlockPos().getY() >= 2 && entity.getBlockPos().getY() <=255){
+                entity.getWorld().setBlockState(entity.getBlockPos(), ModBlocks.GREENWOOD_PORTAL.getDefaultState());
+            } else {
+                entity.getWorld().setBlockState(entity.getBlockPos(), Blocks.AIR.getDefaultState());
+                if(entity.getOwner() != null) entity.getOwner().sendMessage(Text.translatable("text.block.warning_greenwood_portal").formatted(Formatting.RED));
+            }
         } else {
             frog.setPosition(entity.getPos());
             frog.setVelocity(new Vec3d(world.random.nextBoolean() ? world.random.nextFloat() / 2 : -world.random.nextFloat() / 2, 0.5, world.random.nextBoolean() ? world.random.nextFloat() / 2 : -world.random.nextFloat() / 2));
@@ -44,7 +50,7 @@ public abstract class ModFrogGhostItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()) {
-            tooltip.add(Text.literal("Right click on a minecraft frog to tame and convert it to this type of frog").formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable("text.item.frog_ghost").formatted(Formatting.AQUA));
         } else {
             tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
         }

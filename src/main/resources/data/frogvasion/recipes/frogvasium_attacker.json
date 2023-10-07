@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "frogvasion:frogvasium_attacker"
-  }
+  },
+  "show_notification": true
 }

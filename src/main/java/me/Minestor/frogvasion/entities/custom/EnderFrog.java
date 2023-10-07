@@ -1,8 +1,8 @@
 package me.Minestor.frogvasion.entities.custom;
 
-import me.Minestor.frogvasion.entities.Goals.EnderFrogAttackGoal;
-import me.Minestor.frogvasion.entities.Goals.FrogWanderJumpGoal;
 import me.Minestor.frogvasion.entities.ModEntities;
+import me.Minestor.frogvasion.entities.goals.EnderFrogAttackGoal;
+import me.Minestor.frogvasion.entities.goals.FrogWanderJumpGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
@@ -16,14 +16,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
 
-public class EnderFrog extends ModFrog implements GeoEntity {
-    private final AnimatableInstanceCache factory = new SingletonAnimatableInstanceCache(this);
+public class EnderFrog extends ModFrog{
 
     public EnderFrog(EntityType<? extends TameableEntity> entityType, World world) {
         super(ModEntities.ENDER_FROG_ENTITY, world);
@@ -33,11 +27,6 @@ public class EnderFrog extends ModFrog implements GeoEntity {
     @Override
     public FrogTypes getFrogType() {
         return FrogTypes.ENDER;
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return factory;
     }
 
     public static DefaultAttributeContainer.Builder setAttributes() {
@@ -60,12 +49,6 @@ public class EnderFrog extends ModFrog implements GeoEntity {
         this.targetSelector.add(4, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.add(5, new ActiveTargetGoal<>(this, SlimeEntity.class, true));
         this.targetSelector.add(6, new ActiveTargetGoal<>(this, MagmaCubeEntity.class, true));
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
-        controllers.add(new AnimationController<>(this, "attackController",0, this::attackPredicate));
     }
 
     @Override

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "frogvasion:block/kauri_planks",
+    "side": "frogvasion:block/kauri_planks",
+    "top": "frogvasion:block/kauri_planks"
+  }
+}

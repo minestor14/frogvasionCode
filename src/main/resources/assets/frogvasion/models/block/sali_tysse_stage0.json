@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/crop",
+    "textures": {
+        "crop": "frogvasion:block/sali_tysse_stage0"
+    }
+}

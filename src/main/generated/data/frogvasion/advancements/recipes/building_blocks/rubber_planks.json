@@ -1,11 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_logs": {
+    "has_rubber_slab": {
       "conditions": {
         "items": [
           {
-            "tag": "frogvasion:rubber_logs"
+            "items": [
+              "frogvasion:rubber_slab"
+            ]
           }
         ]
       },
@@ -20,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_logs",
+      "has_rubber_slab",
       "has_the_recipe"
     ]
   ],

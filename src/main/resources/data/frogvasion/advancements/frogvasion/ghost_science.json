@@ -1,0 +1,43 @@
+{
+  "parent": "frogvasion:frogvasion/root",
+  "criteria": {
+    "empty_frog_ghost_fragment": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:empty_frog_ghost_fragment"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "text.frogvasion.advancement.description.ghost_science",
+      "with": [
+        {
+          "translate": "item.frogvasion.empty_frog_ghost_fragment"
+        }
+      ]
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:empty_frog_ghost_fragment"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "text.frogvasion.advancement.title.ghost_science"
+    }
+  },
+  "requirements": [
+    [
+      "empty_frog_ghost_fragment"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

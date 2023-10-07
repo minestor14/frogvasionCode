@@ -1,0 +1,84 @@
+{
+  "parent": "frogvasion:frogvasion/ghost_science",
+  "criteria": {
+    "boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:ghost_fragment_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:ghost_fragment_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:ghost_fragment_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:ghost_fragment_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "text.frogvasion.advancement.description.ghost_style"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:ghost_fragment_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "text.frogvasion.advancement.title.ghost_style"
+    }
+  },
+  "requirements": [
+    [
+      "helmet"
+    ],
+    [
+      "chestplate"
+    ],
+    [
+      "leggings"
+    ],
+    [
+      "boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -71,11 +71,11 @@ public class CombatFrogStaff extends FrogStaffItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()) {
-            tooltip.add(Text.literal("Use to deal damage, sneak for maximum damage").formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable("text.item.combat_frog_staff").formatted(Formatting.AQUA));
         } else {
             tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
         }
-        tooltip.add(Text.literal("Recharge this staff with clicking frog-drops on this item in the inventory").formatted(Formatting.GOLD));
+        tooltip.add(Text.translatable("text.item.frog_staff6").formatted(Formatting.GOLD));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }

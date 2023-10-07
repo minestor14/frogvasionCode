@@ -1,8 +1,8 @@
 package me.Minestor.frogvasion.entities.custom;
 
-import me.Minestor.frogvasion.entities.Goals.FrogWanderJumpGoal;
-import me.Minestor.frogvasion.entities.Goals.IceFrogGoal;
 import me.Minestor.frogvasion.entities.ModEntities;
+import me.Minestor.frogvasion.entities.goals.FrogWanderJumpGoal;
+import me.Minestor.frogvasion.entities.goals.IceFrogGoal;
 import me.Minestor.frogvasion.items.Custom.IceSpikeItemEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -25,15 +25,8 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.event.GameEvent;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
 
-public class IceFrog extends ModFrog implements GeoEntity {
-
-    private final AnimatableInstanceCache factory = new SingletonAnimatableInstanceCache(this);
+public class IceFrog extends ModFrog{
     public IceFrog(EntityType<? extends TameableEntity> entityType, World world) {
         super(ModEntities.ICE_FROG_ENTITY, world);
     }
@@ -63,17 +56,6 @@ public class IceFrog extends ModFrog implements GeoEntity {
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 7.0)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4d);
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller",0, this::predicate));
-        controllers.add(new AnimationController<>(this, "attackController",0, this::attackPredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return factory;
     }
     public void launchToTarget() {
         IceSpikeItemEntity iceSpikeItemEntity = new IceSpikeItemEntity(this, world);

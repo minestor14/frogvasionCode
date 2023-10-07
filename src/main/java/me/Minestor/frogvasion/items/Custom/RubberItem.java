@@ -4,6 +4,7 @@ import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.effects.potion.ModPotions;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.items.ModItems;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
@@ -31,10 +32,11 @@ public class RubberItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()) {
-            tooltip.add(Text.literal("Right-click a ").append(Text.translatable("entity.frogvasion.normal_tree_frog"))
-                    .append(" with 64 ").append(Text.translatable("item.frogvasion.rubber")).append(" to get something special!").formatted(Formatting.AQUA));
-            tooltip.add(Text.literal("Use in an anvil to repair an elytra").formatted(Formatting.AQUA));
-            tooltip.add(Text.literal("Also used for lighting a Greenwood Portal"));
+            tooltip.add(Text.translatable("text.item.rubber1", Text.translatable("entity.frogvasion.normal_tree_frog"),
+                    Text.translatable("item.frogvasion.rubber")).formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable("text.item.rubber2", Text.translatable("block.minecraft.anvil"),
+                    Text.translatable("item.minecraft.elytra")).formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable("text.item.rubber3", Text.translatable("block.frogvasion.greenwood_portal")));
         } else {
             tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
         }
@@ -61,7 +63,12 @@ public class RubberItem extends Item {
     @Override
     public void onItemEntityDestroyed(ItemEntity entity) {
         if(entity.getBlockStateAtPos().isOf(ModBlocks.FROG_FLAME)) {
-            entity.getWorld().setBlockState(entity.getBlockPos(), ModBlocks.GREENWOOD_PORTAL.getDefaultState());
+            if(entity.getBlockPos().getY() >= 2 && entity.getBlockPos().getY() <=255){
+                entity.getWorld().setBlockState(entity.getBlockPos(), ModBlocks.GREENWOOD_PORTAL.getDefaultState());
+            } else {
+                entity.getWorld().setBlockState(entity.getBlockPos(), Blocks.AIR.getDefaultState());
+                if(entity.getOwner() != null) entity.getOwner().sendMessage(Text.translatable("text.block.warning_greenwood_portal").formatted(Formatting.RED));
+            }
         }
         super.onItemEntityDestroyed(entity);
     }

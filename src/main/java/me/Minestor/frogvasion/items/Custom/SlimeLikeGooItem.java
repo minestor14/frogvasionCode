@@ -20,7 +20,7 @@ public class SlimeLikeGooItem extends BlockItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()) {
-            tooltip.add(Text.literal("Place on the top of a block to make it sticky and slowing").formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable("text.block.slime_layer").formatted(Formatting.AQUA));
         } else {
             tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
         }

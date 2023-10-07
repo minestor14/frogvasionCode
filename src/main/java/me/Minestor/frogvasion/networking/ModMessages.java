@@ -19,7 +19,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
@@ -51,7 +50,6 @@ public class ModMessages {
             ServerQuestProgression.IQuestProgressionEvent.PROGRESS.invoker().interact(player, quest);
         });
 
-
         ServerPlayNetworking.registerGlobalReceiver(ModMessages.REQUEST_QUEST, (server, player, handler, buf, responseSender) -> {
             if(QuestDataManager.getData((IEntityDataSaver) player) != null){
                 ServerPlayNetworking.send(player, ModMessages.UPDATE_QUEST_S2C, UpdateQuestPacket.createUpdate(QuestDataManager.getQuest((IEntityDataSaver) player)));
@@ -65,7 +63,6 @@ public class ModMessages {
             BlockPos pos = buf.readBlockPos();
             FrogTrapRenderer.map.put(pos.toString(), amount);
         });
-
 
         ClientPlayNetworking.registerGlobalReceiver(ModMessages.UPDATE_QUEST_S2C, (client, handler, buf, responseSender) -> {
             int amount = buf.readByte();

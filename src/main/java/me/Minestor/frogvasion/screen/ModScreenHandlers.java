@@ -10,4 +10,5 @@ public class ModScreenHandlers {
         CONVERSION_PEDESTAL_SCREEN_HANDLER = new ScreenHandlerType<>(ConversionPedestalScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
         QUEST_BLOCK_SCREEN_HANDLER = new ScreenHandlerType<>(QuestBlockScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
     }
+    //todo fix this shit
 }

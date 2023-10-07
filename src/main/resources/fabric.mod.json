@@ -39,6 +39,6 @@
     "java": ">=17"
   },
   "suggests": {
-    "another-mod": "GeckoLib4.2"
+    "another-mod": ""
   }
 }

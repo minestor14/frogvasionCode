@@ -1,11 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_logs": {
+    "has_kauri_slab": {
       "conditions": {
         "items": [
           {
-            "tag": "frogvasion:kauri_logs"
+            "items": [
+              "frogvasion:kauri_slab"
+            ]
           }
         ]
       },
@@ -20,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_logs",
+      "has_kauri_slab",
       "has_the_recipe"
     ]
   ],
@@ -28,5 +30,6 @@
     "recipes": [
       "frogvasion:kauri_planks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

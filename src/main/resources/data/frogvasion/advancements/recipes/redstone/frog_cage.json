@@ -30,5 +30,6 @@
     "recipes": [
       "minecraft:frog_cage"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

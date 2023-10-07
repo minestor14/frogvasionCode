@@ -15,5 +15,6 @@
   ],
   "result": {
     "item": "frogvasion:mailbox"
-  }
+  },
+  "show_notification": true
 }

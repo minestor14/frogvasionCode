@@ -25,7 +25,7 @@ public class FrogStatueBlock extends FallingBlock {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()) {
-            tooltip.add(Text.literal("Given as a reward for completing a quest.").formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable("text.block.frog_statue").formatted(Formatting.AQUA));
 
         } else {
             tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));

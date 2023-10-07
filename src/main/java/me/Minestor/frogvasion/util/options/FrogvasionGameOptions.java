@@ -14,19 +14,26 @@ import static net.minecraft.client.option.GameOptions.getGenericValueText;
 public class FrogvasionGameOptions {
     public static final SimpleOption<Double> FROG_VOLUME = createSoundVolumeOption("frog_volume");
     public static final SimpleOption<Integer> CROAK_DENSITY = createAmountCroaks("croak_density");
+    public static final SimpleOption<Boolean> SILLY_MODE = createSillyMode("silly_mode");
     public static SimpleOption<Double> createSoundVolumeOption(String key) {
-        return new SimpleOption<>(key, SimpleOption.constantTooltip(Text.literal("Adjusts the volume of the sounds made by the mod Frogvasion. \nThanks to lil_potacho for recommending this feature.")),
+        return new SimpleOption<>(key, SimpleOption.constantTooltip(Text.translatable("text.options.frogvasion.frog_volume_tt")),
                 (prefix, value) ->
                         value == 0.0 ? getGenericValueText(prefix, ScreenTexts.OFF) : getPercentValueText(prefix, value),
                 SimpleOption.DoubleSliderCallbacks.INSTANCE, 1.0,
                 (value) -> MinecraftClient.getInstance().getSoundManager().reloadSounds());
     }
     public static SimpleOption<Integer> createAmountCroaks(String key) {
-        return new SimpleOption<>(key, SimpleOption.constantTooltip(Text.literal("Controls how often a frog croaks: 10 is normal, 0 is never")),
+        return new SimpleOption<>(key, SimpleOption.constantTooltip(Text.translatable("text.options.frogvasion.croak_density_tt")),
                 (optionText, value) ->
                         getGenericValueText(optionText, Text.translatable("text.options.frogvasion.croak_density", value)),
                 new SimpleOption.ValidatingIntSliderCallbacks(0, 10), 10,
                 (value) -> MinecraftClient.getInstance().getSoundManager().reloadSounds());
+    }
+    public static SimpleOption<Boolean> createSillyMode(String key) {
+        return SimpleOption.ofBoolean(key, SimpleOption.constantTooltip(Text.translatable("text.options.frogvasion.silly_mode_tt")),
+                (optionText, value) ->
+                        getGenericValueText(optionText, Text.translatable("text.options.frogvasion.silly_mode", value ? "§5§lOn" : "Off")),false,
+                (value) -> MinecraftClient.getInstance().worldRenderer.reload());
     }
     public static Text getPercentValueText(Text prefix, double value) {
         return Text.translatable("options.percent_value", prefix, (int)(value * 100.0));
@@ -42,6 +49,9 @@ public class FrogvasionGameOptions {
     }
     public static int getCroakDensity() {
         return CROAK_DENSITY.getValue();
+    }
+    public static boolean getSillyMode() {
+        return SILLY_MODE.getValue();
     }
 
     @Environment(EnvType.CLIENT)

@@ -11,14 +11,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
 
-public class TadpoleRocket extends ModFrog implements GeoEntity {
-    private final AnimatableInstanceCache factory = new SingletonAnimatableInstanceCache(this);
+public class TadpoleRocket extends ModFrog{
     public TadpoleRocket(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
 
@@ -28,26 +22,6 @@ public class TadpoleRocket extends ModFrog implements GeoEntity {
     public FrogTypes getFrogType() {
         return FrogTypes.TADPOLE_ROCKET;
     }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller",0, this::predicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return factory;
-    }
-    @Override
-    PlayState predicate(AnimationState event) {
-        if (event.isMoving()) {
-            event.getController().setAnimation((RawAnimation.begin().then("animation.tadpole_rocket.flying", Animation.LoopType.LOOP)));
-            return PlayState.CONTINUE;
-        }
-        event.getController().setAnimation((RawAnimation.begin().then("animation.tadpole_rocket.idle", Animation.LoopType.LOOP)));
-        return PlayState.CONTINUE;
-    }
-
     public static DefaultAttributeContainer.Builder setAttributes() {
         return TameableEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4)
@@ -92,7 +66,7 @@ public class TadpoleRocket extends ModFrog implements GeoEntity {
     public void tick() {
         super.tick();
         if(this.age >= 6000 && !this.hasCustomName()) {
-            this.dead =true;
+            this.dead = true;
             this.discard();
         }
     }

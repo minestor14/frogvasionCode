@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "frogvasion:rubber"
-  }
+  },
+  "show_notification": true
 }

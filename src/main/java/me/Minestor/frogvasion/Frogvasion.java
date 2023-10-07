@@ -14,15 +14,17 @@ import me.Minestor.frogvasion.recipe.ModRecipes;
 import me.Minestor.frogvasion.screen.ModScreenHandlers;
 import me.Minestor.frogvasion.sounds.ModSounds;
 import me.Minestor.frogvasion.util.armor.ModArmorMaterials;
-import me.Minestor.frogvasion.util.blocks.ModFlammables;
 import me.Minestor.frogvasion.util.entity.ModDamageSources;
 import me.Minestor.frogvasion.util.entity.ModEntityGroups;
 import me.Minestor.frogvasion.util.items.ModItemGroups;
 import me.Minestor.frogvasion.util.items.ModLootTableModifiers;
+import me.Minestor.frogvasion.util.items.ModMiscItemAndBlockModifiers;
 import me.Minestor.frogvasion.util.items.ModThrowables;
 import me.Minestor.frogvasion.util.quest.ServerQuestProgression;
+import me.Minestor.frogvasion.villager.ModVillagers;
+import me.Minestor.frogvasion.worldgen.biomes.ModBiomes;
 import me.Minestor.frogvasion.worldgen.dimension.ModDimensions;
-import me.Minestor.frogvasion.worldgen.features.ModFeaturesPlacing;
+import me.Minestor.frogvasion.worldgen.features.ModPlacedFeatures;
 import me.Minestor.frogvasion.worldgen.spawing.ModEntitySpawning;
 import me.Minestor.frogvasion.worldgen.structures.ModStructures;
 import me.Minestor.frogvasion.worldgen.tree.ModTreeGeneration;
@@ -30,10 +32,8 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import software.bernie.geckolib.GeckoLib;
 
 public class Frogvasion implements ModInitializer {
 	public static final String MOD_ID = "frogvasion";
@@ -51,13 +51,10 @@ public class Frogvasion implements ModInitializer {
 		ModThrowables.registerThrowables();
 
 		ModBlocks.registerModBlocks();
-		StrippableBlockRegistry.register(ModBlocks.RUBBER_LOG, ModBlocks.STRIPPED_RUBBER_LOG);
-		StrippableBlockRegistry.register(ModBlocks.RUBBER_WOOD, ModBlocks.STRIPPED_RUBBER_WOOD);
-		StrippableBlockRegistry.register(ModBlocks.KAURI_LOG, ModBlocks.STRIPPED_KAURI_LOG);
-		StrippableBlockRegistry.register(ModBlocks.KAURI_WOOD, ModBlocks.STRIPPED_KAURI_WOOD);
-		ModFlammables.register();
+		ModMiscItemAndBlockModifiers.register();
 
 		initAttributes();
+		ModVillagers.register();
 
 		registerEvents();
 		ModSounds.initSounds();
@@ -79,7 +76,8 @@ public class Frogvasion implements ModInitializer {
 	}
 
 	private static void initWorldGen() {
-		ModFeaturesPlacing.registerPlacedFeatures();
+		ModBiomes.register();
+		ModPlacedFeatures.registerPlacedFeatures();
 		ModStructures.registerStructures();
 		ModEntitySpawning.addEntitySpawning();
 		ModDimensions.register();
@@ -87,7 +85,6 @@ public class Frogvasion implements ModInitializer {
 	}
 
 	private static void initAttributes() {
-		GeckoLib.initialize();
 		FabricDefaultAttributeRegistry.register(ModEntities.SOLDIER_FROG_ENTITY, SoldierFrog.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.BOSS_SOLDIER_FROG_ENTITY, BossSoldierFrog.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.EXPLOSIVE_FROG_ENTITY, ExplosiveFrog.setAttributes());
@@ -109,6 +106,4 @@ public class Frogvasion implements ModInitializer {
 		ServerQuestProgression.IQuestProgressionEvent.PROGRESS.register(new QuestProgressionEvent());
 		ServerQuestProgression.IQuestCompletionEvent.COMPLETION.register(new QuestCompletionEvent());
 	}
-	//todo new biome in greenwood, swamplike, very humid, lots of mushrooms/mold, check chatGPT
-	//todo new structures, maybe polevillages w/ bridges in between
 }

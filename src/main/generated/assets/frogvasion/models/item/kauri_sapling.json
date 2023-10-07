@@ -1,3 +1,6 @@
 {
-  "parent": "frogvasion:block/kauri_sapling"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "frogvasion:item/kauri_sapling"
+  }
 }

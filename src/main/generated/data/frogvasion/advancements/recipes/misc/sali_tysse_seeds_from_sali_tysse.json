@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sali_tysse": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:sali_tysse"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:sali_tysse_seeds_from_sali_tysse"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_sali_tysse",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:sali_tysse_seeds_from_sali_tysse"
+    ]
+  },
+  "sends_telemetry_event": false
+}

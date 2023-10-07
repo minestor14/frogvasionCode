@@ -1,7 +1,34 @@
 {
   "variants": {
-    "": {
+    "frog=0": {
       "model": "frogvasion:block/frog_cage"
+    },
+    "frog=1": {
+      "model": "frogvasion:block/frog_cage_closed"
+    },
+    "frog=2": {
+      "model": "frogvasion:block/frog_cage_closed"
+    },
+    "frog=3": {
+      "model": "frogvasion:block/frog_cage_closed"
+    },
+    "frog=4": {
+      "model": "frogvasion:block/frog_cage_closed"
+    },
+    "frog=5": {
+      "model": "frogvasion:block/frog_cage_closed"
+    },
+    "frog=6": {
+      "model": "frogvasion:block/frog_cage_closed"
+    },
+    "frog=7": {
+      "model": "frogvasion:block/frog_cage_closed"
+    },
+    "frog=8": {
+      "model": "frogvasion:block/frog_cage_closed"
+    },
+    "frog=9": {
+      "model": "frogvasion:block/frog_cage_closed"
     }
   }
 }

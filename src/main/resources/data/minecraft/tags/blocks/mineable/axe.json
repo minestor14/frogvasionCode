@@ -3,7 +3,11 @@
   "values": [
     "#frogvasion:rubber_logs",
     "frogvasion:rubber_planks",
+    "frogvasion:rubber_stairs",
+    "frogvasion:rubber_slab",
     "#frogvasion:kauri_logs",
-    "frogvasion:kauri_planks"
+    "frogvasion:kauri_planks",
+    "frogvasion:kauri_stairs",
+    "frogvasion:kauri_slab"
   ]
 }

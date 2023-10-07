@@ -14,7 +14,7 @@ public class QuestProgressionEvent implements ServerQuestProgression.IQuestProgr
     public ActionResult interact(ServerPlayerEntity player, Quest quest) {
         ExtraQuestData data = quest.getData();
         if(!data.isEmpty()){
-            player.networkHandler.sendPacket(new OverlayMessageS2CPacket(Text.literal("Progress on quest: " + (quest.getData().getOriginalAmount() - quest.getData().getAmount()) + "/" + quest.getData().getOriginalAmount())));
+            player.networkHandler.sendPacket(new OverlayMessageS2CPacket(Text.translatable("text.quest.progression", (quest.getData().getOriginalAmount() - quest.getData().getAmount()), quest.getData().getOriginalAmount())));
 
             player.playSound(SoundEvents.BLOCK_NOTE_BLOCK_PLING.value(), 0.8f, 1f);
         }

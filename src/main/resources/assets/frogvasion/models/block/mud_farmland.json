@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/template_farmland",
+    "textures": {
+      "dirt": "minecraft:block/mud",
+      "top": "frogvasion:block/mud_farmland"
+    }
+  }

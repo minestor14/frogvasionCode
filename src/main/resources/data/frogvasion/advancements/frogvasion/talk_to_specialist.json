@@ -1,0 +1,50 @@
+{
+  "parent": "frogvasion:frogvasion/root",
+  "criteria": {
+    "trade": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:villager",
+              "nbt": "{VillagerData:{profession:\"frogvasion:herpetologist\"}}"
+            }
+          }
+        ],
+        "item": {}
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "text.frogvasion.advancement.description.talk_to_specialist",
+      "with": [
+        {
+          "translate": "entity.minecraft.villager.herpetologist"
+        },
+        {
+          "translate": "block.frogvasion.conversion_pedestal"
+        }
+      ]
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:emerald"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "text.frogvasion.advancement.title.talk_to_specialist"
+    }
+  },
+  "requirements": [
+    [
+      "trade"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
