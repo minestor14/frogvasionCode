@@ -1,0 +1,21 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:blue_orchid"
+    },
+    {
+      "item": "frogvasion:white_orchid"
+    },
+    {
+      "item": "minecraft:sand"
+    },
+    {
+      "item": "frogvasion:white_orchid_powder"
+    }
+  ],
+  "output": {
+    "item": "minecraft:kelp",
+    "count": 4
+  }
+}

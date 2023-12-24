@@ -48,5 +48,19 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MUD_FARMLAND, Blocks.MUD);
         addDrop(ModBlocks.SALI_TYSSE_CROP, cropDrops(ModBlocks.SALI_TYSSE_CROP, ModItems.SALI_TYSSE, ModItems.SALI_TYSSE_SEEDS, SurvivesExplosionLootCondition.builder()));
         addDrop(ModBlocks.CHROMA_CLUMP);
+
+        addDrop(ModBlocks.PURPLE_ORCHID);
+        addDrop(ModBlocks.DARK_PURPLE_ORCHID);
+        addDrop(ModBlocks.DARK_RED_ORCHID);
+        addDrop(ModBlocks.WHITE_ORCHID);
+        addDrop(ModBlocks.BLACK_ORCHID);
+        addPottedPlantDrops(ModBlocks.POTTED_PURPLE_ORCHID);
+        addPottedPlantDrops(ModBlocks.POTTED_DARK_PURPLE_ORCHID);
+        addPottedPlantDrops(ModBlocks.POTTED_DARK_RED_ORCHID);
+        addPottedPlantDrops(ModBlocks.POTTED_WHITE_ORCHID);
+        addPottedPlantDrops(ModBlocks.POTTED_BLACK_ORCHID);
+
+        addDrop(ModBlocks.SAVANNA_SOIL);
+        addDrop(ModBlocks.TROPICAL_ACACIA_SAPLING);
     }
 }

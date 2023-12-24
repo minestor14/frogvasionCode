@@ -36,6 +36,12 @@ public class ModModelsProvider extends FabricModelProvider {
 
         blockStateModelGenerator.registerSingleton(ModBlocks.KAURI_LEAVES, TexturedModel.LEAVES);
         blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.KAURI_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
+
+        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.PURPLE_ORCHID, ModBlocks.POTTED_PURPLE_ORCHID, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.DARK_PURPLE_ORCHID, ModBlocks.POTTED_DARK_PURPLE_ORCHID, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.DARK_RED_ORCHID, ModBlocks.POTTED_DARK_RED_ORCHID, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.WHITE_ORCHID, ModBlocks.POTTED_WHITE_ORCHID, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.BLACK_ORCHID, ModBlocks.POTTED_BLACK_ORCHID, BlockStateModelGenerator.TintType.NOT_TINTED);
     }
 
     @Override

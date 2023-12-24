@@ -1,7 +1,7 @@
 package me.Minestor.frogvasion.blocks.entity;
 
-import me.Minestor.frogvasion.recipe.ConversionPedestalRecipe;
 import me.Minestor.frogvasion.items.ModItems;
+import me.Minestor.frogvasion.recipe.ConversionPedestalRecipe;
 import me.Minestor.frogvasion.screen.ConversionPedestalScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -12,6 +12,7 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -132,11 +133,11 @@ public class ConversionPedestalBlockEntity extends BlockEntity implements NamedS
         for(int i = 0; i< entity.size();i++) {
             sinv.setStack(i, entity.getStack(i));
         }
-        Optional<ConversionPedestalRecipe> recipe = entity.world.getRecipeManager().getFirstMatch(ConversionPedestalRecipe.Type.INSTANCE, sinv, entity.world);
+        Optional<RecipeEntry<ConversionPedestalRecipe>> recipe = entity.world.getRecipeManager().getFirstMatch(ConversionPedestalRecipe.Type.INSTANCE, sinv, entity.world);
         if(hasRecipe(entity)) {
             entity.removeStack(0,1);
             entity.removeStack(1,1);
-            entity.setStack(2, new ItemStack(recipe.get().getOutput().getItem(), entity.getStack(2).getCount() + 1));
+            entity.setStack(2, new ItemStack(recipe.get().value().getOutput().getItem(), entity.getStack(2).getCount() + 1));
         }
     }
 
@@ -145,9 +146,9 @@ public class ConversionPedestalBlockEntity extends BlockEntity implements NamedS
         for(int i = 0; i< entity.size();i++) {
             sinv.setStack(i, entity.getStack(i));
         }
-        Optional<ConversionPedestalRecipe> match = entity.world.getRecipeManager().getFirstMatch(ConversionPedestalRecipe.Type.INSTANCE, sinv, entity.world);
+        Optional<RecipeEntry<ConversionPedestalRecipe>> match = entity.world.getRecipeManager().getFirstMatch(ConversionPedestalRecipe.Type.INSTANCE, sinv, entity.world);
 
-        return match.isPresent() && canAmountFitOutputSlot(sinv,1) && canInsertItemIntoOutputSlot(sinv, match.get().getOutput().getItem());
+        return match.isPresent() && canAmountFitOutputSlot(sinv,1) && canInsertItemIntoOutputSlot(sinv, match.get().value().getOutput().getItem());
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleInventory sinv, Item output) {

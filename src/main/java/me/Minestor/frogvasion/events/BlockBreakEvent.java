@@ -1,7 +1,7 @@
 package me.Minestor.frogvasion.events;
 
 import me.Minestor.frogvasion.networking.ModMessages;
-import me.Minestor.frogvasion.networking.packets.UpdateQuestPacket;
+import me.Minestor.frogvasion.networking.packets.ModPackets;
 import me.Minestor.frogvasion.quests.Quest;
 import me.Minestor.frogvasion.quests.QuestType;
 import me.Minestor.frogvasion.util.entity.IEntityDataSaver;
@@ -37,7 +37,7 @@ public class BlockBreakEvent implements PlayerBlockBreakEvents.Before{
         QuestDataManager.completedTask((ServerPlayerEntity) p, quest, 1);
 
         world.setBlockState(pos, replacement);
-        ServerPlayNetworking.send((ServerPlayerEntity) p, ModMessages.UPDATE_QUEST_S2C, UpdateQuestPacket.createUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
+        ServerPlayNetworking.send((ServerPlayerEntity) p, ModMessages.UPDATE_QUEST_S2C, ModPackets.createQuestUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
 
         return false;
     }

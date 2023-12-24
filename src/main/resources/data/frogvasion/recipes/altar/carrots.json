@@ -1,0 +1,21 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "frogvasion:white_orchid"
+    },
+    {
+      "item": "frogvasion:white_orchid"
+    },
+    {
+      "item": "frogvasion:white_orchid"
+    }
+  ],
+  "output": {
+    "item": "minecraft:carrot",
+    "count": 5
+  }
+}

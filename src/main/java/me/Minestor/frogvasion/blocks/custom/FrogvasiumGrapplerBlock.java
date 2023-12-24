@@ -1,5 +1,6 @@
 package me.Minestor.frogvasion.blocks.custom;
 
+import com.mojang.serialization.MapCodec;
 import me.Minestor.frogvasion.blocks.entity.FrogvasiumGrapplerBlockEntity;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import net.minecraft.block.*;
@@ -7,22 +8,25 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPointerImpl;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class FrogvasiumGrapplerBlock extends BlockWithEntity implements BlockEntityProvider {
+    public static final MapCodec<FrogvasiumGrapplerBlock> CODEC = createCodec(FrogvasiumGrapplerBlock::new);
     public static final DirectionProperty FACING;
 
     public FrogvasiumGrapplerBlock(Settings settings) {
         super(settings);
     }
 
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -50,8 +54,7 @@ public class FrogvasiumGrapplerBlock extends BlockWithEntity implements BlockEnt
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         boolean redstone = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.up());
         if (!world.isClient()) {
-            BlockPointerImpl blockPointerImpl = new BlockPointerImpl((ServerWorld)world, pos);
-            FrogvasiumGrapplerBlockEntity be = blockPointerImpl.getBlockEntity();
+            FrogvasiumGrapplerBlockEntity be = world.getBlockEntity(pos, ModBlockEntities.FROGVASIUM_GRAPPLER_TYPE).get();
             if(!redstone){
                 be.cooldown = 0;
             }
@@ -62,7 +65,7 @@ public class FrogvasiumGrapplerBlock extends BlockWithEntity implements BlockEnt
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.FROGVASIUM_GRAPPLER_TYPE, FrogvasiumGrapplerBlockEntity::tick);
+        return validateTicker(type, ModBlockEntities.FROGVASIUM_GRAPPLER_TYPE, FrogvasiumGrapplerBlockEntity::tick);
     }
 
     static {

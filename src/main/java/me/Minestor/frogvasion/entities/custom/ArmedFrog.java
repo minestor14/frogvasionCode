@@ -1,6 +1,5 @@
 package me.Minestor.frogvasion.entities.custom;
 
-import me.Minestor.frogvasion.Frogvasion;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.goals.ArmedFrogAttackGoal;
 import me.Minestor.frogvasion.entities.goals.FrogWanderJumpGoal;

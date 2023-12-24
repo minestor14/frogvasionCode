@@ -1,5 +1,6 @@
 package me.Minestor.frogvasion.blocks.custom;
 
+import com.mojang.serialization.MapCodec;
 import me.Minestor.frogvasion.blocks.entity.FrogTrapBlockEntity;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import me.Minestor.frogvasion.entities.custom.ModFrog;
@@ -8,7 +9,6 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -25,10 +25,15 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class FrogTrapBlock extends BlockWithEntity implements BlockEntityProvider {
+    public static final MapCodec<FrogTrapBlock> CODEC = createCodec(FrogTrapBlock::new);
     public static final BooleanProperty LOADED = Properties.ENABLED;
     public FrogTrapBlock(Settings settings) {
         super(settings);
         setDefaultState(getDefaultState().with(LOADED, false));
+    }
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
     @Override
@@ -77,7 +82,7 @@ public class FrogTrapBlock extends BlockWithEntity implements BlockEntityProvide
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.FROG_TRAP_TYPE, FrogTrapBlockEntity::tick);
+        return validateTicker(type, ModBlockEntities.FROG_TRAP_TYPE, FrogTrapBlockEntity::tick);
     }
 
     @Override

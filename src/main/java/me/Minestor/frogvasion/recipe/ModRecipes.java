@@ -12,5 +12,9 @@ public class ModRecipes {
         Registry.register(Registries.RECIPE_TYPE, new Identifier(Frogvasion.MOD_ID, ConversionPedestalRecipe.Type.ID),
                     ConversionPedestalRecipe.Type.INSTANCE);
 
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Frogvasion.MOD_ID, FloradicAltarRecipe.Serializer.ID),
+                FloradicAltarRecipe.Serializer.INSTANCE);
+        Registry.register(Registries.RECIPE_TYPE, new Identifier(Frogvasion.MOD_ID, FloradicAltarRecipe.Type.ID),
+                FloradicAltarRecipe.Type.INSTANCE);
     }
 }

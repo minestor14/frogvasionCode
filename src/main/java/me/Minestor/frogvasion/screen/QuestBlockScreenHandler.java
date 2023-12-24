@@ -1,7 +1,7 @@
 package me.Minestor.frogvasion.screen;
 
 import me.Minestor.frogvasion.networking.ModMessages;
-import me.Minestor.frogvasion.networking.packets.UpdateQuestPacket;
+import me.Minestor.frogvasion.networking.packets.ModPackets;
 import me.Minestor.frogvasion.quests.ExtraQuestData;
 import me.Minestor.frogvasion.quests.Quest;
 import me.Minestor.frogvasion.util.entity.IEntityDataSaver;
@@ -24,7 +24,7 @@ public class QuestBlockScreenHandler extends ScreenHandler {
         this.inv = inv;
 
         if(!inv.player.getWorld().isClient){
-            ServerPlayNetworking.send((ServerPlayerEntity) inv.player, ModMessages.UPDATE_QUEST_S2C, UpdateQuestPacket.createUpdate(quest));
+            ServerPlayNetworking.send((ServerPlayerEntity) inv.player, ModMessages.UPDATE_QUEST_S2C, ModPackets.createQuestUpdate(quest));
         }
 
         int m;

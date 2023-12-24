@@ -1,6 +1,5 @@
 package me.Minestor.frogvasion.mixin;
 
-import me.Minestor.frogvasion.Frogvasion;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,6 +10,5 @@ public class FrogvasionMixin {
 	@Inject(at = @At("HEAD"), method = "init()V")
 	private void init(CallbackInfo info) {
 
-		Frogvasion.LOGGER.info("Mixins of Frogvasion initialized.");
 	}
 }

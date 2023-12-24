@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "frogvasion:purple_orchid_bouquet"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "frogvasion:purple_orchid"
+  }
+}

@@ -29,10 +29,16 @@ import static net.minecraft.world.biome.OverworldBiomeCreator.getSkyColor;
 public class ModBiomes {
     public static final RegistryKey<Biome> RAINFOREST_KEY = registerKey("rainforest");
     public static final RegistryKey<Biome> FROG_MARSH_KEY = registerKey("frog_marsh");
+    public static final RegistryKey<Biome> TROPICAL_SAVANNA_KEY = registerKey("tropical_savanna");
+    public static final RegistryKey<Biome> MIXED_FOREST_KEY = registerKey("mixed_forest");
     public static Biome RAINFOREST;
     public static Biome FROG_MARSH;
+    public static Biome TROPICAL_SAVANNA;
+    public static Biome MIXED_FOREST;
     public static RegistryEntry<Biome> RAINFOREST_ENTRY;
     public static RegistryEntry<Biome> FROG_MARSH_ENTRY;
+    public static RegistryEntry<Biome> TROPICAL_SAVANNA_ENTRY;
+    public static RegistryEntry<Biome> MIXED_FOREST_ENTRY;
     public static void register() {}
     public static RegistryKey<Biome> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.BIOME, new Identifier(Frogvasion.MOD_ID, name));
@@ -46,6 +52,57 @@ public class ModBiomes {
 
         FROG_MARSH = createFrogMarsh(registryEntryLookup, registryEntryLookup2);
         FROG_MARSH_ENTRY = biomeRegisterable.register(FROG_MARSH_KEY, FROG_MARSH);
+
+        TROPICAL_SAVANNA = createTropicalSavanna(registryEntryLookup, registryEntryLookup2);
+        TROPICAL_SAVANNA_ENTRY = biomeRegisterable.register(TROPICAL_SAVANNA_KEY, TROPICAL_SAVANNA);
+
+        MIXED_FOREST = createMixedForest(registryEntryLookup, registryEntryLookup2);
+        MIXED_FOREST_ENTRY = biomeRegisterable.register(MIXED_FOREST_KEY, MIXED_FOREST);
+    }
+    public static Biome createMixedForest(RegistryEntryLookup<PlacedFeature> featureLookup, RegistryEntryLookup<ConfiguredCarver<?>> carverLookup) {
+        SpawnSettings.Builder builder = new SpawnSettings.Builder();
+        DefaultBiomeFeatures.addFarmAnimals(builder);
+        DefaultBiomeFeatures.addBatsAndMonsters(builder);
+        return createMixedForestFeatures(featureLookup, carverLookup, 0.1f, builder);
+    }
+    public static Biome createMixedForestFeatures(RegistryEntryLookup<PlacedFeature> featureLookup, RegistryEntryLookup<ConfiguredCarver<?>> carverLookup, float depth, SpawnSettings.Builder spawnSettings) {
+        GenerationSettings.LookupBackedBuilder lookupBackedBuilder = new GenerationSettings.LookupBackedBuilder(featureLookup, carverLookup);
+        addBasicFeatures(lookupBackedBuilder);
+        addGreenwoodFlowers(lookupBackedBuilder);
+
+        DefaultBiomeFeatures.addForestTrees(lookupBackedBuilder);
+        DefaultBiomeFeatures.addForestFlowers(lookupBackedBuilder);
+        DefaultBiomeFeatures.addTaigaTrees(lookupBackedBuilder);
+        DefaultBiomeFeatures.addGroveTrees(lookupBackedBuilder);
+        lookupBackedBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.DARK_FOREST_VEGETATION);
+        lookupBackedBuilder.feature(GenerationStep.Feature.FLUID_SPRINGS, ModPlacedFeatures.WHITE_ORCHID_PLACED_KEY);
+        DefaultBiomeFeatures.addExtraGoldOre(lookupBackedBuilder);
+
+        MusicSound musicSound = MusicType.createIngameMusic(SoundEvents.MUSIC_OVERWORLD_FOREST);
+        return createBiome(Biome.Precipitation.RAIN, 0.6f, depth, spawnSettings, lookupBackedBuilder, musicSound);
+    }
+    public static Biome createTropicalSavanna(RegistryEntryLookup<PlacedFeature> featureLookup, RegistryEntryLookup<ConfiguredCarver<?>> carverLookup) {
+        SpawnSettings.Builder builder = new SpawnSettings.Builder();
+        DefaultBiomeFeatures.addFarmAnimals(builder);
+        DefaultBiomeFeatures.addDesertMobs(builder);
+        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.OCELOT, 2, 1, 3));
+        return createTropicalSavannaFeatures(featureLookup, carverLookup, 0.3f, builder);
+    }
+    public static Biome createTropicalSavannaFeatures(RegistryEntryLookup<PlacedFeature> featureLookup, RegistryEntryLookup<ConfiguredCarver<?>> carverLookup, float depth, SpawnSettings.Builder spawnSettings) {
+        GenerationSettings.LookupBackedBuilder lookupBackedBuilder = new GenerationSettings.LookupBackedBuilder(featureLookup, carverLookup);
+
+        addBasicFeatures(lookupBackedBuilder);
+        addGreenwoodFlowers(lookupBackedBuilder);
+        lookupBackedBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.DARK_RED_ORCHID_PLACED_KEY);
+
+        lookupBackedBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.TROPICAL_ACACIA_PLACED_KEY);
+        DefaultBiomeFeatures.addMossyRocks(lookupBackedBuilder);
+        DefaultBiomeFeatures.addSavannaGrass(lookupBackedBuilder);
+        lookupBackedBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_CACTUS_DECORATED);
+        lookupBackedBuilder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, VegetationPlacedFeatures.PATCH_DEAD_BUSH_BADLANDS);
+
+        MusicSound musicSound = MusicType.createIngameMusic(SoundEvents.MUSIC_OVERWORLD_DESERT);
+        return createBiome(Biome.Precipitation.NONE, 0.8f, depth, spawnSettings, lookupBackedBuilder, musicSound);
     }
     public static Biome createFrogMarsh(RegistryEntryLookup<PlacedFeature> featureLookup, RegistryEntryLookup<ConfiguredCarver<?>> carverLookup) {
         SpawnSettings.Builder builder = new SpawnSettings.Builder();
@@ -57,10 +114,11 @@ public class ModBiomes {
     public static Biome createFrogMarshFeatures(RegistryEntryLookup<PlacedFeature> featureLookup, RegistryEntryLookup<ConfiguredCarver<?>> carverLookup, float depth, SpawnSettings.Builder spawnSettings) {
         GenerationSettings.LookupBackedBuilder lookupBackedBuilder = new GenerationSettings.LookupBackedBuilder(featureLookup, carverLookup);
 
+        DefaultBiomeFeatures.addFossils(lookupBackedBuilder);
         addBasicFeatures(lookupBackedBuilder);
         addGreenwoodFlowers(lookupBackedBuilder);
+        lookupBackedBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.PURPLE_ORCHID_PLACED_KEY);
 
-        DefaultBiomeFeatures.addFossils(lookupBackedBuilder);
         DefaultBiomeFeatures.addDefaultMushrooms(lookupBackedBuilder);
         DefaultBiomeFeatures.addJungleGrass(lookupBackedBuilder);
         DefaultBiomeFeatures.addSwampVegetation(lookupBackedBuilder);

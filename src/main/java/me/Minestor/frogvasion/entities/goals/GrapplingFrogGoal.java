@@ -1,6 +1,5 @@
 package me.Minestor.frogvasion.entities.goals;
 
-import me.Minestor.frogvasion.Frogvasion;
 import me.Minestor.frogvasion.entities.custom.GrapplingFrog;
 import net.minecraft.command.argument.EntityAnchorArgumentType;
 import net.minecraft.entity.Entity;
@@ -43,7 +42,6 @@ public class GrapplingFrogGoal extends Goal {
         super.start();
         this.entity.updateAngle();
         list.clear();
-        Frogvasion.LOGGER.info("started AI Grappling");
     }
     public void stop() {
         super.stop();

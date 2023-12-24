@@ -28,16 +28,39 @@
         "fluid_level_floodedness": 0,
         "fluid_level_spread": 0,
         "lava": 0,
-        "temperature": 0.95,
-        "vegetation": 0.7,
-        "continents": 1,
+        "temperature": {
+          "type": "minecraft:add",
+          "argument1": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:temperature",
+            "xz_scale": 3,
+            "y_scale": 0
+          },
+          "argument2": 0.9
+        },
+        "vegetation": {
+          "type": "minecraft:noise",
+          "noise": "minecraft:vegetation",
+          "xz_scale": 0.4,
+          "y_scale": 0
+        },
+        "continents": {
+          "type": "minecraft:add",
+          "argument1": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:continentalness_large",
+            "xz_scale": 0.8,
+            "y_scale": 0
+          },
+          "argument2": 0.2
+        },
         "erosion": {
           "type": "minecraft:noise",
           "noise": "minecraft:erosion",
           "xz_scale": 2,
           "y_scale": 0
         },
-        "depth": 0.5,
+        "depth": 0.54,
         "ridges": 0,
         "initial_density_without_jaggedness": 0,
         "final_density": {
@@ -88,25 +111,58 @@
               "secondary_depth_range": 0
             },
             "then_run": {
-              "type": "minecraft:condition",
-              "if_true": {
-                "type": "minecraft:not",
-                "invert": {
-                  "type": "minecraft:biome",
-                  "biome_is": [
-                    "frogvasion:frog_marsh"
-                  ]
-                }
-              },
-              "then_run": {
-                "type": "minecraft:block",
-                "result_state": {
-                  "Name": "minecraft:grass_block",
-                  "Properties": {
-                    "snowy": "false"
+              "type": "minecraft:sequence",
+              "sequence": [
+                {
+                  "type": "minecraft:condition",
+                  "if_true": {
+                    "type": "minecraft:biome",
+                    "biome_is": [
+                      "frogvasion:rainforest",
+                      "frogvasion:mixed_forest"
+                    ]
+                  },
+                  "then_run": {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "minecraft:grass_block",
+                      "Properties": {
+                        "snowy": "false"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "minecraft:condition",
+                  "if_true": {
+                    "type": "minecraft:biome",
+                    "biome_is": [
+                      "frogvasion:tropical_savanna"
+                    ]
+                  },
+                  "then_run": {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "frogvasion:savanna_soil"
+                    }
+                  }
+                },
+                {
+                  "type": "minecraft:condition",
+                  "if_true": {
+                    "type": "minecraft:biome",
+                    "biome_is": [
+                      "minecraft:mangrove_swamp"
+                    ]
+                  },
+                  "then_run": {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "minecraft:mud"
+                    }
                   }
                 }
-              }
+              ]
             }
           },
           {
@@ -171,13 +227,37 @@
       "type": "minecraft:multi_noise",
       "biomes": [
         {
+          "biome": "frogvasion:mixed_forest",
+          "parameters": {
+            "temperature": 1.6,
+            "humidity": 0.5,
+            "continentalness": 1,
+            "erosion": 0.5,
+            "weirdness": 0.6,
+            "depth": 0.5,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "frogvasion:tropical_savanna",
+          "parameters": {
+            "temperature": 0.9,
+            "humidity": 0.695,
+            "continentalness": 1,
+            "erosion": 0.2,
+            "weirdness": 0.32,
+            "depth": 0.01,
+            "offset": 0
+          }
+        },
+        {
           "biome": "frogvasion:rainforest",
           "parameters": {
-            "temperature": 0.95,
+            "temperature": 1,
             "humidity": 0.7,
             "continentalness": 1,
-            "erosion": 0.3,
-            "weirdness": 0.45,
+            "erosion": 0.29,
+            "weirdness": 0.5,
             "depth": 0.5,
             "offset": 0
           }
@@ -185,12 +265,24 @@
         {
           "biome": "frogvasion:frog_marsh",
           "parameters": {
-            "temperature": 0.95,
+            "temperature": 0.85,
             "humidity": 0.7,
-            "continentalness": 1,
-            "erosion": 0.4,
-            "weirdness": 0.4,
+            "continentalness": 0.995,
+            "erosion": 0.45,
+            "weirdness": 0.45,
             "depth": 0.5,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "minecraft:mangrove_swamp",
+          "parameters": {
+            "temperature": 0.6,
+            "humidity": 0.7,
+            "continentalness": 0.92,
+            "erosion": 0.7,
+            "weirdness": 0.3,
+            "depth": 0.01,
             "offset": 0
           }
         }

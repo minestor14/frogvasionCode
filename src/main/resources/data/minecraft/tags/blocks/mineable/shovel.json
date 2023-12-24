@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "frogvasion:mud_farmland"
+    "frogvasion:mud_farmland",
+    "frogvasion:savanna_soil"
   ]
 }

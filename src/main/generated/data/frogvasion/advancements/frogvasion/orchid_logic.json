@@ -1,0 +1,129 @@
+{
+  "parent": "frogvasion:frogvasion/root",
+  "criteria": {
+    "black": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:black_orchid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "blue": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:blue_orchid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "dark_purple": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:dark_purple_orchid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "dark_red": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:dark_red_orchid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "mix": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:orchid_mix"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pink": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:orchid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "purple": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:purple_orchid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "white": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:white_orchid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "text.frogvasion.advancement.description.orchid_logic"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "frogvasion:orchid_mix"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "text.frogvasion.advancement.title.orchid_logic"
+    }
+  },
+  "requirements": [
+    [
+      "pink",
+      "blue",
+      "purple",
+      "dark_purple",
+      "dark_red",
+      "white",
+      "black",
+      "mix"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

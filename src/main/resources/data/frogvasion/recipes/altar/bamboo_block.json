@@ -1,0 +1,20 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:bamboo"
+    },
+    {
+      "item": "minecraft:bamboo"
+    },
+    {
+      "item": "minecraft:bamboo"
+    },
+    {
+      "item": "frogvasion:white_orchid"
+    }
+  ],
+  "output": {
+    "item": "minecraft:bamboo_block"
+  }
+}

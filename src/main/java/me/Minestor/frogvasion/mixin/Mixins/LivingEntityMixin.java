@@ -1,7 +1,7 @@
 package me.Minestor.frogvasion.mixin.Mixins;
 
-import me.Minestor.frogvasion.items.Custom.FrogHelmetItem;
 import me.Minestor.frogvasion.items.ModItems;
+import me.Minestor.frogvasion.items.custom.FrogHelmetItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;

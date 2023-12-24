@@ -10,17 +10,21 @@
     "Mixins.EnchantedItemCriterionMixin",
     "Mixins.EnderPearlItemMixin",
     "Mixins.EntityMixin",
+    "Mixins.FoliagePlacerTypeInvoker",
     "Mixins.HoeItemMixin",
     "Mixins.ItemEntityMixin",
     "Mixins.LivingEntityMixin",
     "Mixins.ModEntityDataSaverMixin",
-    "Mixins.RecipeCraftedCriterionMixin"
+    "Mixins.RecipeCraftedCriterionMixin",
+    "Mixins.TrunkPlacerTypeInvoker"
   ],
   "client": [
     "FrogvasionMixin",
+    "Mixins.ClientPlayerEntityMixin",
     "Mixins.ClientWorldMixin",
     "Mixins.GameOptionsMixin",
     "Mixins.IntegratedServerLoaderMixin",
+    "Mixins.MinecraftClientMixin",
     "Mixins.OptionsScreenMixin",
     "Mixins.PositionedSoundInstanceMixin"
   ],

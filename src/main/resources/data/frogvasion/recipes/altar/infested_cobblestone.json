@@ -1,0 +1,20 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "frogvasion:black_orchid"
+    },
+    {
+      "item": "frogvasion:black_orchid"
+    }
+  ],
+  "output": {
+    "item": "minecraft:infested_cobblestone"
+  }
+}

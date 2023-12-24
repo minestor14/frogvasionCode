@@ -1,0 +1,21 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "frogvasion:orchid"
+    },
+    {
+      "item": "frogvasion:orchid"
+    },
+    {
+      "item": "frogvasion:black_orchid"
+    },
+    {
+      "item": "frogvasion:black_orchid"
+    }
+  ],
+  "output": {
+    "item": "frogvasion:dark_red_orchid",
+    "count": 2
+  }
+}

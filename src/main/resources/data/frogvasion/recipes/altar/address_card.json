@@ -1,0 +1,20 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "frogvasion:dark_purple_orchid"
+    },
+    {
+      "item": "frogvasion:dark_purple_orchid"
+    },
+    {
+      "item": "frogvasion:dark_purple_orchid"
+    }
+  ],
+  "output": {
+    "item": "frogvasion:address_card"
+  }
+}

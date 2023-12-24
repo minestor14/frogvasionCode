@@ -26,7 +26,7 @@ public class QuestCompletionEvent implements ServerQuestProgression.IQuestComple
         if(QuestDataManager.getQuestMilestone((IEntityDataSaver) player) % 10 == 0) {
             player.giveItemStack(ModBlocks.GOLDEN_FROG_STATUE.asItem().getDefaultStack());
         } else {
-            if (player.getWorld().getRandom().nextBetween(0,4) == 1) {
+            if (player.getWorld().getRandom().nextBetween(0, 4) == 1) {
                 player.giveItemStack(ModBlocks.FROG_STATUE.asItem().getDefaultStack());
             } else{
                 player.giveItemStack(new ItemStack(ModItems.RUBBER, 10 * quest.getType().getReward()));

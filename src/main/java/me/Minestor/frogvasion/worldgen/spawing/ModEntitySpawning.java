@@ -32,10 +32,10 @@ public class ModEntitySpawning {
         BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityType.STRAY, EntityType.POLAR_BEAR), SpawnGroup.MONSTER, ModEntities.ICE_FROG_ENTITY, 1 ,1,2);
         SpawnRestriction.register(ModEntities.ICE_FROG_ENTITY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, IceFrog::isValidNaturalSpawn);
         //Normal Tree Frog
-        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY), SpawnGroup.MONSTER, ModEntities.NORMAL_TREE_FROG_ENTITY,15,1,3);
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY, ModBiomes.TROPICAL_SAVANNA_KEY, ModBiomes.MIXED_FOREST_KEY), SpawnGroup.MONSTER, ModEntities.NORMAL_TREE_FROG_ENTITY,15,1,4);
         SpawnRestriction.register(ModEntities.NORMAL_TREE_FROG_ENTITY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, NormalTreeFrog::isValidNaturalSpawn);
         //Gliding Tree Frog
-        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY).or(BiomeSelectors.includeByKey(ModBiomes.FROG_MARSH_KEY)), SpawnGroup.MONSTER, ModEntities.GLIDING_TREE_FROG_ENTITY,5,1,3);
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY, ModBiomes.FROG_MARSH_KEY, ModBiomes.TROPICAL_SAVANNA_KEY, ModBiomes.MIXED_FOREST_KEY), SpawnGroup.MONSTER, ModEntities.GLIDING_TREE_FROG_ENTITY,5,1,3);
         SpawnRestriction.register(ModEntities.GLIDING_TREE_FROG_ENTITY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GlidingTreeFrog::isValidNaturalSpawn);
     }
 }

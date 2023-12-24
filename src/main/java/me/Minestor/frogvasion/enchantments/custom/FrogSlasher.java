@@ -1,10 +1,9 @@
 package me.Minestor.frogvasion.enchantments.custom;
 
-import me.Minestor.frogvasion.items.Custom.FrogStaffItem;
+import me.Minestor.frogvasion.items.custom.FrogStaffItem;
 import me.Minestor.frogvasion.util.entity.ModEntityGroups;
 import net.minecraft.enchantment.DamageEnchantment;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.AxeItem;

@@ -22,8 +22,8 @@
   },
   "requirements": [
     [
-      "has_concentrated_slime",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_concentrated_slime"
     ]
   ],
   "rewards": {

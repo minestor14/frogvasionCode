@@ -49,9 +49,11 @@ public class Frogvasion implements ModInitializer {
 		ModItemGroups.registerItemGroups();
 		ModItems.registerModItems();
 		ModThrowables.registerThrowables();
+		ModEnchantments.registerEnchantments();
 
 		ModBlocks.registerModBlocks();
 		ModMiscItemAndBlockModifiers.register();
+		ModBlockEntities.registerBlockEntities();
 
 		initAttributes();
 		ModVillagers.register();
@@ -61,9 +63,6 @@ public class Frogvasion implements ModInitializer {
 
 		ModEffects.initEffects();
 		ModPotions.registerPotions();
-
-		ModBlockEntities.registerBlockEntities();
-		ModEnchantments.registerEnchantments();
 
 		ModRecipes.registerRecipes();
 		ModLootTableModifiers.modifyLootTables();
@@ -81,7 +80,7 @@ public class Frogvasion implements ModInitializer {
 		ModStructures.registerStructures();
 		ModEntitySpawning.addEntitySpawning();
 		ModDimensions.register();
-		ModTreeGeneration.generateTrees();
+		ModTreeGeneration.registerTrees();
 	}
 
 	private static void initAttributes() {

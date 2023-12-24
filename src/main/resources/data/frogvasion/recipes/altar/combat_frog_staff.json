@@ -1,0 +1,20 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "frogvasion:frog_staff"
+    },
+    {
+      "item": "frogvasion:purple_orchid"
+    },
+    {
+      "item": "frogvasion:purple_orchid"
+    },
+    {
+      "item": "frogvasion:purple_orchid"
+    }
+  ],
+  "output": {
+    "item": "frogvasion:combat_frog_staff"
+  }
+}

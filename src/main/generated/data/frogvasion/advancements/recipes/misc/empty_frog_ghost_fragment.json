@@ -22,8 +22,8 @@
   },
   "requirements": [
     [
-      "has_empty_frog_ghost",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_empty_frog_ghost"
     ]
   ],
   "rewards": {

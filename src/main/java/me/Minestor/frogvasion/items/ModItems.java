@@ -2,10 +2,11 @@ package me.Minestor.frogvasion.items;
 
 import me.Minestor.frogvasion.Frogvasion;
 import me.Minestor.frogvasion.blocks.ModBlocks;
+import me.Minestor.frogvasion.blocks.OrchidType;
 import me.Minestor.frogvasion.entities.ModEntities;
-import me.Minestor.frogvasion.items.Custom.*;
-import me.Minestor.frogvasion.items.Custom.frog_ghosts.EmptyFrogGhostItem;
-import me.Minestor.frogvasion.items.Custom.frog_ghosts.ModFrogGhostItem;
+import me.Minestor.frogvasion.items.custom.*;
+import me.Minestor.frogvasion.items.custom.frog_ghosts.EmptyFrogGhostItem;
+import me.Minestor.frogvasion.items.custom.frog_ghosts.ModFrogGhostItem;
 import me.Minestor.frogvasion.util.armor.ModArmorMaterials;
 import me.Minestor.frogvasion.util.items.ModItemGroups;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -54,7 +55,26 @@ public class ModItems {
     public static final Item FROG_FIRE_CHARGE = registerItem("frog_firecharge", new BlockItem(ModBlocks.FROG_FLAME, new FabricItemSettings()), ItemGroups.TOOLS);
     public static final Item SALI_TYSSE_SEEDS = registerItem("sali_tysse_seeds", new AliasedBlockItem(ModBlocks.SALI_TYSSE_CROP,new FabricItemSettings()), ItemGroups.FOOD_AND_DRINK);
     public static final Item SALI_TYSSE = registerItem("sali_tysse", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(5).saturationModifier(3).build())), ItemGroups.FOOD_AND_DRINK);
-    //todo recipes & shit
+
+    public static final Item PINK_ORCHID_BOUQUET = registerItem("pink_orchid_bouquet", new OrchidBouquetItem(new FabricItemSettings(), OrchidType.PINK), ItemGroups.INGREDIENTS);
+    public static final Item BLUE_ORCHID_BOUQUET = registerItem("blue_orchid_bouquet", new OrchidBouquetItem(new FabricItemSettings(), OrchidType.BLUE), ItemGroups.INGREDIENTS);
+    public static final Item PURPLE_ORCHID_BOUQUET = registerItem("purple_orchid_bouquet", new OrchidBouquetItem(new FabricItemSettings(), OrchidType.PURPLE), ItemGroups.INGREDIENTS);
+    public static final Item DARK_PURPLE_ORCHID_BOUQUET = registerItem("dark_purple_orchid_bouquet", new OrchidBouquetItem(new FabricItemSettings(), OrchidType.DARK_PURPLE), ItemGroups.INGREDIENTS);
+    public static final Item DARK_RED_ORCHID_BOUQUET = registerItem("dark_red_orchid_bouquet", new OrchidBouquetItem(new FabricItemSettings(), OrchidType.DARK_RED), ItemGroups.INGREDIENTS);
+    public static final Item WHITE_ORCHID_BOUQUET = registerItem("white_orchid_bouquet", new OrchidBouquetItem(new FabricItemSettings(), OrchidType.WHITE), ItemGroups.INGREDIENTS);
+    public static final Item BLACK_ORCHID_BOUQUET = registerItem("black_orchid_bouquet", new OrchidBouquetItem(new FabricItemSettings(), OrchidType.BLACK), ItemGroups.INGREDIENTS);
+    public static final Item ORCHID_MIX = registerItem("orchid_mix", new OrchidMixItem(new FabricItemSettings()), ItemGroups.INGREDIENTS);
+    public static final Item PINK_ORCHID_POWDER = registerItem("pink_orchid_powder", new OrchidPowderItem(new FabricItemSettings(), OrchidType.PINK), ItemGroups.INGREDIENTS);
+    public static final Item BLUE_ORCHID_POWDER = registerItem("blue_orchid_powder", new OrchidPowderItem(new FabricItemSettings(), OrchidType.BLUE), ItemGroups.INGREDIENTS);
+    public static final Item PURPLE_ORCHID_POWDER = registerItem("purple_orchid_powder", new OrchidPowderItem(new FabricItemSettings(), OrchidType.PURPLE), ItemGroups.INGREDIENTS);
+    public static final Item DARK_PURPLE_ORCHID_POWDER = registerItem("dark_purple_orchid_powder", new OrchidPowderItem(new FabricItemSettings(), OrchidType.DARK_PURPLE), ItemGroups.INGREDIENTS);
+    public static final Item DARK_RED_ORCHID_POWDER = registerItem("dark_red_orchid_powder", new OrchidPowderItem(new FabricItemSettings(), OrchidType.DARK_RED), ItemGroups.INGREDIENTS);
+    public static final Item WHITE_ORCHID_POWDER = registerItem("white_orchid_powder", new OrchidPowderItem(new FabricItemSettings(), OrchidType.WHITE), ItemGroups.INGREDIENTS);
+    public static final Item BLACK_ORCHID_POWDER = registerItem("black_orchid_powder", new OrchidPowderItem(new FabricItemSettings(), OrchidType.BLACK), ItemGroups.INGREDIENTS);
+    public static final Item ORCHID_GRENADE_SHELL = registerItem("orchid_grenade_shell", new Item(new FabricItemSettings()), ItemGroups.COMBAT);
+    public static final Item ORCHID_GRENADE = registerItem("orchid_grenade", new OrchidGrenadeItem(new FabricItemSettings().rarity(Rarity.UNCOMMON).maxCount(8)), ItemGroups.COMBAT);
+    public static final Item ALTAR_MANUAL = registerItem("altar_manual", new AltarManualItem(new FabricItemSettings().maxCount(1).fireproof()), ItemGroups.TOOLS);
+    //todo recipes
 
     //spawn eggs
     public static final Item SOLDIER_FROG_SPAWN_EGG = registerItem("soldier_frog_spawn_egg", new SpawnEggItem(ModEntities.SOLDIER_FROG_ENTITY, 16741227, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);

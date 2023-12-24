@@ -6,7 +6,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.Hand;
 
-
 import java.util.EnumSet;
 
 public class FrogAttackGoal extends Goal {

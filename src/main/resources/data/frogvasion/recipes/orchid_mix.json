@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "frogvasion:orchid"
+    },
+    {
+      "item": "minecraft:blue_orchid"
+    },
+    {
+      "item": "frogvasion:purple_orchid"
+    },
+    {
+      "item": "frogvasion:dark_purple_orchid"
+    },
+    {
+      "item": "frogvasion:dark_red_orchid"
+    },
+    {
+      "item": "frogvasion:white_orchid"
+    },
+    {
+      "item": "frogvasion:black_orchid"
+    }
+  ],
+  "result": {
+    "item": "frogvasion:orchid_mix"
+  }
+}

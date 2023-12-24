@@ -1,0 +1,21 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:blue_orchid"
+    },
+    {
+      "item": "frogvasion:blue_orchid_powder"
+    },
+    {
+      "item": "frogvasion:blue_orchid_powder"
+    }
+  ],
+  "output": {
+    "item": "minecraft:potion"
+  },
+  "nbt_output": "{Potion:\"minecraft:water_breathing\"}"
+}

@@ -2,6 +2,7 @@ package me.Minestor.frogvasion.blocks.custom;
 
 import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.items.ModItems;
+import me.Minestor.frogvasion.util.options.FrogvasionGameOptions;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
@@ -38,11 +39,13 @@ public class RubberExtractorBlock extends Block {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        if(Screen.hasShiftDown()) {
-            tooltip.add(Text.translatable("text.block.rubber_extractor", Text.translatable("block.frogvasion.rubber_log")
-                    , Text.translatable("block.frogvasion.rubber_wood"), Text.translatable("item.frogvasion.unprocessed_rubber")).formatted(Formatting.AQUA));
-        } else {
-            tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
+        if(FrogvasionGameOptions.getShowTooltips()){
+            if (Screen.hasShiftDown()) {
+                tooltip.add(Text.translatable("text.block.rubber_extractor", Text.translatable("block.frogvasion.rubber_log")
+                        , Text.translatable("block.frogvasion.rubber_wood"), Text.translatable("item.frogvasion.unprocessed_rubber")).formatted(Formatting.AQUA));
+            } else {
+                tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
+            }
         }
         super.appendTooltip(stack, world, tooltip, options);
     }

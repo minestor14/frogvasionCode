@@ -1,0 +1,20 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:bucket"
+    },
+    {
+      "item": "frogvasion:blue_orchid_powder"
+    },
+    {
+      "item": "frogvasion:blue_orchid_powder"
+    },
+    {
+      "item": "frogvasion:blue_orchid_powder"
+    }
+  ],
+  "output": {
+    "item": "minecraft:water_bucket"
+  }
+}

@@ -6,6 +6,7 @@ import me.Minestor.frogvasion.worldgen.structures.ModStructures;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
+import net.minecraft.structure.pool.alias.StructurePoolAliasLookup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -69,7 +70,8 @@ public class RubberRuinStructure extends Structure {
                         blockPos,
                         false,
                         this.projectStartToHeightmap,
-                        this.maxDistanceFromCenter);
+                        this.maxDistanceFromCenter,
+                        StructurePoolAliasLookup.EMPTY);
 
         return structurePiecesGenerator;
     }

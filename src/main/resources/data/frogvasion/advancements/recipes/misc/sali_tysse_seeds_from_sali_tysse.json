@@ -22,8 +22,8 @@
   },
   "requirements": [
     [
-      "has_sali_tysse",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_sali_tysse"
     ]
   ],
   "rewards": {

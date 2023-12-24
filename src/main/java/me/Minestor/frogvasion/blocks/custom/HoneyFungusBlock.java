@@ -1,5 +1,6 @@
 package me.Minestor.frogvasion.blocks.custom;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -19,10 +20,16 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 public class HoneyFungusBlock extends PlantBlock implements Waterloggable, Fertilizable {
+    public static final MapCodec<HoneyFungusBlock> CODEC = createCodec(HoneyFungusBlock::new);
     public static final BooleanProperty WATERLOGGED;
     public HoneyFungusBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED, false));
+    }
+
+    @Override
+    protected MapCodec<? extends PlantBlock> getCodec() {
+        return CODEC;
     }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
@@ -45,7 +52,7 @@ public class HoneyFungusBlock extends PlantBlock implements Waterloggable, Ferti
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         return true;
     }
 

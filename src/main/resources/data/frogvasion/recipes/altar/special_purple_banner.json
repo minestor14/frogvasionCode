@@ -1,0 +1,21 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:purple_banner"
+    },
+    {
+      "item": "frogvasion:orchid_mix"
+    },
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "minecraft:string"
+    }
+  ],
+  "output": {
+    "item": "minecraft:purple_banner"
+  },
+  "nbt_output": "{BlockEntityTag:{Patterns:[{Color:13,Pattern:\"sc\"},{Color:10,Pattern:\"ts\"},{Color:5,Pattern:\"cre\"},{Color:15,Pattern:\"mr\"},{Color:0,Pattern:\"mc\"},{Color:15,Pattern:\"flo\"}]}}"
+}

@@ -1,5 +1,6 @@
 package me.Minestor.frogvasion.blocks.custom;
 
+import com.mojang.serialization.MapCodec;
 import me.Minestor.frogvasion.blocks.entity.MailBoxBlockEntity;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import net.minecraft.block.*;
@@ -23,11 +24,16 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class MailBoxBlock extends BlockWithEntity implements BlockEntityProvider {
+    public static final MapCodec<MailBoxBlock> CODEC = createCodec(MailBoxBlock::new);
     public static final IntProperty MAIL = IntProperty.of("mail",0,10);
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public MailBoxBlock(Settings settings) {
         super(settings);
         setDefaultState(getDefaultState().with(MAIL,0).with(FACING,Direction.NORTH));
+    }
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
@@ -59,7 +65,7 @@ public class MailBoxBlock extends BlockWithEntity implements BlockEntityProvider
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.MAILBOX_TYPE, MailBoxBlockEntity::tick);
+        return validateTicker(type, ModBlockEntities.MAILBOX_TYPE, MailBoxBlockEntity::tick);
     }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {

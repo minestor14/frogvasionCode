@@ -3,7 +3,7 @@ package me.Minestor.frogvasion.entities.custom;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.goals.FrogWanderJumpGoal;
 import me.Minestor.frogvasion.entities.goals.IceFrogGoal;
-import me.Minestor.frogvasion.items.Custom.IceSpikeItemEntity;
+import me.Minestor.frogvasion.items.custom.IceSpikeItemEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FrostedIceBlock;

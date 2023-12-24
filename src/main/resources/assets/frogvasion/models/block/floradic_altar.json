@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "frogvasion:block/frogvasium_embedded_polished_blackstone",
+    "side": "frogvasion:block/floradic_altar_side",
+    "top": "frogvasion:block/floradic_altar_top"
+  }
+}

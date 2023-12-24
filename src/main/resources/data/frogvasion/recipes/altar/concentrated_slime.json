@@ -1,0 +1,20 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "frogvasion:orchid_mix"
+    },
+    {
+      "item": "minecraft:slime_block"
+    },
+    {
+      "item": "minecraft:slime_block"
+    },
+    {
+      "item": "minecraft:slime_block"
+    }
+  ],
+  "output": {
+    "item": "frogvasion:concentrated_slime"
+  }
+}

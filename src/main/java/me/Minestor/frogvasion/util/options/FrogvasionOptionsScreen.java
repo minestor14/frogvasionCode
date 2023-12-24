@@ -19,10 +19,11 @@ public class FrogvasionOptionsScreen extends GameOptionsScreen {
     }
     @Override
     protected void init() {
-        this.optionButtons = new OptionListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
+        this.optionButtons = new OptionListWidget(this.client, this.width, this.height -32, 32, 25);
         this.optionButtons.addSingleOptionEntry(FrogvasionGameOptions.FROG_VOLUME);
         this.optionButtons.addSingleOptionEntry(FrogvasionGameOptions.CROAK_DENSITY);
         this.optionButtons.addSingleOptionEntry(FrogvasionGameOptions.SILLY_MODE);
+        this.optionButtons.addSingleOptionEntry(FrogvasionGameOptions.SHOW_TOOLTIPS);
         this.addSelectableChild(this.optionButtons);
         this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
             MinecraftClient.getInstance().options.write();
@@ -32,6 +33,6 @@ public class FrogvasionOptionsScreen extends GameOptionsScreen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float tickDelta) {
-        this.render(context, this.optionButtons, mouseX, mouseY, tickDelta);
+        optionButtons.render(context, mouseX, mouseY, tickDelta);
     }
 }

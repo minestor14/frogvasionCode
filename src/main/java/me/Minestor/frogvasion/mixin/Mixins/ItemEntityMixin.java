@@ -1,6 +1,5 @@
 package me.Minestor.frogvasion.mixin.Mixins;
 
-import me.Minestor.frogvasion.Frogvasion;
 import me.Minestor.frogvasion.events.PickupItemEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

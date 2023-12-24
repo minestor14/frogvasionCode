@@ -15,6 +15,7 @@ public class FrogvasionGameOptions {
     public static final SimpleOption<Double> FROG_VOLUME = createSoundVolumeOption("frog_volume");
     public static final SimpleOption<Integer> CROAK_DENSITY = createAmountCroaks("croak_density");
     public static final SimpleOption<Boolean> SILLY_MODE = createSillyMode("silly_mode");
+    public static final SimpleOption<Boolean> SHOW_TOOLTIPS = createShowTooltips("show_tooltips");
     public static SimpleOption<Double> createSoundVolumeOption(String key) {
         return new SimpleOption<>(key, SimpleOption.constantTooltip(Text.translatable("text.options.frogvasion.frog_volume_tt")),
                 (prefix, value) ->
@@ -24,16 +25,21 @@ public class FrogvasionGameOptions {
     }
     public static SimpleOption<Integer> createAmountCroaks(String key) {
         return new SimpleOption<>(key, SimpleOption.constantTooltip(Text.translatable("text.options.frogvasion.croak_density_tt")),
-                (optionText, value) ->
-                        getGenericValueText(optionText, Text.translatable("text.options.frogvasion.croak_density", value)),
+                (prefix, value) ->
+                        getGenericValueText(prefix, Text.translatable("text.options.frogvasion.croak_density", value)),
                 new SimpleOption.ValidatingIntSliderCallbacks(0, 10), 10,
                 (value) -> MinecraftClient.getInstance().getSoundManager().reloadSounds());
     }
     public static SimpleOption<Boolean> createSillyMode(String key) {
         return SimpleOption.ofBoolean(key, SimpleOption.constantTooltip(Text.translatable("text.options.frogvasion.silly_mode_tt")),
-                (optionText, value) ->
-                        getGenericValueText(optionText, Text.translatable("text.options.frogvasion.silly_mode", value ? "§5§lOn" : "Off")),false,
+                (prefix, value) ->
+                        Text.translatable("text.options.frogvasion.silly_mode", value ? "§5§lOn" : "Off"),false,
                 (value) -> MinecraftClient.getInstance().worldRenderer.reload());
+    }
+    public static SimpleOption<Boolean> createShowTooltips(String key) {
+        return SimpleOption.ofBoolean(key, SimpleOption.constantTooltip(Text.translatable("text.options.frogvasion.show_tooltips_tt")),
+                (prefix, value) -> Text.translatable("text.options.frogvasion.show_tooltips", value ? "On" : "Off"), true,
+                value -> {});
     }
     public static Text getPercentValueText(Text prefix, double value) {
         return Text.translatable("options.percent_value", prefix, (int)(value * 100.0));
@@ -44,15 +50,10 @@ public class FrogvasionGameOptions {
     public static boolean isFalse(String value) {
         return "false".equals(value);
     }
-    public static float getFrogVolume() {
-        return FROG_VOLUME.getValue().floatValue();
-    }
-    public static int getCroakDensity() {
-        return CROAK_DENSITY.getValue();
-    }
-    public static boolean getSillyMode() {
-        return SILLY_MODE.getValue();
-    }
+    public static float getFrogVolume() {return FROG_VOLUME.getValue().floatValue();}
+    public static int getCroakDensity() {return CROAK_DENSITY.getValue();}
+    public static boolean getSillyMode() {return SILLY_MODE.getValue();}
+    public static boolean getShowTooltips() {return SHOW_TOOLTIPS.getValue();}
 
     @Environment(EnvType.CLIENT)
     public interface Visitor {

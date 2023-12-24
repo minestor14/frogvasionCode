@@ -1,0 +1,20 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "frogvasion:sali_tysse_seeds"
+    },
+    {
+      "item": "frogvasion:sali_tysse_seeds"
+    },
+    {
+      "item": "frogvasion:sali_tysse_seeds"
+    },
+    {
+      "item": "frogvasion:sali_tysse_seeds"
+    }
+  ],
+  "output": {
+    "item": "frogvasion:sali_tysse"
+  }
+}

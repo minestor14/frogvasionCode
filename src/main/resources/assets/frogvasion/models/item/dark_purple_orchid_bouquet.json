@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "frogvasion:item/dark_purple_orchid_bouquet"
+  }
+}

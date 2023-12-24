@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_orchid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:orchid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:pink_orchid_bouquet"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_orchid"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:pink_orchid_bouquet"
+    ]
+  },
+  "sends_telemetry_event": false
+}

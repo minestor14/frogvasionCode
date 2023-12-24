@@ -1,5 +1,6 @@
 package me.Minestor.frogvasion.blocks.custom;
 
+import com.mojang.serialization.MapCodec;
 import me.Minestor.frogvasion.blocks.entity.ConversionPedestalBlockEntity;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import net.minecraft.block.BlockEntityProvider;
@@ -10,7 +11,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -20,12 +20,15 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class ConversionPedestalBlock extends BlockWithEntity implements BlockEntityProvider {
+    public static final MapCodec<ConversionPedestalBlock> CODEC = createCodec(ConversionPedestalBlock::new);
     public ConversionPedestalBlock(Settings settings) {
         super(settings);
     }
 
-
-    /*BLOCK ENTITY*/
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
 
     @Nullable
     @Override
@@ -66,6 +69,6 @@ public class ConversionPedestalBlock extends BlockWithEntity implements BlockEnt
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.CONVERSION_PEDESTAL_TYPE, ConversionPedestalBlockEntity::tick);
+        return validateTicker(type, ModBlockEntities.CONVERSION_PEDESTAL_TYPE, ConversionPedestalBlockEntity::tick);
     }
 }

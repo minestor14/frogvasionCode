@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "frogvasion:orchid_magic_sources"
+    },
+    {
+      "item": "frogvasion:frogvasium_embedded_polished_blackstone"
+    }
+  ],
+  "result": {
+    "item": "frogvasion:floradic_altar"
+  }
+}

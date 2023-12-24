@@ -8,7 +8,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-public class ModBlockEntities {
+public final class ModBlockEntities {
     public static BlockEntityType<ConversionPedestalBlockEntity> CONVERSION_PEDESTAL_TYPE;
     public static BlockEntityType<FrogvasiumAttackerBlockEntity> FROGVASIUM_ATTACKER_TYPE;
     public static BlockEntityType<FrogvasiumDemolisherBlockEntity> FROGVASIUM_DEMOLISHER_TYPE;
@@ -16,6 +16,7 @@ public class ModBlockEntities {
     public static BlockEntityType<FrogTrapBlockEntity> FROG_TRAP_TYPE;
     public static BlockEntityType<FrogCageBlockEntity> FROG_CAGE_TYPE;
     public static BlockEntityType<MailBoxBlockEntity> MAILBOX_TYPE;
+    public static BlockEntityType<FloradicAltarBlockEntity> FLORADIC_ALTAR_TYPE;
 
     public static void registerBlockEntities() {
         CONVERSION_PEDESTAL_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "conversion_pedestal"),
@@ -32,5 +33,7 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(FrogCageBlockEntity::new, ModBlocks.FROG_CAGE).build(null));
         MAILBOX_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "mailbox"),
                 FabricBlockEntityTypeBuilder.create(MailBoxBlockEntity::new, ModBlocks.MAILBOX).build(null));
+        FLORADIC_ALTAR_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "floradic_altar"),
+                FabricBlockEntityTypeBuilder.create(FloradicAltarBlockEntity::new, ModBlocks.FLORADIC_ALTAR).build(null));
     }
 }

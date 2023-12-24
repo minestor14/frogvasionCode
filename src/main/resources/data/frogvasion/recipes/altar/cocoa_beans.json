@@ -1,0 +1,21 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "tag": "minecraft:jungle_logs"
+    },
+    {
+      "item": "frogvasion:white_orchid_powder"
+    },
+    {
+      "tag": "minecraft:jungle_logs"
+    },
+    {
+      "item": "frogvasion:white_orchid_powder"
+    }
+  ],
+  "output": {
+    "item": "minecraft:cocoa_beans",
+    "count": 4
+  }
+}

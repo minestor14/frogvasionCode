@@ -1,9 +1,11 @@
 package me.Minestor.frogvasion.blocks.custom;
 
+import com.mojang.serialization.MapCodec;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.custom.ModFrog;
 import me.Minestor.frogvasion.entities.custom.TadpoleRocket;
+import me.Minestor.frogvasion.util.options.FrogvasionGameOptions;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.Screen;
@@ -33,11 +35,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvider {
+    public static final MapCodec<FrogCageBlock> CODEC = createCodec(FrogCageBlock::new);
     public static final BooleanProperty LOADED = Properties.ENABLED;
     public static final IntProperty FROG = IntProperty.of("frog",0,9);
     public FrogCageBlock(Settings settings) {
         super(settings);
         this.setDefaultState(getDefaultState().with(LOADED,false).with(FROG,0));
+    }
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
     @Override
@@ -130,10 +137,12 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        if(Screen.hasShiftDown()) {
-            tooltip.add(Text.translatable("text.block.frog_cage", Text.translatable("item.minecraft.slime_ball")).formatted(Formatting.AQUA));
-        } else {
-            tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
+        if(FrogvasionGameOptions.getShowTooltips()){
+            if (Screen.hasShiftDown()) {
+                tooltip.add(Text.translatable("text.block.frog_cage", Text.translatable("item.minecraft.slime_ball")).formatted(Formatting.AQUA));
+            } else {
+                tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
+            }
         }
         super.appendTooltip(stack, world, tooltip, options);
     }

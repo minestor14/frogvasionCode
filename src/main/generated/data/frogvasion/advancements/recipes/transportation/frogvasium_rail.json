@@ -34,9 +34,9 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_stick",
-      "has_frogvasium_ingot",
-      "has_the_recipe"
+      "has_frogvasium_ingot"
     ]
   ],
   "rewards": {

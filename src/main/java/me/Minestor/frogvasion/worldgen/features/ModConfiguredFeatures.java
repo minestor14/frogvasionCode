@@ -5,6 +5,8 @@ import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.blocks.custom.FrogTowerChestBlock;
 import me.Minestor.frogvasion.blocks.custom.MudFarmlandBlock;
 import me.Minestor.frogvasion.blocks.custom.SaliTysseCropBlock;
+import me.Minestor.frogvasion.worldgen.tree.tropical_acacia.TropicalAcaciaFoliagePlacer;
+import me.Minestor.frogvasion.worldgen.tree.tropical_acacia.TropicalAcaciaTrunkPlacer;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -46,6 +48,11 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?,?>> MARSH_DELTA_KEY = registerKey("marsh_delta");
     public static final RegistryKey<ConfiguredFeature<?,?>> FLOWER_HONEY_FUNGUS_KEY = registerKey("flower_honey_fungus");
     public static final RegistryKey<ConfiguredFeature<?,?>> SALI_TYSSE_PLANT_KEY = registerKey("sali_tysse_plant");
+    public static final RegistryKey<ConfiguredFeature<?,?>> FLOWER_PURPLE_ORCHID_KEY = registerKey("flower_purple_orchid");
+    public static final RegistryKey<ConfiguredFeature<?,?>> TROPICAL_ACACIA_TREE_KEY = registerKey("tropical_acacia_tree");
+    public static final RegistryKey<ConfiguredFeature<?,?>> FLOWER_DARK_RED_ORCHID_KEY = registerKey("flower_dark_red_orchid");
+    public static final RegistryKey<ConfiguredFeature<?,?>> FLOWER_DARK_PURPLE_ORCHID_KEY = registerKey("flower_dark_purple_orchid");
+    public static final RegistryKey<ConfiguredFeature<?,?>> FLOWER_WHITE_ORCHID_KEY = registerKey("flower_white_orchid");
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         var placedFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
 
@@ -78,7 +85,7 @@ public class ModConfiguredFeatures {
                 new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
                 new TwoLayersFeatureSize(1, 0, 2)).build());
 
-        register(context, FLOWER_ORCHID_KEY, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+        register(context, FLOWER_ORCHID_KEY, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(40, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ORCHID)))));
         register(context, FLOWER_BROMELIAD_KEY, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(50, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.BROMELIAD)))));
@@ -104,6 +111,22 @@ public class ModConfiguredFeatures {
                         new BlockColumnFeatureConfig.Layer(ConstantIntProvider.create(1), BlockStateProvider.of(ModBlocks.SALI_TYSSE_CROP.getDefaultState().with(SaliTysseCropBlock.AGE, 5)))),
                 Direction.UP, BlockPredicate.insideWorldBounds(new Vec3i(0,1,0)),
                 true));
+
+        register(context, FLOWER_PURPLE_ORCHID_KEY, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(55, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.PURPLE_ORCHID)))));
+        register(context, TROPICAL_ACACIA_TREE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
+                BlockStateProvider.of(Blocks.ACACIA_LOG),
+                new TropicalAcaciaTrunkPlacer(6, 2, 6),
+                BlockStateProvider.of(Blocks.ACACIA_LEAVES),
+                new TropicalAcaciaFoliagePlacer(ConstantIntProvider.create(4), ConstantIntProvider.create(0), 2),
+                new TwoLayersFeatureSize(1, 0, 2)
+                ).dirtProvider(BlockStateProvider.of(ModBlocks.SAVANNA_SOIL)).build());
+        register(context, FLOWER_DARK_RED_ORCHID_KEY, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(55, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.DARK_RED_ORCHID)))));
+        register(context, FLOWER_DARK_PURPLE_ORCHID_KEY, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(55, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.DARK_PURPLE_ORCHID)))));
+        register(context, FLOWER_WHITE_ORCHID_KEY, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(55, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.WHITE_ORCHID)))));
     }
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, new Identifier(Frogvasion.MOD_ID, name));

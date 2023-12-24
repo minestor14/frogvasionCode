@@ -1,0 +1,20 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "frogvasion:dark_red_orchid_powder"
+    },
+    {
+      "item": "frogvasion:dark_red_orchid_powder"
+    },
+    {
+      "item": "frogvasion:dark_red_orchid_powder"
+    },
+    {
+      "item": "minecraft:apple"
+    }
+  ],
+  "output": {
+    "item": "minecraft:golden_apple"
+  }
+}

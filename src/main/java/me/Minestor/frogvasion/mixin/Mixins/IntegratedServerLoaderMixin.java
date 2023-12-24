@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public class IntegratedServerLoaderMixin {
     //"borrowed" this code from https://github.com/rdvdev2/DisableCustomWorldsAdvice/tree/1.20
     @ModifyVariable(
-            method = "start(Lnet/minecraft/client/gui/screen/Screen;Ljava/lang/String;ZZ)V",
+            method = "start(Lnet/minecraft/world/level/storage/LevelStorage$Session;Lcom/mojang/serialization/Dynamic;ZZLjava/lang/Runnable;)V",
             at = @At("HEAD"),
             argsOnly = true,
             index = 4

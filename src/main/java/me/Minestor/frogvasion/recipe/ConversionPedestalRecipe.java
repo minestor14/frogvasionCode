@@ -1,24 +1,27 @@
 package me.Minestor.frogvasion.recipe;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.*;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.world.World;
 
-public class ConversionPedestalRecipe implements Recipe<SimpleInventory> {
-    private final Identifier id;
-    private final ItemStack output;
-    private final DefaultedList<Ingredient> ingredients;
+import java.util.List;
 
-    public ConversionPedestalRecipe(Identifier id,ItemStack output,DefaultedList<Ingredient> ingredients){
-        this.id = id;
+public class ConversionPedestalRecipe implements Recipe<SimpleInventory> {
+    private final ItemStack output;
+    private final List<Ingredient> ingredients;
+
+    public ConversionPedestalRecipe(ItemStack output, List<Ingredient> ingredients){
         this.output = output;
         this.ingredients = ingredients;
     }
@@ -35,6 +38,13 @@ public class ConversionPedestalRecipe implements Recipe<SimpleInventory> {
         return output;
     }
 
+    public List<Ingredient> getIngredientList() {
+        return ingredients;
+    }
+    @Override
+    public DefaultedList<Ingredient> getIngredients() {
+        return DefaultedList.copyOf(Ingredient.EMPTY, ingredients.get(0), ingredients.get(1));
+    }
 
     @Override
     public boolean fits(int width, int height) {
@@ -42,17 +52,12 @@ public class ConversionPedestalRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
+    public ItemStack getResult(DynamicRegistryManager registryManager) {
         return output.copy();
     }
 
     public ItemStack getOutput() {
         return output.copy();
-    }
-
-    @Override
-    public Identifier getId() {
-        return id;
     }
 
     @Override
@@ -64,6 +69,10 @@ public class ConversionPedestalRecipe implements Recipe<SimpleInventory> {
     public RecipeType<?> getType() {
         return Type.INSTANCE;
     }
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
 
     public static class Type implements RecipeType<ConversionPedestalRecipe> {
         private Type(){}
@@ -73,33 +82,32 @@ public class ConversionPedestalRecipe implements Recipe<SimpleInventory> {
     public static class Serializer implements RecipeSerializer<ConversionPedestalRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "conversion_recipe";
+        public static final Codec<ConversionPedestalRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
+                ItemStack.RECIPE_RESULT_CODEC.fieldOf("output").forGetter(r -> r.output),
+                validateAmount(Ingredient.DISALLOW_EMPTY_CODEC, 2).fieldOf("ingredients").forGetter(ConversionPedestalRecipe::getIngredientList)
+        ).apply(in, ConversionPedestalRecipe::new));
 
-        @Override
-        public ConversionPedestalRecipe read(Identifier id, JsonObject json) {
-            ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "output"));
-
-            JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2, Ingredient.EMPTY);
-
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-            }
-
-            return new ConversionPedestalRecipe(id, output, inputs);
+        private static Codec<List<Ingredient>> validateAmount(Codec<Ingredient> delegate, int count) {
+            return Codecs.validate(
+                    delegate.listOf(), list -> list.size() != count ? DataResult.error(() -> "Recipe must have exactly " + count +" ingredients!") : DataResult.success(list));
         }
 
         @Override
-        public ConversionPedestalRecipe read(Identifier id, PacketByteBuf buf) {
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
-            inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
+        public Codec<ConversionPedestalRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public ConversionPedestalRecipe read(PacketByteBuf buf) {
+            DefaultedList<Ingredient> inputs = DefaultedList.copyOf(Ingredient.EMPTY,
+                    Ingredient.fromPacket(buf), Ingredient.fromPacket(buf));
 
             ItemStack output = buf.readItemStack();
-            return new ConversionPedestalRecipe(id, output, inputs);
+            return new ConversionPedestalRecipe(output, inputs);
         }
 
         @Override
         public void write(PacketByteBuf buf, ConversionPedestalRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.write(buf);
             }

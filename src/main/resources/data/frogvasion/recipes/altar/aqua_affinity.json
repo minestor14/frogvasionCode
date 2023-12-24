@@ -1,0 +1,21 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "minecraft:blue_orchid"
+    },
+    {
+      "item": "minecraft:blue_orchid"
+    },
+    {
+      "item": "minecraft:blue_orchid"
+    }
+  ],
+  "output": {
+    "item": "minecraft:enchanted_book"
+  },
+  "nbt_output": "{StoredEnchantments:[{id:\"minecraft:aqua_affinity\",lvl:1s}]}"
+}

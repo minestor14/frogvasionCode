@@ -46,10 +46,10 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_soul_sand",
       "has_frog_hide",
-      "has_spine",
-      "has_the_recipe"
+      "has_spine"
     ]
   ],
   "rewards": {

@@ -5,7 +5,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.RailBlock;
 import net.minecraft.block.RailPlacementHelper;
 import net.minecraft.block.enums.RailShape;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.state.property.Property;

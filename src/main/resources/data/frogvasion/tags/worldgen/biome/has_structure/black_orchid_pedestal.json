@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "frogvasion:rainforest",
+    "frogvasion:frog_marsh",
+    "frogvasion:tropical_savanna",
+    "frogvasion:mixed_forest"
+  ]
+}

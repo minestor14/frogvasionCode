@@ -1,5 +1,6 @@
 package me.Minestor.frogvasion.blocks.custom;
 
+import com.mojang.serialization.MapCodec;
 import me.Minestor.frogvasion.blocks.entity.FrogvasiumDemolisherBlockEntity;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import net.minecraft.block.*;
@@ -7,16 +8,15 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPointerImpl;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class FrogvasiumDemolisherBlock extends BlockWithEntity implements BlockEntityProvider {
+    public static final MapCodec<FrogvasiumDemolisherBlock> CODEC = createCodec(FrogvasiumDemolisherBlock::new);
     public static final DirectionProperty FACING;
     public FrogvasiumDemolisherBlock(Settings settings) {
         super(settings);
@@ -26,6 +26,10 @@ public class FrogvasiumDemolisherBlock extends BlockWithEntity implements BlockE
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE.instantiate(pos, state);
+    }
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
     @Override
@@ -50,8 +54,7 @@ public class FrogvasiumDemolisherBlock extends BlockWithEntity implements BlockE
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         boolean redstone = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.up());
         if (!world.isClient()) {
-            BlockPointerImpl blockPointerImpl = new BlockPointerImpl((ServerWorld)world, pos);
-            FrogvasiumDemolisherBlockEntity be = blockPointerImpl.getBlockEntity();
+            FrogvasiumDemolisherBlockEntity be = world.getBlockEntity(pos, ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE).get();
             if(!redstone){
                 be.cooldown = 0;
             }
@@ -63,7 +66,7 @@ public class FrogvasiumDemolisherBlock extends BlockWithEntity implements BlockE
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE, FrogvasiumDemolisherBlockEntity::tick);
+        return validateTicker(type, ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE, FrogvasiumDemolisherBlockEntity::tick);
     }
     static {
         FACING = Properties.FACING;

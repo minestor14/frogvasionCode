@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Frogvasion",
-  "description": "Frogvasion is a fabric mod that adds a variety of hostile frogs, custom items and blocks to Minecraft along custom worldgen and gamemechanics.\n\nEver wanted Minecraft to be of a challenge and have incredible fun at the same time? Look no further than Frogvasion. \nCurrently there are 8 custom frogs with each custom and unique mechanics and drops. Be prepared to have your world taken over by frogs (not the friendly ones). \nGo exploring and find custom structures or have a trip to the mines for some Frogvasium with which you can craft a lot of fun and useful items and blocks. \nTame frogs and let them alongside you fight against minibosses and normal monsters. Also available in 1.19.2",
+  "description": "Frogvasion is a fabric mod that adds a variety of hostile frogs, custom items and blocks to Minecraft along custom worldgen and game mechanics.\n\nEver wanted Minecraft to be of a challenge and have incredible fun at the same time? Look no further than Frogvasion. \nCurrently there are 8 custom frogs with each custom and unique mechanics and drops. Be prepared to have your world taken over by frogs (not the friendly ones). \nGo exploring and find custom structures or have a trip to the mines for some Frogvasium with which you can craft a lot of fun and useful items and blocks. \nTame frogs and let them alongside you fight against minibosses and normal monsters. Also available in 1.19.2",
   "authors": [
     "Minestor"
   ],
@@ -33,7 +33,7 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.6",
+    "fabricloader": ">=0.14.25",
     "fabric": "*",
     "minecraft": "~1.20",
     "java": ">=17"

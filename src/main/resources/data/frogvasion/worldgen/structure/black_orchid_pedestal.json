@@ -1,0 +1,25 @@
+{
+  "type": "frogvasion:black_orchid_pedestal",
+  "start_pool": "frogvasion:black_orchid_pedestal",
+  "size": 1,
+  "max_distance_from_center": 13,
+  "biomes": "#frogvasion:has_structure/black_orchid_pedestal",
+  "step": "surface_structures",
+  "start_height": {
+    "absolute": -1
+  },
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "piece",
+      "spawns": [
+        {
+          "type": "frogvasion:normal_tree_frog",
+          "weight": 5,
+          "minCount": 1,
+          "maxCount": 2
+        }
+      ]
+    }
+  }
+}

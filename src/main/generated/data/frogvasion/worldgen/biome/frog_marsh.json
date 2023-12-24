@@ -35,10 +35,10 @@
       "minecraft:amethyst_geode"
     ],
     [
-      "minecraft:monster_room",
-      "minecraft:monster_room_deep",
       "minecraft:fossil_upper",
-      "minecraft:fossil_lower"
+      "minecraft:fossil_lower",
+      "minecraft:monster_room",
+      "minecraft:monster_room_deep"
     ],
     [],
     [],
@@ -62,6 +62,7 @@
       "minecraft:ore_redstone",
       "minecraft:ore_redstone_lower",
       "minecraft:ore_diamond",
+      "minecraft:ore_diamond_medium",
       "minecraft:ore_diamond_large",
       "minecraft:ore_diamond_buried",
       "minecraft:ore_lapis",
@@ -79,6 +80,7 @@
       "minecraft:glow_lichen",
       "frogvasion:bromeliad_placed",
       "frogvasion:orchid_placed",
+      "frogvasion:purple_orchid_placed",
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "minecraft:patch_grass_jungle",

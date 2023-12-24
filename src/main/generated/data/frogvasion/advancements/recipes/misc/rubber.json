@@ -22,8 +22,8 @@
   },
   "requirements": [
     [
-      "has_slime_like_goo",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_slime_like_goo"
     ]
   ],
   "rewards": {

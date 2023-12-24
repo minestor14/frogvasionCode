@@ -2,7 +2,7 @@ package me.Minestor.frogvasion.blocks.entity;
 
 import me.Minestor.frogvasion.blocks.custom.FrogTrapBlock;
 import me.Minestor.frogvasion.networking.ModMessages;
-import me.Minestor.frogvasion.networking.packets.UpdateTrapPacket;
+import me.Minestor.frogvasion.networking.packets.ModPackets;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -78,7 +78,7 @@ public class FrogTrapBlockEntity extends BlockEntity implements ImplementedInven
         if(!world.isClient) {
             for(Entity e : world.getOtherEntities(null,new Box(pos).expand(64), et -> et instanceof PlayerEntity)) {
                 ServerPlayerEntity pl = (ServerPlayerEntity) e;
-                ServerPlayNetworking.send(pl, ModMessages.UPDATE_TRAP, UpdateTrapPacket.createUpdate(pos,be.amountSlimeballs()));
+                ServerPlayNetworking.send(pl, ModMessages.UPDATE_TRAP, ModPackets.createTrapUpdate(pos, be.amountSlimeballs()));
             }
             if(be.amountSlimeballs() > 0) {
                 state = state.with(FrogTrapBlock.LOADED,true);

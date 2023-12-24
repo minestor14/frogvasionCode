@@ -10,7 +10,6 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import org.joml.Vector3f;
 
 public class GrowingFrogRenderer extends MobEntityRenderer<GrowingFrog, ModFrogModel<GrowingFrog>> {
     public static final Identifier TEXTURE = new Identifier(Frogvasion.MOD_ID, "textures/entity/growing_frog.png");

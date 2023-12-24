@@ -46,10 +46,10 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_brewing_stand",
       "has_empty_frog_ghost_fragment",
-      "has_amethyst_shard",
-      "has_the_recipe"
+      "has_amethyst_shard"
     ]
   ],
   "rewards": {

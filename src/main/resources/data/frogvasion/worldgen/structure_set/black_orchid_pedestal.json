@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "frogvasion:black_orchid_pedestal",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 55361942,
+    "spacing": 7,
+    "separation": 4
+  }
+}

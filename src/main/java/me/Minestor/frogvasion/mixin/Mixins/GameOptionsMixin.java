@@ -53,6 +53,7 @@ public abstract class GameOptionsMixin {
         visitor.accept("frog_volume", FrogvasionGameOptions.FROG_VOLUME);
         visitor.accept("croak_density", FrogvasionGameOptions.CROAK_DENSITY);
         visitor.accept("silly_mode", FrogvasionGameOptions.SILLY_MODE);
+        visitor.accept("show_tooltips", FrogvasionGameOptions.SHOW_TOOLTIPS);
     }
 
     @Inject(method = "load", at = @At("TAIL"), cancellable = true)

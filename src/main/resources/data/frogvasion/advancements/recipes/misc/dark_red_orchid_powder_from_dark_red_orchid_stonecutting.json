@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dark_red_orchid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frogvasion:dark_red_orchid"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:dark_red_orchid_powder_from_dark_red_orchid_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dark_red_orchid"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:dark_red_orchid_powder_from_dark_red_orchid_stonecutting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,21 @@
+{
+  "type": "frogvasion:floradic_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "frogvasion:orchid"
+    },
+    {
+      "item": "frogvasion:orchid"
+    },
+    {
+      "item": "frogvasion:orchid"
+    }
+  ],
+  "output": {
+    "item": "minecraft:enchanted_book"
+  },
+  "nbt_output": "{StoredEnchantments:[{id:\"frogvasion:frog_friend\",lvl:1s}]}"
+}

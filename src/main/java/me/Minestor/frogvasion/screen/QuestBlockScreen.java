@@ -3,7 +3,7 @@ package me.Minestor.frogvasion.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.Minestor.frogvasion.Frogvasion;
 import me.Minestor.frogvasion.networking.ModMessages;
-import me.Minestor.frogvasion.networking.packets.UpdateQuestPacket;
+import me.Minestor.frogvasion.networking.packets.ModPackets;
 import me.Minestor.frogvasion.quests.ExtraQuestData;
 import me.Minestor.frogvasion.quests.Quest;
 import me.Minestor.frogvasion.util.entity.IEntityDataSaver;
@@ -57,7 +57,7 @@ public class QuestBlockScreen extends HandledScreen<QuestBlockScreenHandler> {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
 
@@ -145,7 +145,7 @@ public class QuestBlockScreen extends HandledScreen<QuestBlockScreenHandler> {
             if(!this.disabled){
                 QuestDataManager.setQuest((IEntityDataSaver) client.player, quest);
 
-                ClientPlayNetworking.send(ModMessages.UPDATE_QUEST_C2S, UpdateQuestPacket.createUpdate(quest));
+                ClientPlayNetworking.send(ModMessages.UPDATE_QUEST_C2S, ModPackets.createQuestUpdate(quest));
                 client.player.closeHandledScreen();
             }
         }
@@ -176,7 +176,7 @@ public class QuestBlockScreen extends HandledScreen<QuestBlockScreenHandler> {
             quest = new Quest(ExtraQuestData.empty());
             QuestDataManager.setQuest((IEntityDataSaver) client.player, quest);
 
-            ClientPlayNetworking.send(ModMessages.UPDATE_QUEST_C2S, UpdateQuestPacket.createUpdate(quest));
+            ClientPlayNetworking.send(ModMessages.UPDATE_QUEST_C2S, ModPackets.createQuestUpdate(quest));
             refresh();
         }
 
@@ -209,7 +209,7 @@ public class QuestBlockScreen extends HandledScreen<QuestBlockScreenHandler> {
         }
 
         @Override
-        protected void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
+        protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
             RenderSystem.setShader(GameRenderer::getPositionTexProgram);
             RenderSystem.setShaderTexture(0, QuestBlockScreen.TEXTURE);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);

@@ -1,12 +1,9 @@
 package me.Minestor.frogvasion.events;
 
-import me.Minestor.frogvasion.networking.ModMessages;
-import me.Minestor.frogvasion.networking.packets.UpdateQuestPacket;
 import me.Minestor.frogvasion.quests.Quest;
 import me.Minestor.frogvasion.quests.QuestType;
 import me.Minestor.frogvasion.util.entity.IEntityDataSaver;
 import me.Minestor.frogvasion.util.quest.QuestDataManager;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 

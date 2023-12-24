@@ -16,6 +16,7 @@ import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.WeightedListIntProvider;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -27,7 +28,6 @@ import net.minecraft.world.gen.placementmodifier.*;
 import java.util.List;
 
 public class ModPlacedFeatures {
-
     public static final RegistryKey<PlacedFeature> FROG_TOWER_CRATES_PLACED_KEY = registerKey("frog_tower_chests_placed");
     public static final RegistryKey<PlacedFeature> NETHER_FROG_TOWER_CRATES_PLACED_KEY = registerKey("nether_frog_tower_chests_placed");
     public static final RegistryKey<PlacedFeature> END_FROG_TOWER_CRATES_PLACED_KEY = registerKey("end_frog_tower_chests_placed");
@@ -42,6 +42,11 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> MARSH_DELTA_PLACED_KEY = registerKey("marsh_delta_placed");
     public static final RegistryKey<PlacedFeature> FLOWER_HONEY_FUNGUS_PLACED = registerKey("flower_honey_fungus_placed");
     public static final RegistryKey<PlacedFeature> SALI_TYSSE_PLANT_PLACED = registerKey("sali_tysse_plant_placed");
+    public static final RegistryKey<PlacedFeature> PURPLE_ORCHID_PLACED_KEY = registerKey("purple_orchid_placed");
+    public static final RegistryKey<PlacedFeature> TROPICAL_ACACIA_PLACED_KEY = registerKey("tropical_acacia_placed");
+    public static final RegistryKey<PlacedFeature> DARK_RED_ORCHID_PLACED_KEY = registerKey("dark_red_orchid_placed");
+    public static final RegistryKey<PlacedFeature> DARK_PURPLE_ORCHID_PLACED_KEY = registerKey("dark_purple_orchid_placed");
+    public static final RegistryKey<PlacedFeature> WHITE_ORCHID_PLACED_KEY = registerKey("white_orchid_placed");
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var registryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
@@ -81,6 +86,17 @@ public class ModPlacedFeatures {
 
         register(context, SALI_TYSSE_PLANT_PLACED, registryEntryLookup.getOrThrow(ModConfiguredFeatures.SALI_TYSSE_PLANT_KEY),
                 CountPlacementModifier.of(BiasedToBottomIntProvider.create(0,1)), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+
+        register(context, PURPLE_ORCHID_PLACED_KEY, registryEntryLookup.getOrThrow(ModConfiguredFeatures.FLOWER_PURPLE_ORCHID_KEY),
+                RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+        register(context, TROPICAL_ACACIA_PLACED_KEY, registryEntryLookup.getOrThrow(ModConfiguredFeatures.TROPICAL_ACACIA_TREE_KEY),
+                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(1,0.1f,1), ModBlocks.TROPICAL_ACACIA_SAPLING));
+        register(context, DARK_RED_ORCHID_PLACED_KEY, registryEntryLookup.getOrThrow(ModConfiguredFeatures.FLOWER_DARK_RED_ORCHID_KEY),
+                RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+        register(context, DARK_PURPLE_ORCHID_PLACED_KEY, registryEntryLookup.getOrThrow(ModConfiguredFeatures.FLOWER_DARK_PURPLE_ORCHID_KEY),
+                RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+        register(context, WHITE_ORCHID_PLACED_KEY, registryEntryLookup.getOrThrow(ModConfiguredFeatures.FLOWER_WHITE_ORCHID_KEY),
+                RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
     }
     public static void registerPlacedFeatures() {
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
@@ -91,7 +107,7 @@ public class ModPlacedFeatures {
                 GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.END_FROG_TOWER_CRATES_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.FROGVASIUM_PLACED_KEY);
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY),
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.RAINFOREST_KEY, ModBiomes.FROG_MARSH_KEY, ModBiomes.TROPICAL_SAVANNA_KEY, ModBiomes.MIXED_FOREST_KEY),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.FROGVASIUM_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.FROG_MARSH_KEY),
                 GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.MARSH_COLUMN_PLACED_KEY);
@@ -105,6 +121,8 @@ public class ModPlacedFeatures {
                 GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.FLOWER_HONEY_FUNGUS_PLACED);
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.FROG_MARSH_KEY),
                 GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.SALI_TYSSE_PLANT_PLACED);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.MANGROVE_SWAMP),
+                GenerationStep.Feature.FLUID_SPRINGS, ModPlacedFeatures.DARK_PURPLE_ORCHID_PLACED_KEY);
     }
     public static RegistryKey<PlacedFeature> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(Frogvasion.MOD_ID, name));
