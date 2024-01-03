@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:orchid_mix_from_bouquets"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -15,7 +15,6 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.frogvasium_ingot",
       "with": [
@@ -24,12 +23,9 @@
         }
       ]
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:frogvasium_ingot"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.frogvasium_ingot"
     }

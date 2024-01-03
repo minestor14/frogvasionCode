@@ -21,14 +21,6 @@ public abstract class QuestUtil {
 
         return POSSIBLE_ITEMS.get(new Random().nextInt(POSSIBLE_ITEMS.size()));
     }
-    public static Item getRandomCraftable() {
-        List<Item> POSSIBLE_CRAFTS = new ArrayList<>();
-        for (RegistryEntry<Item> item : Registries.ITEM.iterateEntries(ModTags.QUEST_CRAFTS)) {
-            POSSIBLE_CRAFTS.add(item.value());
-        }
-
-        return POSSIBLE_CRAFTS.get(new Random().nextInt(POSSIBLE_CRAFTS.size()));
-    }
     public static Block getRandomMineable() {
         List<Block> POSSIBLE_BLOCKS = new ArrayList<>();
         for (RegistryEntry<Block> block : Registries.BLOCK.iterateEntries(ModTags.QUEST_BLOCKS)) {

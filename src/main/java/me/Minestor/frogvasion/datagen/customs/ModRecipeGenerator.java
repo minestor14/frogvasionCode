@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
@@ -16,6 +15,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SmokingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -44,11 +44,11 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.RUBBER_PLANKS, ModBlocks.RUBBER_SLAB);
         offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.KAURI_PLANKS, ModBlocks.KAURI_SLAB);
         createStairsRecipe(ModBlocks.RUBBER_STAIRS, Ingredient.ofItems(ModBlocks.RUBBER_PLANKS))
-                .criterion(RecipeProvider.hasItem(ModBlocks.RUBBER_PLANKS), RecipeProvider.conditionsFromItem(ModBlocks.RUBBER_PLANKS))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.RUBBER_STAIRS)));
+                .criterion(hasItem(ModBlocks.RUBBER_PLANKS), conditionsFromItem(ModBlocks.RUBBER_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.RUBBER_STAIRS)));
         createStairsRecipe(ModBlocks.KAURI_STAIRS, Ingredient.ofItems(ModBlocks.KAURI_PLANKS))
-                .criterion(RecipeProvider.hasItem(ModBlocks.KAURI_PLANKS), RecipeProvider.conditionsFromItem(ModBlocks.KAURI_PLANKS))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.KAURI_STAIRS)));
+                .criterion(hasItem(ModBlocks.KAURI_PLANKS), conditionsFromItem(ModBlocks.KAURI_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.KAURI_STAIRS)));
 
         offerSmelting(exporter, List.of(ModItems.RAW_FROGVASIUM, ModBlocks.FROGVASIUM_ORE, ModBlocks.DEEPSLATE_FROGVASIUM_ORE), RecipeCategory.MISC, ModItems.FROGVASIUM_INGOT, 1, 40, RecipeCategory.MISC.getName());
         offerBlasting(exporter, List.of(ModItems.RAW_FROGVASIUM, ModBlocks.FROGVASIUM_ORE, ModBlocks.DEEPSLATE_FROGVASIUM_ORE), RecipeCategory.MISC, ModItems.FROGVASIUM_INGOT, 1, 20, RecipeCategory.MISC.getName());
@@ -79,35 +79,55 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         offerShapelessRecipe(exporter, ModItems.WHITE_ORCHID_POWDER, ModBlocks.WHITE_ORCHID, RecipeCategory.MISC.getName(), 2);
         offerShapelessRecipe(exporter, ModItems.BLACK_ORCHID_POWDER, ModBlocks.BLACK_ORCHID, RecipeCategory.MISC.getName(), 2);
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.ALTAR_MANUAL).input(ItemTags.BOOKSHELF_BOOKS).input(ModTags.ORCHID_MAGIC_SOURCES)
+                .criterion(hasItem(ModBlocks.ORCHID), conditionsFromItem(ModBlocks.ORCHID))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.ALTAR_MANUAL)));
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.GUIDE_TO_FROGS).input(ModItems.FROG_HIDE).input(ItemTags.BOOKSHELF_BOOKS)
+                .criterion(hasItem(ModItems.FROG_HIDE), conditionsFromItem(ModItems.FROG_HIDE))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.GUIDE_TO_FROGS)));
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.HERPETOLOGIST_JAR).input(Blocks.GLASS).input(ItemTags.WOODEN_BUTTONS)
+                .criterion(hasItem(Blocks.GLASS), conditionsFromItem(Blocks.GLASS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.HERPETOLOGIST_JAR)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.CROAKING_WHISTLE)
+                .pattern("///")
+                .pattern(" //")
+                .input('/', ModItems.FROGVASIUM_NUGGET)
+                .criterion(hasItem(ModItems.FROGVASIUM_INGOT), conditionsFromItem(ModItems.FROGVASIUM_INGOT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.CROAKING_WHISTLE)));
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.BOOSTING_PLATE)
+                .input(ModItems.FROG_LEGS).input(Items.ENCHANTED_BOOK).input(Blocks.SMOOTH_STONE_SLAB)
+                .criterion(hasItem(ModItems.FROG_LEGS), conditionsFromItem(ModItems.FROG_LEGS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.BOOSTING_PLATE)));
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ORCHID_MIX)
                 .input(ModBlocks.ORCHID).input(Blocks.BLUE_ORCHID).input(ModBlocks.PURPLE_ORCHID)
                 .input(ModBlocks.DARK_PURPLE_ORCHID).input(ModBlocks.DARK_RED_ORCHID).input(ModBlocks.WHITE_ORCHID).input(ModBlocks.BLACK_ORCHID)
-                .criterion(RecipeProvider.hasItem(ModBlocks.ORCHID), RecipeProvider.conditionsFromItem(ModBlocks.ORCHID))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.ORCHID_MIX)));
+                .criterion(hasItem(ModBlocks.ORCHID), conditionsFromItem(ModBlocks.ORCHID))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.ORCHID_MIX)));
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ORCHID_MIX, 9)
                 .input(ModItems.PINK_ORCHID_BOUQUET).input(ModItems.BLUE_ORCHID_BOUQUET).input(ModItems.PURPLE_ORCHID_BOUQUET)
                 .input(ModItems.DARK_PURPLE_ORCHID_BOUQUET).input(ModItems.DARK_RED_ORCHID_BOUQUET).input(ModItems.WHITE_ORCHID_BOUQUET).input(ModItems.BLACK_ORCHID_BOUQUET)
-                .criterion(RecipeProvider.hasItem(ModBlocks.ORCHID), RecipeProvider.conditionsFromItem(ModBlocks.ORCHID))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.ORCHID_MIX) + "_from_bouquets"));
+                .criterion(hasItem(ModBlocks.ORCHID), conditionsFromItem(ModBlocks.ORCHID))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.ORCHID_MIX) + "_from_bouquets"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CONVERSION_PEDESTAL)
                 .pattern("###")
                 .pattern("#?#")
                 .pattern("///")
                 .input('?', Items.BREWING_STAND).input('#', ModItems.EMPTY_FROG_GHOST_FRAGMENT).input('/', Items.AMETHYST_SHARD)
-                .criterion(RecipeProvider.hasItem(Items.BREWING_STAND), RecipeProvider.conditionsFromItem(Items.BREWING_STAND))
-                .criterion(RecipeProvider.hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT), RecipeProvider.conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
-                .criterion(RecipeProvider.hasItem(Items.AMETHYST_SHARD), RecipeProvider.conditionsFromItem(Items.AMETHYST_SHARD))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.CONVERSION_PEDESTAL)));
+                .criterion(hasItem(Items.BREWING_STAND), conditionsFromItem(Items.BREWING_STAND))
+                .criterion(hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT), conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
+                .criterion(hasItem(Items.AMETHYST_SHARD), conditionsFromItem(Items.AMETHYST_SHARD))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.CONVERSION_PEDESTAL)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.EMPTY_FROG_GHOST_FRAGMENT)
                 .pattern("#!#")
                 .pattern("! !")
                 .pattern("#?#")
                 .input('?', Items.SOUL_SAND).input('#', ModItems.FROG_HIDE).input('!', ModItems.SPINE)
-                .criterion(RecipeProvider.hasItem(Items.SOUL_SAND), RecipeProvider.conditionsFromItem(Items.SOUL_SAND))
-                .criterion(RecipeProvider.hasItem(ModItems.FROG_HIDE), RecipeProvider.conditionsFromItem(ModItems.FROG_HIDE))
-                .criterion(RecipeProvider.hasItem(ModItems.SPINE), RecipeProvider.conditionsFromItem(ModItems.SPINE))
+                .criterion(hasItem(Items.SOUL_SAND), conditionsFromItem(Items.SOUL_SAND))
+                .criterion(hasItem(ModItems.FROG_HIDE), conditionsFromItem(ModItems.FROG_HIDE))
+                .criterion(hasItem(ModItems.SPINE), conditionsFromItem(ModItems.SPINE))
                 .offerTo(exporter, new Identifier("frogvasion:empty_frog_ghost_fragment_shaped"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ADDRESS_CARD, 3)
@@ -117,106 +137,106 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('?', Items.NAME_TAG)
                 .input('!', Items.ENDER_PEARL)
                 .input('#', Items.PAPER)
-                .criterion(RecipeProvider.hasItem(Items.NAME_TAG), RecipeProvider.conditionsFromItem(Items.NAME_TAG))
-                .criterion(RecipeProvider.hasItem(Items.ENDER_PEARL), RecipeProvider.conditionsFromItem(Items.ENDER_PEARL))
-                .criterion(RecipeProvider.hasItem(Items.PAPER), RecipeProvider.conditionsFromItem(Items.PAPER))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.ADDRESS_CARD)));
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .criterion(hasItem(Items.ENDER_PEARL), conditionsFromItem(Items.ENDER_PEARL))
+                .criterion(hasItem(Items.PAPER), conditionsFromItem(Items.PAPER))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.ADDRESS_CARD)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, ModBlocks.FROGVASIUM_RAIL, 16)
                 .pattern("# #")
                 .pattern("#?#")
                 .pattern("# #")
                 .input('?', Items.STICK).input('#', ModItems.FROGVASIUM_INGOT)
-                .criterion(RecipeProvider.hasItem(Items.STICK), RecipeProvider.conditionsFromItem(Items.STICK))
-                .criterion(RecipeProvider.hasItem(ModItems.FROGVASIUM_INGOT), RecipeProvider.conditionsFromItem(ModItems.FROGVASIUM_INGOT))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROGVASIUM_RAIL)));
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .criterion(hasItem(ModItems.FROGVASIUM_INGOT), conditionsFromItem(ModItems.FROGVASIUM_INGOT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.FROGVASIUM_RAIL)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.FROGVASIUM_ATTACKER)
                 .pattern("###")
                 .pattern("#?#")
                 .pattern("!!!")
                 .input('?', ModItems.SOLDIER_FROG_GHOST).input('#', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE).input('!', Items.REDSTONE)
-                .criterion(RecipeProvider.hasItem(Items.REDSTONE), RecipeProvider.conditionsFromItem(Items.REDSTONE))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROGVASIUM_ATTACKER)));
+                .criterion(hasItem(Items.REDSTONE), conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.FROGVASIUM_ATTACKER)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.FROGVASIUM_DEMOLISHER)
                 .pattern("-#-")
                 .pattern("-?-")
                 .pattern("!!!")
                 .input('!', ModItems.SOLDIER_FROG_GHOST).input('#', ModBlocks.FROGVASIUM_ATTACKER).input('?', Items.BLAZE_ROD).input('-', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE)
-                .criterion(RecipeProvider.hasItem(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE), RecipeProvider.conditionsFromItem(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROGVASIUM_DEMOLISHER)));
+                .criterion(hasItem(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE), conditionsFromItem(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.FROGVASIUM_DEMOLISHER)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.FROGVASIUM_GRAPPLER)
                 .pattern("###")
                 .pattern("#?#")
                 .pattern("!!!")
                 .input('?', ModItems.GRAPPLING_FROG_GHOST).input('#', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE).input('!', Items.REDSTONE)
-                .criterion(RecipeProvider.hasItem(Items.REDSTONE), RecipeProvider.conditionsFromItem(Items.REDSTONE))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROGVASIUM_GRAPPLER)));
+                .criterion(hasItem(Items.REDSTONE), conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.FROGVASIUM_GRAPPLER)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.FROG_STAFF)
                 .pattern("#")
                 .pattern("?")
                 .pattern("?")
                 .input('?', Items.STICK).input('#', ModItems.FROG_HELMET_ITEM)
-                .criterion(RecipeProvider.hasItem(ModItems.FROG_HELMET_ITEM), RecipeProvider.conditionsFromItem(ModItems.FROG_HELMET_ITEM))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.FROG_STAFF)));
+                .criterion(hasItem(ModItems.FROG_HELMET_ITEM), conditionsFromItem(ModItems.FROG_HELMET_ITEM))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.FROG_STAFF)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.GHOST_FRAGMENT_HELMET)
                 .pattern("###")
                 .pattern("# #")
                 .input('#', ModItems.EMPTY_FROG_GHOST_FRAGMENT)
-                .criterion(RecipeProvider.hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT), RecipeProvider.conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.GHOST_FRAGMENT_HELMET)));
+                .criterion(hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT), conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.GHOST_FRAGMENT_HELMET)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.GHOST_FRAGMENT_CHESTPLATE)
                 .pattern("# #")
                 .pattern("###")
                 .pattern("###")
                 .input('#', ModItems.EMPTY_FROG_GHOST_FRAGMENT)
-                .criterion(RecipeProvider.hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT), RecipeProvider.conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.GHOST_FRAGMENT_CHESTPLATE)));
+                .criterion(hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT), conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.GHOST_FRAGMENT_CHESTPLATE)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.GHOST_FRAGMENT_LEGGINGS)
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
                 .input('#', ModItems.EMPTY_FROG_GHOST_FRAGMENT)
-                .criterion(RecipeProvider.hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT), RecipeProvider.conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.GHOST_FRAGMENT_LEGGINGS)));
+                .criterion(hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT), conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.GHOST_FRAGMENT_LEGGINGS)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.GHOST_FRAGMENT_BOOTS)
                 .pattern("# #")
                 .pattern("# #")
                 .input('#', ModItems.EMPTY_FROG_GHOST_FRAGMENT)
-                .criterion(RecipeProvider.hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT), RecipeProvider.conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.GHOST_FRAGMENT_BOOTS)));
+                .criterion(hasItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT), conditionsFromItem(ModItems.EMPTY_FROG_GHOST_FRAGMENT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.GHOST_FRAGMENT_BOOTS)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.FROG_CAGE)
                 .pattern("#?#")
                 .pattern("#?#")
                 .pattern("#?#").input('#',Items.STRING).input('?',Items.SLIME_BALL)
-                .criterion(RecipeProvider.hasItem(Items.SLIME_BALL), RecipeProvider.conditionsFromItem(Items.SLIME_BALL))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROG_CAGE)));
+                .criterion(hasItem(Items.SLIME_BALL), conditionsFromItem(Items.SLIME_BALL))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.FROG_CAGE)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModBlocks.FROG_TRAP)
                 .pattern("#?#")
                 .pattern("#!#")
                 .input('#', ModItems.FROGVASIUM_INGOT).input('!', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE).input('?', Items.STONECUTTER)
-                .criterion(RecipeProvider.hasItem(ModItems.FROGVASIUM_INGOT), RecipeProvider.conditionsFromItem(ModItems.FROGVASIUM_INGOT))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FROG_TRAP)));
+                .criterion(hasItem(ModItems.FROGVASIUM_INGOT), conditionsFromItem(ModItems.FROGVASIUM_INGOT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.FROG_TRAP)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.MAILBOX)
                 .pattern("###")
                 .pattern("#?#")
                 .input('?', ModItems.ADDRESS_CARD).input('#', Items.IRON_INGOT)
-                .criterion(RecipeProvider.hasItem(ModItems.ADDRESS_CARD), RecipeProvider.conditionsFromItem(ModItems.ADDRESS_CARD))
-                .criterion(RecipeProvider.hasItem(Items.IRON_INGOT), RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.MAILBOX)));
+                .criterion(hasItem(ModItems.ADDRESS_CARD), conditionsFromItem(ModItems.ADDRESS_CARD))
+                .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.MAILBOX)));
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.FROG_FIRE_CHARGE).input(ModItems.FROGVASIUM_NUGGET).input(Items.GUNPOWDER)
-                .criterion(RecipeProvider.hasItem(Items.GUNPOWDER),RecipeProvider.conditionsFromItem(Items.GUNPOWDER)).offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.FROG_FIRE_CHARGE)));
+                .criterion(hasItem(Items.GUNPOWDER),conditionsFromItem(Items.GUNPOWDER)).offerTo(exporter, new Identifier(getRecipeName(ModItems.FROG_FIRE_CHARGE)));
         
         offerBarkBlockRecipe(exporter, ModBlocks.RUBBER_WOOD, ModBlocks.RUBBER_LOG);
         offerBarkBlockRecipe(exporter, ModBlocks.STRIPPED_RUBBER_WOOD, ModBlocks.STRIPPED_RUBBER_LOG);
@@ -228,30 +248,30 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .pattern("#!#")
                 .pattern("###")
                 .input('#', ModItems.RUBBER).input('!', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE).input('?', Blocks.CAULDRON)
-                .criterion(RecipeProvider.hasItem(ModItems.RUBBER), RecipeProvider.conditionsFromItem(ModItems.RUBBER))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.RUBBER_EXTRACTOR)));
+                .criterion(hasItem(ModItems.RUBBER), conditionsFromItem(ModItems.RUBBER))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.RUBBER_EXTRACTOR)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.QUEST_BLOCK)
                 .pattern("#?#")
                 .pattern("#!#")
                 .pattern("#?#")
                 .input('#', ModItems.FROGVASIUM_INGOT).input('!', ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE).input('?', ModItems.RUBBER)
-                .criterion(RecipeProvider.hasItem(ModItems.FROGVASIUM_INGOT), RecipeProvider.conditionsFromItem(ModItems.FROGVASIUM_INGOT))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.QUEST_BLOCK)));
+                .criterion(hasItem(ModItems.FROGVASIUM_INGOT), conditionsFromItem(ModItems.FROGVASIUM_INGOT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.QUEST_BLOCK)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHROMA_CLUMP)
                 .pattern("###")
                 .pattern("#!#")
                 .pattern("###")
                 .input('#', ModItems.SALI_TYSSE_SEEDS).input('!', Items.IRON_INGOT)
-                .criterion(RecipeProvider.hasItem(Items.IRON_INGOT), RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.CHROMA_CLUMP)));
+                .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.CHROMA_CLUMP)));
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.FLORADIC_ALTAR).input(ModTags.ORCHID_MAGIC_SOURCES).input(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE)
-                .criterion(RecipeProvider.hasItem(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE), RecipeProvider.conditionsFromItem(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModBlocks.FLORADIC_ALTAR)));
+                .criterion(hasItem(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE), conditionsFromItem(ModBlocks.FROGVASIUM_EMBEDDED_POLISHED_BLACKSTONE))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.FLORADIC_ALTAR)));
         ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.ORCHID_GRENADE_SHELL).input(ModTags.ORCHID_MAGIC_SOURCES).input(ModItems.FROGVASIUM_NUGGET)
-                .criterion(RecipeProvider.hasItem(ModItems.FROGVASIUM_NUGGET), RecipeProvider.conditionsFromItem(ModItems.FROGVASIUM_NUGGET))
-                .offerTo(exporter, new Identifier(RecipeProvider.getRecipeName(ModItems.ORCHID_GRENADE_SHELL)));
+                .criterion(hasItem(ModItems.FROGVASIUM_NUGGET), conditionsFromItem(ModItems.FROGVASIUM_NUGGET))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.ORCHID_GRENADE_SHELL)));
     }
 }

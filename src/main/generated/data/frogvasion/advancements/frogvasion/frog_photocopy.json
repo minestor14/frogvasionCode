@@ -41,7 +41,6 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.frog_photocopy",
       "with": [
@@ -50,12 +49,9 @@
         }
       ]
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:empty_frog_ghost"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.frog_photocopy"
     }

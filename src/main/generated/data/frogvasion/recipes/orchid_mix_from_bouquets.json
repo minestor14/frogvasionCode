@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "frogvasion:pink_orchid_bouquet"
+    },
+    {
+      "item": "frogvasion:blue_orchid_bouquet"
+    },
+    {
+      "item": "frogvasion:purple_orchid_bouquet"
+    },
+    {
+      "item": "frogvasion:dark_purple_orchid_bouquet"
+    },
+    {
+      "item": "frogvasion:dark_red_orchid_bouquet"
+    },
+    {
+      "item": "frogvasion:white_orchid_bouquet"
+    },
+    {
+      "item": "frogvasion:black_orchid_bouquet"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "frogvasion:orchid_mix"
+  }
+}

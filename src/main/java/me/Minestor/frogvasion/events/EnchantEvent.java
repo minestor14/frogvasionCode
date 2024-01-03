@@ -17,6 +17,6 @@ public class EnchantEvent {
         if(!quest.isOfType(QuestType.Enchant)) return;
 
         QuestDataManager.completedTask(p, quest, 1);
-        ServerPlayNetworking.send(p, ModMessages.UPDATE_QUEST_S2C, ModPackets.createQuestUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
+        ServerPlayNetworking.send(p, ModMessages.UPDATE_QUEST_S2C, ModPackets.questUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
     }
 }

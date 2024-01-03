@@ -1,6 +1,6 @@
 package me.Minestor.frogvasion.blocks.custom;
 
-import me.Minestor.frogvasion.screen.QuestBlockScreenHandler;
+import me.Minestor.frogvasion.screen.custom.QuestBlockScreenHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

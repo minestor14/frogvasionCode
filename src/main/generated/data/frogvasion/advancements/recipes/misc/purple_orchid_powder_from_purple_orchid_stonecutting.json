@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:purple_orchid_powder_from_purple_orchid_stonecutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

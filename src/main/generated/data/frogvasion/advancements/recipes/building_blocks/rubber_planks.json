@@ -30,6 +30,5 @@
     "recipes": [
       "frogvasion:rubber_planks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

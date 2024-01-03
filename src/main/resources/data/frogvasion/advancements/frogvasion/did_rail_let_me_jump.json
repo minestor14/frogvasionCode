@@ -9,7 +9,6 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.did_rail_let_me_jump",
       "with": [
@@ -18,12 +17,9 @@
         }
       ]
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:frogvasium_rail"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.did_rail_let_me_jump"
     }

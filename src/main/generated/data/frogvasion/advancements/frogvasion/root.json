@@ -119,8 +119,6 @@
     "description": {
       "translate": "text.frogvasion.advancement.description.root"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:lava_infused_froglight"
     },

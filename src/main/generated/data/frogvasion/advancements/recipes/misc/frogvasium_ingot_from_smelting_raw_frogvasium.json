@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:frogvasium_ingot_from_smelting_raw_frogvasium"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

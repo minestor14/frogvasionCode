@@ -28,6 +28,7 @@ public class ExtraQuestData {
     private int originalAmount;
     private boolean active;
     private static final Random rand = new Random();
+    public static final ExtraQuestData EMPTY = empty();
     private ExtraQuestData() {
         completed = false;
         active = false;
@@ -38,7 +39,6 @@ public class ExtraQuestData {
             case Kill -> kill(QuestUtil.getRandomTargetable(), rand.nextInt(5) + 6);
             case Mine -> mine(QuestUtil.getRandomMineable(), rand.nextInt(45) + 6);
             case Enchant -> enchant(rand.nextInt(3) + 1); // 1 up to 3
-            case Craft -> craft(QuestUtil.getRandomCraftable(), rand.nextInt(4) + 2);
             case Empty -> empty();
         };
     }
@@ -85,16 +85,6 @@ public class ExtraQuestData {
 
         return data;
     }
-    public static ExtraQuestData craft(Item item, int amount) {
-        ExtraQuestData data = new ExtraQuestData();
-        data.setType(QuestType.Craft);
-        data.setItem(item);
-        data.setAmount(amount);
-        data.setOriginalAmount(amount);
-        data.fillEmpty(true);
-
-        return data;
-    }
     public static ExtraQuestData empty() {
         ExtraQuestData data = new ExtraQuestData();
 
@@ -130,6 +120,9 @@ public class ExtraQuestData {
             return null;
         }
         ExtraQuestData data = new ExtraQuestData();
+        if(nbt.getString("quest.type").equalsIgnoreCase("craft")) {
+            return EMPTY;
+        }
 
         data.setAmount(nbt.getInt("quest.amount"));
         data.setOriginalAmount(nbt.getInt("quest.original_amount"));
@@ -250,14 +243,6 @@ public class ExtraQuestData {
         this.active = active;
     }
 
-    public void decreaseAmount(int times) {
-        if(!completed) {
-            this.setAmount(Math.max(0, amount - times));
-        }
-        if(getAmount() == 0) {
-            setCompleted(true);
-        }
-    }
     public void decreaseAmount(int times, ServerPlayerEntity player) {
         if(!completed) {
             this.setAmount(Math.max(0, amount - times));

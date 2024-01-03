@@ -49,6 +49,10 @@ public class ModVillagers {
                             new ItemStack(ModItems.ENHANCED_MUTAGEN, 2),
                             new ItemStack(Items.EMERALD, 1), 4,2, 0.08f
                     )));
+                    factories.add((entity, random) -> new TradeOffer(
+                            new ItemStack(Items.EMERALD, 3),
+                            new ItemStack(ModItems.HERPETOLOGIST_JAR, 1), 6, 4, 0.02f
+                    ));
                 }
         );
         TradeOfferHelper.registerVillagerOffers(HERPETOLOGIST_PROFESSION,2,

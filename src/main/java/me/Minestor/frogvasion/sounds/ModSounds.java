@@ -8,6 +8,7 @@ import net.minecraft.util.Identifier;
 
 public class ModSounds {
     public static final SoundEvent CROAK = registerSoundEvent("croak");
+    public static final SoundEvent GUARANTEED_CROAK = registerSoundEvent("guaranteed_croak");
     public static final SoundEvent CHARGE = registerSoundEvent("charge");
     public static final SoundEvent ICE_SPIKE_BREAK = registerSoundEvent("ice_spike_break");
     public static final SoundEvent TREE_FROG_CROAK = registerSoundEvent("tree_frog_croak");

@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:frog_trap"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -15,7 +15,6 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.ghost_science",
       "with": [
@@ -24,12 +23,9 @@
         }
       ]
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:empty_frog_ghost_fragment"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.ghost_science"
     }

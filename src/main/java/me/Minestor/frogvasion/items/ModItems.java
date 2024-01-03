@@ -55,7 +55,6 @@ public class ModItems {
     public static final Item FROG_FIRE_CHARGE = registerItem("frog_firecharge", new BlockItem(ModBlocks.FROG_FLAME, new FabricItemSettings()), ItemGroups.TOOLS);
     public static final Item SALI_TYSSE_SEEDS = registerItem("sali_tysse_seeds", new AliasedBlockItem(ModBlocks.SALI_TYSSE_CROP,new FabricItemSettings()), ItemGroups.FOOD_AND_DRINK);
     public static final Item SALI_TYSSE = registerItem("sali_tysse", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(5).saturationModifier(3).build())), ItemGroups.FOOD_AND_DRINK);
-
     public static final Item PINK_ORCHID_BOUQUET = registerItem("pink_orchid_bouquet", new OrchidBouquetItem(new FabricItemSettings(), OrchidType.PINK), ItemGroups.INGREDIENTS);
     public static final Item BLUE_ORCHID_BOUQUET = registerItem("blue_orchid_bouquet", new OrchidBouquetItem(new FabricItemSettings(), OrchidType.BLUE), ItemGroups.INGREDIENTS);
     public static final Item PURPLE_ORCHID_BOUQUET = registerItem("purple_orchid_bouquet", new OrchidBouquetItem(new FabricItemSettings(), OrchidType.PURPLE), ItemGroups.INGREDIENTS);
@@ -74,8 +73,11 @@ public class ModItems {
     public static final Item ORCHID_GRENADE_SHELL = registerItem("orchid_grenade_shell", new Item(new FabricItemSettings()), ItemGroups.COMBAT);
     public static final Item ORCHID_GRENADE = registerItem("orchid_grenade", new OrchidGrenadeItem(new FabricItemSettings().rarity(Rarity.UNCOMMON).maxCount(8)), ItemGroups.COMBAT);
     public static final Item ALTAR_MANUAL = registerItem("altar_manual", new AltarManualItem(new FabricItemSettings().maxCount(1).fireproof()), ItemGroups.TOOLS);
-    //todo recipes
 
+    public static final Item CROAKING_WHISTLE = registerItem("croaking_whistle", new CroakingWhistleItem(new FabricItemSettings().maxCount(1)), ItemGroups.TOOLS);
+    public static final Item HERPETOLOGIST_JAR = registerItem("herpetologist_jar", new HerpetologistJarItem(new FabricItemSettings().maxDamage(10)), ItemGroups.TOOLS);
+    public static final Item GUIDE_TO_FROGS = registerItem("guide_to_frogs", new GuideToFrogsItem(new FabricItemSettings().maxCount(1).fireproof()), ItemGroups.TOOLS);
+    public static final Item BOOSTING_PLATE = registerItem("boosting_plate", new BoostingPlateItem(new FabricItemSettings().fireproof().maxCount(1)), ItemGroups.COMBAT);
     //spawn eggs
     public static final Item SOLDIER_FROG_SPAWN_EGG = registerItem("soldier_frog_spawn_egg", new SpawnEggItem(ModEntities.SOLDIER_FROG_ENTITY, 16741227, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);
     public static final Item BOSS_SOLDIER_FROG_SPAWN_EGG = registerItem("boss_soldier_frog_spawn_egg", new SpawnEggItem(ModEntities.BOSS_SOLDIER_FROG_ENTITY, 16726077, 16751544, new FabricItemSettings()), ItemGroups.SPAWN_EGGS);

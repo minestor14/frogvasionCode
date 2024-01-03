@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:frogvasium_ingot_comp"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

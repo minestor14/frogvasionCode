@@ -36,21 +36,8 @@ public class ModEntities {
             .create(SpawnGroup.MONSTER, NormalTreeFrog::new).dimensions(EntityDimensions.fixed(0.4f,0.4f)).build());
     public static final EntityType<GlidingTreeFrog> GLIDING_TREE_FROG_ENTITY = Registry.register(Registries.ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "gliding_tree_frog"), FabricEntityTypeBuilder
             .create(SpawnGroup.MONSTER, GlidingTreeFrog::new).dimensions(EntityDimensions.fixed(0.4f,0.4f)).build());
-    public static int getDefaultedInt(FrogTypes type) {
-        return switch (type) {
-            case SOLDIER -> 1;
-            case BOSS_SOLDIER -> 2;
-            case ARMED -> 3;
-            case ENDER -> 4;
-            case EXPLOSIVE -> 5;
-            case GRAPPLING -> 6;
-            case GROWING -> 7;
-            case TADPOLE_ROCKET -> 8;
-            case ICE -> 9;
-        };
-    }
-    public static ModFrog getFrog(int defaultedInt, World world) {
-        return switch (defaultedInt) {
+    public static ModFrog getFrog(int id, World world) {
+        return switch (id) {
             case 1 -> new SoldierFrog(ModEntities.SOLDIER_FROG_ENTITY, world);
             case 2 -> new BossSoldierFrog(ModEntities.BOSS_SOLDIER_FROG_ENTITY, world);
             case 3 -> new ArmedFrog(ModEntities.ARMED_FROG_ENTITY, world);
@@ -61,5 +48,8 @@ public class ModEntities {
             case 9 -> new IceFrog(ModEntities.ICE_FROG_ENTITY, world);
             default -> new TadpoleRocket(ModEntities.TADPOLE_ROCKET_ENTITY,world);
         };
+    }
+    public static ModFrog getFrog(FrogTypes type, World world) {
+        return getFrog(type.getId(), world);
     }
 }

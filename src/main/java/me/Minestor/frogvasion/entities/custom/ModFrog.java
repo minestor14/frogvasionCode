@@ -1,11 +1,13 @@
 package me.Minestor.frogvasion.entities.custom;
 
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import me.Minestor.frogvasion.blocks.ModBlocks;
 import me.Minestor.frogvasion.effects.ModEffects;
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.sounds.ModSounds;
 import me.Minestor.frogvasion.util.entity.ModEntityGroups;
 import net.minecraft.block.Blocks;
+import net.minecraft.command.EntityDataObject;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.LookControl;
 import net.minecraft.entity.damage.DamageSource;
@@ -67,11 +69,13 @@ public abstract class ModFrog extends TameableEntity{
     public SoundCategory getSoundCategory() {
         return SoundCategory.HOSTILE;
     }
-
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
         return null;
+    }
+    public void setNbt(NbtCompound nbt) throws CommandSyntaxException {
+        new EntityDataObject(this).setNbt(nbt);
     }
 
     public static boolean isValidNaturalSpawn(EntityType<? extends AnimalEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {

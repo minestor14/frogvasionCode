@@ -1,11 +1,20 @@
 package me.Minestor.frogvasion.blocks.custom;
 
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.MapCodec;
+import me.Minestor.frogvasion.blocks.entity.FrogCageBlockEntity;
 import me.Minestor.frogvasion.blocks.entity.ModBlockEntities;
 import me.Minestor.frogvasion.entities.ModEntities;
+import me.Minestor.frogvasion.entities.custom.FrogTypes;
 import me.Minestor.frogvasion.entities.custom.ModFrog;
 import me.Minestor.frogvasion.entities.custom.TadpoleRocket;
+import me.Minestor.frogvasion.items.ModItems;
+import me.Minestor.frogvasion.networking.ModMessages;
+import me.Minestor.frogvasion.networking.packets.ModPackets;
+import me.Minestor.frogvasion.util.entity.GuideUnlocked;
+import me.Minestor.frogvasion.util.entity.IEntityDataSaver;
 import me.Minestor.frogvasion.util.options.FrogvasionGameOptions;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.Screen;
@@ -13,8 +22,14 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.StringNbtReader;
+import net.minecraft.predicate.NbtPredicate;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -61,20 +76,57 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(player.getInventory().getMainHandStack().getItem() == Items.SLIME_BALL && !state.get(LOADED)) {
-            ItemStack stack = player.getInventory().getMainHandStack();
-            state = state.with(LOADED,true);
-            world.setBlockState(pos, state);
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (!world.isClient) {
             world.updateComparators(pos,this);
-            stack.decrement(1);
+        }
+        return super.onBreak(world, pos, state, player);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if(!state.get(LOADED)) {
+            ItemStack stack = player.getInventory().getMainHandStack();
+            if(stack.getItem() == Items.SLIME_BALL && !world.isClient){
+                state = state.with(LOADED, true);
+                world.setBlockState(pos, state);
+                world.updateComparators(pos, this);
+                stack.decrement(1);
+            } else if (stack.getItem() == ModItems.HERPETOLOGIST_JAR && !world.isClient) {
+                NbtCompound nbt = stack.getOrCreateNbt();
+                FrogCageBlockEntity be = world.getBlockEntity(pos, ModBlockEntities.FROG_CAGE_TYPE).get();
+
+                if(nbt.contains("frog_type") && state.get(FROG) == 0) {
+                    be.setFrogNbt(nbt.get("frog_nbt").asString());
+
+                    state = state.with(FROG, FrogTypes.valueOf(nbt.getString("frog_type")).getId());
+                    world.setBlockState(pos, state);
+
+                    nbt.remove("frog_type");
+                    nbt.remove("frog_nbt");
+                    stack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+                } else if (!nbt.contains("frog_type") && state.get(FROG) > 0){
+                    nbt.putString("frog_type", FrogTypes.getById(state.get(FROG)).name());
+                    try {
+                        nbt.put("frog_nbt", StringNbtReader.parse(be.getFrogNbt()));
+                    } catch (CommandSyntaxException ignored) {}
+                    stack.setNbt(nbt);
+                    player.getInventory().setStack(player.getInventory().selectedSlot, stack);
+                    GuideUnlocked.modifyUnlocked((IEntityDataSaver) player, FrogTypes.getById(state.get(FROG)), true);
+                    ServerPlayNetworking.send((ServerPlayerEntity) player, ModMessages.UPDATE_GUIDE, ModPackets.guideUpdate((IEntityDataSaver) player));
+
+                    world.setBlockState(pos, state.with(LOADED, false).with(FROG, 0));
+                    world.updateComparators(pos,this);
+                }
+            }
+            return ActionResult.success(world.isClient);
         }
         if(state.get(FROG) > 0 && !world.isClient) {
             summonFrog((ServerWorld) world, pos, state.get(FROG));
             world.setBlockState(pos, state.with(LOADED, false).with(FROG, 0));
             world.updateComparators(pos,this);
         }
-        return super.onUse(state, world, pos, player, hand, hit);
+        return ActionResult.CONSUME;
     }
 
     @Override
@@ -83,23 +135,17 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
     }
 
     @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if(world.isClient()) return;
-        if (state.getBlock() != newState.getBlock()) {
-            summonFrog((ServerWorld) world, pos, state.get(FROG));
-            world.updateComparators(pos,this);
-            super.onStateReplaced(state, world, pos, newState, moved);
-        }
-    }
-
-    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.cuboid(0,0,0,1,0.5625,1);
     }
 
-    public static void summonFrog(ServerWorld world, BlockPos pos, int defaultedInt) {
-        ModFrog frog = ModEntities.getFrog(defaultedInt,world);
+    public static void summonFrog(ServerWorld world, BlockPos pos, int id) {
+        ModFrog frog = ModEntities.getFrog(id, world);
         if(!(frog instanceof TadpoleRocket)){
+            try {
+                frog.setNbt(StringNbtReader.parse(world.getBlockEntity(pos, ModBlockEntities.FROG_CAGE_TYPE).get().getFrogNbt()));
+            } catch (Exception ignored) {}
+
             frog.setPos(pos.getX() + 0.5, pos.getY() + 0.1, pos.getZ() + 0.5);
             world.spawnEntityAndPassengers(frog);
         }
@@ -109,10 +155,14 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof ModFrog mf && !(entity instanceof TadpoleRocket)) {
-            if (state.get(LOADED) && !mf.isTamed()) {
-                state = state.with(LOADED,false).with(FROG,ModEntities.getDefaultedInt(mf.getFrogType()));
+            if (state.get(LOADED) && !mf.isTamed() && !mf.isDead()) {
+                state = state.with(LOADED,false).with(FROG, mf.getFrogType().getId());
                 world.setBlockState(pos,state);
                 world.updateComparators(pos, this);
+
+                FrogCageBlockEntity be = world.getBlockEntity(pos, ModBlockEntities.FROG_CAGE_TYPE).get();
+                be.setFrogNbt(NbtPredicate.entityToNbt(mf).asString());
+
                 mf.discard();
             }
         }
@@ -144,6 +194,22 @@ public class FrogCageBlock extends BlockWithEntity implements BlockEntityProvide
                 tooltip.add(Text.translatable("text.frogvasion.tooltip.press_shift").formatted(Formatting.YELLOW));
             }
         }
+        NbtCompound nbt = BlockItem.getBlockEntityNbt(stack);
+        if(nbt != null && nbt.contains("frog_type") && nbt.getInt("frog_type") != 0) {
+            tooltip.add(FrogTypes.getById(nbt.getInt("frog_type")).getTranslation().formatted(Formatting.GOLD));
+        }
         super.appendTooltip(stack, world, tooltip, options);
+    }
+
+    @Nullable
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        ItemStack stack = ctx.getStack();
+        NbtCompound nbt = BlockItem.getBlockEntityNbt(stack);
+        if(nbt != null && nbt.contains("frog_type")) {
+            return getDefaultState().with(FROG, nbt.getInt("frog_type"));
+        }
+
+        return super.getPlacementState(ctx);
     }
 }

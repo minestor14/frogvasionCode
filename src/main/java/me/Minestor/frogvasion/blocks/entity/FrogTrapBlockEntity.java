@@ -23,7 +23,6 @@ import org.jetbrains.annotations.Nullable;
 public class FrogTrapBlockEntity extends BlockEntity implements ImplementedInventory{
     private final DefaultedList<ItemStack> inv = DefaultedList.ofSize(1, ItemStack.EMPTY);
 
-
     public FrogTrapBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FROG_TRAP_TYPE, pos, state);
     }
@@ -32,6 +31,7 @@ public class FrogTrapBlockEntity extends BlockEntity implements ImplementedInven
     public DefaultedList<ItemStack> getItems() {
         return this.inv;
     }
+
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
@@ -78,7 +78,7 @@ public class FrogTrapBlockEntity extends BlockEntity implements ImplementedInven
         if(!world.isClient) {
             for(Entity e : world.getOtherEntities(null,new Box(pos).expand(64), et -> et instanceof PlayerEntity)) {
                 ServerPlayerEntity pl = (ServerPlayerEntity) e;
-                ServerPlayNetworking.send(pl, ModMessages.UPDATE_TRAP, ModPackets.createTrapUpdate(pos, be.amountSlimeballs()));
+                ServerPlayNetworking.send(pl, ModMessages.UPDATE_TRAP, ModPackets.trapUpdate(pos, be.amountSlimeballs()));
             }
             if(be.amountSlimeballs() > 0) {
                 state = state.with(FrogTrapBlock.LOADED,true);

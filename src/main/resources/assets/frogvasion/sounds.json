@@ -32,5 +32,12 @@
     "sounds": [
       "frogvasion:quest_completed"
     ]
+  },
+  "guaranteed_croak": {
+    "category": "entities",
+    "subtitle": "subtitles.frogvasion.croak",
+    "sounds": [
+      "frogvasion:croak"
+    ]
   }
 }

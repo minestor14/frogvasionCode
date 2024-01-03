@@ -20,7 +20,7 @@ public class EnderPearlItemMixin {
 
     @Inject(method = "use", at = @At("HEAD"))
     public void use(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-        if (!world.isClient && !user.hasStatusEffect(ModEffects.FROG_CAMOUFLAGE)) {
+        if (!world.isClient && !user.hasStatusEffect(ModEffects.FROG_CAMOUFLAGE) && world.random.nextFloat() < 0.2f) {
             EnderFrog frog = new EnderFrog(ModEntities.ENDER_FROG_ENTITY, world);
             frog.setPos(user.getX(), user.getY(), user.getZ());
             ((ServerWorld)world).spawnEntityAndPassengers(frog);

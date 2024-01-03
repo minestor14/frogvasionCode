@@ -30,6 +30,5 @@
     "recipes": [
       "frogvasion:kauri_planks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

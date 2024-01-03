@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:empty_frog_ghost_fragment"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

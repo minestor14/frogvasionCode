@@ -5,7 +5,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 public class Quest {
     private ExtraQuestData data;
 
-
     public Quest(ExtraQuestData data) {
         this.data = data;
     }
@@ -25,13 +24,10 @@ public class Quest {
     public QuestType getType() {
         return data.getType();
     }
-    public void decreaseAmount(int amount) {
-        this.data.decreaseAmount(amount);
-    }
+
     public void decreaseAmount(int amount, ServerPlayerEntity player) {
         this.data.decreaseAmount(amount, player);
     }
-
 
     @Override
     public String toString() {

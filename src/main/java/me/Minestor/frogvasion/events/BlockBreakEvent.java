@@ -1,5 +1,7 @@
 package me.Minestor.frogvasion.events;
 
+import me.Minestor.frogvasion.blocks.ModBlocks;
+import me.Minestor.frogvasion.blocks.custom.FrogCageBlock;
 import me.Minestor.frogvasion.networking.ModMessages;
 import me.Minestor.frogvasion.networking.packets.ModPackets;
 import me.Minestor.frogvasion.quests.Quest;
@@ -11,8 +13,10 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -21,6 +25,11 @@ import org.jetbrains.annotations.Nullable;
 public class BlockBreakEvent implements PlayerBlockBreakEvents.Before{
     @Override
     public boolean beforeBlockBreak(World world, PlayerEntity p, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {
+        if(state.isOf(ModBlocks.FROG_CAGE)) {
+            if(state.get(FrogCageBlock.FROG) != 0 && !EnchantmentHelper.hasSilkTouch(p.getInventory().getMainHandStack())) {
+                FrogCageBlock.summonFrog((ServerWorld) world, pos, state.get(FrogCageBlock.FROG));
+            }
+        }
         if(QuestDataManager.getData((IEntityDataSaver) p) == null) return true;
 
         Quest quest = QuestDataManager.getQuest((IEntityDataSaver) p);
@@ -37,7 +46,7 @@ public class BlockBreakEvent implements PlayerBlockBreakEvents.Before{
         QuestDataManager.completedTask((ServerPlayerEntity) p, quest, 1);
 
         world.setBlockState(pos, replacement);
-        ServerPlayNetworking.send((ServerPlayerEntity) p, ModMessages.UPDATE_QUEST_S2C, ModPackets.createQuestUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
+        ServerPlayNetworking.send((ServerPlayerEntity) p, ModMessages.UPDATE_QUEST_S2C, ModPackets.questUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
 
         return false;
     }

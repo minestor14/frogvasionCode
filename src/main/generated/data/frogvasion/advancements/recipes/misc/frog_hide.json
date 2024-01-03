@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:frog_hide"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

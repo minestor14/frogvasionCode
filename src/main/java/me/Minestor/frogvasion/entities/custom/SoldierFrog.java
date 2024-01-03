@@ -53,7 +53,7 @@ public class SoldierFrog extends ModFrog{
     @Override
     public void onDeath(DamageSource damageSource) {
         super.onDeath(damageSource);
-        if(!this.world.isClient() && (this.world.random.nextInt(50) == 42 && this.world.getLocalDifficulty(this.getBlockPos()).isAtLeastHard()) || (this.world.random.nextInt(100) == 69)) {
+        if(!this.world.isClient() && ((this.world.random.nextInt(50) == 42 && this.world.getLocalDifficulty(this.getBlockPos()).isAtLeastHard()) || (this.world.random.nextInt(100) == 69))) {
             ServerWorld sworld = (ServerWorld) this.world;
             BossSoldierFrog bob = new BossSoldierFrog(ModEntities.BOSS_SOLDIER_FROG_ENTITY, sworld);
             bob.setPos(this.getX(), this.getY(), this.getZ());

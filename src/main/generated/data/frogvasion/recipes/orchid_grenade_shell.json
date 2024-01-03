@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "tag": "frogvasion:orchid_magic_sources"
+    },
+    {
+      "item": "frogvasion:frogvasium_nugget"
+    }
+  ],
+  "result": {
+    "item": "frogvasion:orchid_grenade_shell"
+  }
+}

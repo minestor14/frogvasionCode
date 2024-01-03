@@ -70,7 +70,7 @@ public class AddressCardItem extends Item {
                     new OverlayMessageS2CPacket(Text.translatable("text.item.address_card3", name , pos.toShortString()))
             );
         }
-        return super.useOnBlock(context);
+        return ActionResult.success(world.isClient);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class AddressCardItem extends Item {
         } else {
             user.sendMessage(Text.translatable("text.item.address_card6").formatted(Formatting.RED));
         }
-        return super.useOnEntity(stack, user, entity, hand);
+        return ActionResult.success(user.getWorld().isClient);
     }
 
     public static boolean hasNbt(ItemStack stack) {

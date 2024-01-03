@@ -20,7 +20,6 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.orchid_grenade",
       "with": [
@@ -30,11 +29,9 @@
       ]
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:orchid_grenade"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.orchid_grenade"
     }

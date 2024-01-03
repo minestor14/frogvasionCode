@@ -14,7 +14,6 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.floradic_altar",
       "with": [
@@ -23,12 +22,9 @@
         }
       ]
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:floradic_altar"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.floradic_altar"
     }

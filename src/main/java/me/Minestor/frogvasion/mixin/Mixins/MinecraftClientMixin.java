@@ -1,6 +1,6 @@
 package me.Minestor.frogvasion.mixin.Mixins;
 
-import me.Minestor.frogvasion.util.entity.IAltarScreen;
+import me.Minestor.frogvasion.util.entity.IBookProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -20,7 +20,8 @@ public class MinecraftClientMixin {
     @Inject(method = "onResolutionChanged", at = @At("HEAD"))
     private void adjustAltarManualGui(CallbackInfo ci) {
         if(player != null) {
-            ((IAltarScreen) player).frogvasion$setAltarScreen(null);
+            ((IBookProvider) player).frogvasion$setAltarScreen(null);
+            ((IBookProvider) player).frogvasion$setGuide(null);
         }
     }
 }

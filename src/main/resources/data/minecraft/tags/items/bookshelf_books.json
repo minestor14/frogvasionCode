@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "frogvasion:altar_manual"
+    "frogvasion:altar_manual",
+    "frogvasion:guide_to_frogs"
   ]
 }

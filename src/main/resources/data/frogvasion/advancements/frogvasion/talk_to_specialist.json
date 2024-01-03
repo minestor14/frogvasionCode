@@ -19,7 +19,6 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.talk_to_specialist",
       "with": [
@@ -31,12 +30,9 @@
         }
       ]
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "minecraft:emerald"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.talk_to_specialist"
     }

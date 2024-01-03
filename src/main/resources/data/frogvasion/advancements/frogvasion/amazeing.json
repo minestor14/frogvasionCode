@@ -19,16 +19,12 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.amazeing"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "minecraft:mud_bricks"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.amazeing"
     }

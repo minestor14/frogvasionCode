@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:frogvasium_block_comp"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

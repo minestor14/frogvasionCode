@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:rubber_from_smelting_unprocessed_rubber"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

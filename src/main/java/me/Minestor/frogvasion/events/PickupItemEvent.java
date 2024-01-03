@@ -28,7 +28,7 @@ public class PickupItemEvent {
         } else {
             QuestDataManager.completedTask((ServerPlayerEntity) p, quest, count);
         }
-        ServerPlayNetworking.send((ServerPlayerEntity) p, ModMessages.UPDATE_QUEST_S2C, ModPackets.createQuestUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
+        ServerPlayNetworking.send((ServerPlayerEntity) p, ModMessages.UPDATE_QUEST_S2C, ModPackets.questUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
         return true;
     }
 }

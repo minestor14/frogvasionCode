@@ -33,7 +33,7 @@ public class FloradicAltarRenderer implements BlockEntityRenderer<FloradicAltarB
 
         if(world.getBlockState(pos).isOf(ModBlocks.FLORADIC_ALTAR)) {
             if(state.get(FloradicAltarBlock.CRAFTING) && entity.isEmpty() && tickDelta == 0) {
-                ClientPlayNetworking.send(ModMessages.FLORADIC_C2S, ModPackets.createFloradicUpdate(pos, entity.getItems(), entity.getProgress()));
+                ClientPlayNetworking.send(ModMessages.FLORADIC_C2S, ModPackets.floradicUpdate(pos, entity.getItems(), entity.getProgress()));
             }
 
             matrices.translate(0.5,0.6 + Math.sin((world.getTime() + tickDelta) / 8d) / 10,0.5);

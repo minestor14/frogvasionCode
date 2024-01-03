@@ -43,6 +43,7 @@ public class EmptyFrogGhostItem extends Item {
                 case ICE -> user.giveItemStack(new ItemStack(ModItems.ICE_FROG_GHOST));
                 default -> user.giveItemStack(new ItemStack(ModItems.EMPTY_FROG_GHOST));
             }
+            frog.damage(user.getWorld().getDamageSources().magic(), 3);
         }
         if(!user.getWorld().isClient){
             Criteria.PLAYER_INTERACTED_WITH_ENTITY.trigger((ServerPlayerEntity) user, stack, entity);

@@ -1,9 +1,11 @@
 package me.Minestor.frogvasion.events;
 
+import me.Minestor.frogvasion.entities.custom.ModFrog;
 import me.Minestor.frogvasion.networking.ModMessages;
 import me.Minestor.frogvasion.networking.packets.ModPackets;
 import me.Minestor.frogvasion.quests.Quest;
 import me.Minestor.frogvasion.quests.QuestType;
+import me.Minestor.frogvasion.util.entity.GuideUnlocked;
 import me.Minestor.frogvasion.util.entity.IEntityDataSaver;
 import me.Minestor.frogvasion.util.quest.QuestDataManager;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
@@ -17,7 +19,11 @@ public class DeathEvent implements ServerLivingEntityEvents.AllowDeath{
     @Override
     public boolean allowDeath(LivingEntity entity, DamageSource damageSource, float damageAmount) {
         if(entity.getAttacker() instanceof  PlayerEntity p) {
-            if (QuestDataManager.getData((IEntityDataSaver) p) == null) return true;
+            if(entity instanceof ModFrog mf && !entity.getWorld().isClient) {
+                GuideUnlocked.modifyUnlocked((IEntityDataSaver) p, mf.getFrogType(), true);
+                ServerPlayNetworking.send((ServerPlayerEntity) p, ModMessages.UPDATE_GUIDE, ModPackets.guideUpdate((IEntityDataSaver) p));
+            }
+            if(QuestDataManager.getData((IEntityDataSaver) p) == null) return true;
 
             Quest quest = QuestDataManager.getQuest((IEntityDataSaver) p);
 
@@ -25,7 +31,7 @@ public class DeathEvent implements ServerLivingEntityEvents.AllowDeath{
             if (entity.getType() != quest.getData().getTarget()) return true;
 
             QuestDataManager.completedTask((ServerPlayerEntity) p, quest, 1);
-            ServerPlayNetworking.send((ServerPlayerEntity) p, ModMessages.UPDATE_QUEST_S2C, ModPackets.createQuestUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
+            ServerPlayNetworking.send((ServerPlayerEntity) p, ModMessages.UPDATE_QUEST_S2C, ModPackets.questUpdate(QuestDataManager.getQuest((IEntityDataSaver) p)));
 
             entity.discard();
             return false;

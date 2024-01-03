@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:frogvasium_ingot_from_blasting_deepslate_frogvasium_ore"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

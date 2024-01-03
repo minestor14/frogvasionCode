@@ -15,7 +15,6 @@
     "Mixins.ItemEntityMixin",
     "Mixins.LivingEntityMixin",
     "Mixins.ModEntityDataSaverMixin",
-    "Mixins.RecipeCraftedCriterionMixin",
     "Mixins.TrunkPlacerTypeInvoker"
   ],
   "client": [

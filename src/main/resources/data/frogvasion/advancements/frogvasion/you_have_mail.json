@@ -22,7 +22,6 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.you_have_mail",
       "with": [
@@ -32,11 +31,9 @@
       ]
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:mailbox"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.you_have_mail"
     }

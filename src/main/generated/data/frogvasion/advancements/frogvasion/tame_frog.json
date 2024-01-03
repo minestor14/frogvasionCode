@@ -115,16 +115,12 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.tame_frog"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:soldier_frog_ghost"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.tame_frog"
     }

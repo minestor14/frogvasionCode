@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:rubber_planks_from_rubber_log"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

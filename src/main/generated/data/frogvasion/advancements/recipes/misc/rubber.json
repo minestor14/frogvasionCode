@@ -30,6 +30,5 @@
     "recipes": [
       "frogvasion:rubber"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

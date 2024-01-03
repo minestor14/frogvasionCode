@@ -4,10 +4,12 @@ import me.Minestor.frogvasion.blocks.OrchidIntensity;
 import me.Minestor.frogvasion.blocks.OrchidType;
 import me.Minestor.frogvasion.blocks.entity.FloradicAltarBlockEntity;
 import me.Minestor.frogvasion.blocks.entity.renderers.FrogTrapRenderer;
+import me.Minestor.frogvasion.entities.custom.FrogTypes;
 import me.Minestor.frogvasion.quests.ExtraQuestData;
 import me.Minestor.frogvasion.quests.Quest;
 import me.Minestor.frogvasion.quests.QuestType;
-import me.Minestor.frogvasion.util.entity.IAltarScreen;
+import me.Minestor.frogvasion.util.entity.GuideUnlocked;
+import me.Minestor.frogvasion.util.entity.IBookProvider;
 import me.Minestor.frogvasion.util.entity.IEntityDataSaver;
 import me.Minestor.frogvasion.util.quest.QuestDataManager;
 import net.fabricmc.api.EnvType;
@@ -42,6 +44,9 @@ public class ClientReceiver {
             boolean completed = buf.readBoolean();
             boolean active = buf.readBoolean();
 
+            if(type.equalsIgnoreCase("craft")) {
+                type = "Empty";
+            }
             ExtraQuestData data = ExtraQuestData.of(amount, originalAmount, QuestType.valueOf(type),
                     Registries.ITEM.get(Identifier.tryParse(item)), Registries.BLOCK.get(Identifier.tryParse(block)),
                     Registries.ENTITY_TYPE.get(Identifier.tryParse(target)), completed);
@@ -90,6 +95,15 @@ public class ClientReceiver {
             client.player.getWorld().playSound(x, y, z, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 0.5f, 1f, true);
         });
         ClientPlayNetworking.registerGlobalReceiver(ModMessages.ALTAR_MANUAL_S2C, (client, handler, buf, responseSender) ->
-                client.execute(() -> client.setScreen(((IAltarScreen)client.player).frogvasion$getAltarScreen())));
+                client.execute(() -> client.setScreen(((IBookProvider)client.player).frogvasion$getAltarScreen())));
+        ClientPlayNetworking.registerGlobalReceiver(ModMessages.GUIDE_TO_FROGS_S2C, (client, handler, buf, responseSender) ->
+                client.execute(() -> client.setScreen(((IBookProvider)client.player).frogvasion$getGuide())));
+        ClientPlayNetworking.registerGlobalReceiver(ModMessages.UPDATE_GUIDE, (client, handler, buf, responseSender) -> {
+            if(client.player != null){
+                for (FrogTypes type : FrogTypes.values()) {
+                    GuideUnlocked.modifyUnlocked((IEntityDataSaver) client.player, type, buf.readBoolean());
+                }
+            }
+        });
     }
 }

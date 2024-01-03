@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "misc",
+  "ingredients": [
+    {
+      "item": "frogvasion:dark_red_orchid"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "frogvasion:dark_red_orchid_powder"
+  }
+}

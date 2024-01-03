@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:cooked_frog_legs_from_campfire"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

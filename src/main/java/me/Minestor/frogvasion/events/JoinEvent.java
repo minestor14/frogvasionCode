@@ -14,6 +14,6 @@ import net.minecraft.client.network.ClientPlayNetworkHandler;
 public class JoinEvent implements ClientPlayConnectionEvents.Join{
     @Override
     public void onPlayReady(ClientPlayNetworkHandler handler, PacketSender sender, MinecraftClient client) {
-        ClientPlayNetworking.send(ModMessages.REQUEST_QUEST, PacketByteBufs.create());
+        ClientPlayNetworking.send(ModMessages.REQUEST_DATA, PacketByteBufs.create());
     }
 }

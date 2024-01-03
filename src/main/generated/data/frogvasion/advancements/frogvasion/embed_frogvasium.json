@@ -28,7 +28,6 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.embed_frogvasium",
       "with": [
@@ -40,12 +39,9 @@
         }
       ]
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:frogvasium_embedded_polished_blackstone"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.embed_frogvasium"
     }

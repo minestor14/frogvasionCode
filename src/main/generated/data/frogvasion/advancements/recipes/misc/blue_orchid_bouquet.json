@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:blue_orchid_bouquet"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

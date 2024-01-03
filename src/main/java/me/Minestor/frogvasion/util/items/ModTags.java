@@ -16,7 +16,6 @@ public class ModTags {
     public static final TagKey<Block> RUBBER_LOGS = TagKey.of(RegistryKeys.BLOCK, new Identifier(Frogvasion.MOD_ID, "rubber_logs"));
 
     public static final TagKey<Item> QUEST_ITEMS = TagKey.of(RegistryKeys.ITEM, new Identifier(Frogvasion.MOD_ID, "quest_items"));
-    public static final TagKey<Item> QUEST_CRAFTS = TagKey.of(RegistryKeys.ITEM, new Identifier(Frogvasion.MOD_ID, "quest_crafts"));
     public static final TagKey<Item> ORCHID_MAGIC_SOURCES = TagKey.of(RegistryKeys.ITEM, new Identifier(Frogvasion.MOD_ID, "orchid_magic_sources"));
 
     public static final TagKey<EntityType<?>> QUEST_TARGETS = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(Frogvasion.MOD_ID, "quest_targets"));

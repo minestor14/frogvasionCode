@@ -1,0 +1,58 @@
+{
+  "overrides": [
+    {
+      "predicate": {
+        "frog": 0
+      },
+      "model": "frogvasion:item/herpetologist_jar_0"
+    },
+    {
+      "predicate": {
+        "frog": 0.1
+      },
+      "model": "frogvasion:item/herpetologist_jar_1"
+    },
+    {
+      "predicate": {
+        "frog": 0.2
+      },
+      "model": "frogvasion:item/herpetologist_jar_2"
+    },
+    {
+      "predicate": {
+        "frog": 0.3
+      },
+      "model": "frogvasion:item/herpetologist_jar_3"
+    },
+    {
+      "predicate": {
+        "frog": 0.4
+      },
+      "model": "frogvasion:item/herpetologist_jar_4"
+    },
+    {
+      "predicate": {
+        "frog": 0.5
+      },
+      "model": "frogvasion:item/herpetologist_jar_5"
+    },
+    {
+      "predicate": {
+        "frog": 0.6
+      },
+      "model": "frogvasion:item/herpetologist_jar_6"
+    },
+    {
+      "predicate": {
+        "frog": 0.7
+      },
+      "model": "frogvasion:item/herpetologist_jar_7"
+    },
+    {
+      "predicate": {
+        "frog": 0.9
+      },
+      "model": "frogvasion:item/herpetologist_jar_9"
+    }
+  ]
+}

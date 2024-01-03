@@ -14,7 +14,6 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "text.frogvasion.advancement.description.green_fire",
       "with": [
@@ -26,12 +25,9 @@
         }
       ]
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "frogvasion:frog_firecharge"
     },
-    "show_toast": true,
     "title": {
       "translate": "text.frogvasion.advancement.title.green_fire"
     }

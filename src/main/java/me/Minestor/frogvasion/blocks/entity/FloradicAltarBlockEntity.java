@@ -227,7 +227,7 @@ public class FloradicAltarBlockEntity extends BlockEntity implements Implemented
     public void markDirty() {
         if(!world.isClient) {
             for(ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-                ServerPlayNetworking.send(player, ModMessages.FLORADIC_S2C, ModPackets.createFloradicUpdate(pos, inv, progress));
+                ServerPlayNetworking.send(player, ModMessages.FLORADIC_S2C, ModPackets.floradicUpdate(pos, inv, progress));
             }
         }
         super.markDirty();

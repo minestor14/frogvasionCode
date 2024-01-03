@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:sali_tysse_seeds_from_sali_tysse"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

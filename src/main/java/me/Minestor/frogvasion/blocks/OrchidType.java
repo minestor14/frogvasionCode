@@ -49,7 +49,7 @@ public enum OrchidType {
                 e.requestTeleport(attacker.getX(), attacker.getY(), attacker.getZ());
             }
             if(this == DARK_RED || this == MIX) {
-                e.heal((float) (2.5 * power));
+                e.heal(2.5f * power);
             }
             if(this == WHITE || this == MIX) {
                 e.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 90 * power, Math.round((float) power / 2)));

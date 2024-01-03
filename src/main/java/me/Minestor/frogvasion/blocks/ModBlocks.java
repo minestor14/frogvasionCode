@@ -43,7 +43,7 @@ public final class ModBlocks {
     public static final Block FROGVASIUM_DEMOLISHER = registerBlock("frogvasium_demolisher", new FrogvasiumDemolisherBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()), ItemGroups.REDSTONE);
     public static final Block FROGVASIUM_GRAPPLER = registerBlock("frogvasium_grappler", new FrogvasiumGrapplerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER).requiresTool().nonOpaque()), ItemGroups.REDSTONE);
     public static final Block FROG_TRAP = registerBlock("frog_trap", new FrogTrapBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).requiresTool().strength(3.5f).pistonBehavior(PistonBehavior.BLOCK)), ItemGroups.REDSTONE);
-    public static final Block FROG_CAGE = registerBlock("frog_cage", new FrogCageBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE).nonOpaque().breakInstantly().sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.BLOCK)), ItemGroups.REDSTONE);
+    public static final Block FROG_CAGE = registerBlock("frog_cage", new FrogCageBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque().sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.BLOCK)), ItemGroups.REDSTONE);
     public static final Block MAILBOX = registerBlock("mailbox", new MailBoxBlock(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.BONE).requiresTool().strength(3.2f)), ItemGroups.FUNCTIONAL);
     public static final Block RUBBER_LOG = registerBlock("rubber_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG).strength(2.0f)), ItemGroups.NATURAL);
     public static final Block RUBBER_WOOD = registerBlock("rubber_wood", new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).strength(2.0f)), ItemGroups.NATURAL);

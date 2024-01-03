@@ -6,7 +6,37 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "frogvasion:frog_cage"
+          "name": "frogvasion:frog_cage",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "frog_nbt",
+                  "target": "BlockEntityTag.frog_nbt",
+                  "op": "replace"
+                },
+                {
+                  "source": "frog_type",
+                  "target": "BlockEntityTag.frog_type",
+                  "op": "replace"
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
         }
       ],
       "conditions": [

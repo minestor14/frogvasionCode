@@ -6,15 +6,17 @@ import me.Minestor.frogvasion.blocks.entity.renderers.*;
 import me.Minestor.frogvasion.entities.ModEntities;
 import me.Minestor.frogvasion.entities.client.models.*;
 import me.Minestor.frogvasion.entities.client.renderers.*;
+import me.Minestor.frogvasion.entities.custom.FrogTypes;
 import me.Minestor.frogvasion.entities.layer.ModModelLayers;
 import me.Minestor.frogvasion.events.JoinEvent;
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.items.custom.renderers.FrogHelmetItemRenderer;
 import me.Minestor.frogvasion.items.custom.renderers.IceSpikeEntityRenderer;
 import me.Minestor.frogvasion.networking.ClientReceiver;
-import me.Minestor.frogvasion.screen.ConversionPedestalScreen;
 import me.Minestor.frogvasion.screen.ModScreenHandlers;
-import me.Minestor.frogvasion.screen.QuestBlockScreen;
+import me.Minestor.frogvasion.screen.custom.BoostingPlateScreen;
+import me.Minestor.frogvasion.screen.custom.ConversionPedestalScreen;
+import me.Minestor.frogvasion.screen.custom.QuestBlockScreen;
 import me.Minestor.frogvasion.util.items.ModThrowables;
 import me.Minestor.frogvasion.util.options.FrogvasionGameOptions;
 import net.fabricmc.api.ClientModInitializer;
@@ -22,12 +24,19 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.FoliageColors;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.Identifier;
 
 import java.awt.*;
 
@@ -44,6 +53,7 @@ public class FrogvasionClient implements ClientModInitializer {
 
         HandledScreens.register(ModScreenHandlers.CONVERSION_PEDESTAL_SCREEN_HANDLER, ConversionPedestalScreen::new);
         HandledScreens.register(ModScreenHandlers.QUEST_BLOCK_SCREEN_HANDLER, QuestBlockScreen::new);
+        HandledScreens.register(ModScreenHandlers.BOOSTING_PLATE_SCREEN_HANDLER, BoostingPlateScreen::new);
     }
     private static void initClientEvents() {
         ClientPlayConnectionEvents.JOIN.register(new JoinEvent());
@@ -53,13 +63,13 @@ public class FrogvasionClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.FROGVASIUM_DEMOLISHER, FrogvasiumAttackerRenderer::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.FROGVASIUM_GRAPPLER, FrogvasiumAttackerRenderer::getTexturedModelData);
 
-        BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_ATTACKER_TYPE, FrogvasiumAttackerRenderer::new);
-        BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE, FrogvasiumDemolisherRenderer::new);
-        BlockEntityRendererRegistry.register(ModBlockEntities.FROGVASIUM_GRAPPLER_TYPE, FrogvasiumGrapplerRenderer::new);
-        BlockEntityRendererRegistry.register(ModBlockEntities.FROG_TRAP_TYPE, FrogTrapRenderer::new);
-        BlockEntityRendererRegistry.register(ModBlockEntities.FROG_CAGE_TYPE, FrogCageRenderer::new);
-        BlockEntityRendererRegistry.register(ModBlockEntities.MAILBOX_TYPE, MailBoxRenderer::new);
-        BlockEntityRendererRegistry.register(ModBlockEntities.FLORADIC_ALTAR_TYPE, FloradicAltarRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FROGVASIUM_ATTACKER_TYPE, FrogvasiumAttackerRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FROGVASIUM_DEMOLISHER_TYPE, FrogvasiumDemolisherRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FROGVASIUM_GRAPPLER_TYPE, FrogvasiumGrapplerRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FROG_TRAP_TYPE, FrogTrapRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FROG_CAGE_TYPE, FrogCageRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.MAILBOX_TYPE, MailBoxRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FLORADIC_ALTAR_TYPE, FloradicAltarRenderer::new);
     }
     private static void initBIRenderers() {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CONCENTRATED_SLIME, RenderLayer.getTranslucent());
@@ -68,8 +78,6 @@ public class FrogvasionClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROG_CAGE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RUBBER_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BROMELIAD, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ORCHID, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_ORCHID, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.KAURI_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.KAURI_SAPLING, ModBlocks.RUBBER_SAPLING, ModBlocks.TROPICAL_ACACIA_SAPLING);
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FROG_FLAME, RenderLayer.getCutout());
@@ -78,9 +86,9 @@ public class FrogvasionClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HONEY_FUNGUS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SALI_TYSSE_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.PURPLE_ORCHID, ModBlocks.DARK_PURPLE_ORCHID, ModBlocks.DARK_RED_ORCHID,
-                ModBlocks.WHITE_ORCHID, ModBlocks.BLACK_ORCHID);
+                ModBlocks.WHITE_ORCHID, ModBlocks.BLACK_ORCHID, ModBlocks.ORCHID);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.POTTED_PURPLE_ORCHID, ModBlocks.POTTED_DARK_PURPLE_ORCHID, ModBlocks.POTTED_DARK_RED_ORCHID,
-                ModBlocks.POTTED_WHITE_ORCHID, ModBlocks.POTTED_BLACK_ORCHID);
+                ModBlocks.POTTED_WHITE_ORCHID, ModBlocks.POTTED_BLACK_ORCHID, ModBlocks.POTTED_ORCHID);
 
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
                     if(FrogvasionGameOptions.getSillyMode() && world != null && pos != null) {
@@ -95,6 +103,12 @@ public class FrogvasionClient implements ClientModInitializer {
 
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.FROG_HELMET, FrogHelmetItemRenderer::getTexturedModelData);
         ArmorRenderer.register(new FrogHelmetItemRenderer(), ModItems.FROG_HELMET_ITEM);
+
+        ModelPredicateProviderRegistry.register(ModItems.HERPETOLOGIST_JAR, new Identifier("frog"), (stack, world, entity, seed) -> {
+            NbtCompound nbt = stack.getOrCreateNbt();
+            if(!nbt.contains("frog_type")) return 0f;
+            return FrogTypes.valueOf(nbt.getString("frog_type")).getId() / 10f;
+        });
     }
     private static void registerEntityRenderers() {
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.NORMAL_TREE_FROG, ModTreeFrogModel::getTexturedModelData);

@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:white_orchid"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 4,
+  "ingredient": {
+    "item": "frogvasion:white_orchid"
+  },
+  "result": "frogvasion:white_orchid_powder"
+}

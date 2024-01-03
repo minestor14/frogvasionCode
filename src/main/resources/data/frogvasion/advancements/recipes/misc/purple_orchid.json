@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:purple_orchid"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

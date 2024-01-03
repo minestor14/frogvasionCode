@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:cooked_frog_legs_from_smoker"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -2,7 +2,7 @@ package me.Minestor.frogvasion.blocks.entity;
 
 import me.Minestor.frogvasion.items.ModItems;
 import me.Minestor.frogvasion.recipe.ConversionPedestalRecipe;
-import me.Minestor.frogvasion.screen.ConversionPedestalScreenHandler;
+import me.Minestor.frogvasion.screen.custom.ConversionPedestalScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -71,7 +71,7 @@ public class ConversionPedestalBlockEntity extends BlockEntity implements NamedS
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new ConversionPedestalScreenHandler(syncId,inv,this,this.pd);
+        return new ConversionPedestalScreenHandler(syncId,inv,this, this.pd);
     }
 
     @Override

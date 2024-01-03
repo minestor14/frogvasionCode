@@ -5,7 +5,6 @@ public enum QuestType {
     Kill(2),
     Mine(1),
     Enchant(3),
-    Craft(2),
     Empty(0);
     final int reward;
     QuestType(int reward) {

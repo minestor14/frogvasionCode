@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:dark_purple_orchid_powder_from_dark_purple_orchid"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

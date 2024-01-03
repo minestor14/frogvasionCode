@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:black_orchid_powder_from_black_orchid_stonecutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
